@@ -1,2 +1,2 @@
 # Inventario-Telefonica
-Inventory WebSite to a small Company in PHP
+Small inventory made for a company, PHP

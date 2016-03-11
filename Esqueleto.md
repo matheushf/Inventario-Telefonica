@@ -5,7 +5,7 @@
   - Inventário
   
 ##Depósito
-- Campos
+####Campos
   1. Empresa
   2. Centro
   3. Região
@@ -23,7 +23,7 @@
   15. Observação
   
 ##Materiais
-- Campos
+####Campos
   1. Código
   2. Texto Breve do Material
   3. Unidade de Medida
@@ -34,7 +34,7 @@
   8. Observação
   
 ##Etiquetas
-- Campos
+####Campos
   1. Centro
   2. Material
   3. Qtd

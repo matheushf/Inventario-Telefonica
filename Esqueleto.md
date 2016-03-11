@@ -1,11 +1,11 @@
 ##O sistema deverá possuir 4 módulos:
-  -Depósito
-  -Materiais
-  -Etiquetas
-  -Inventário
+  - Depósito
+  - Materiais
+  - Etiquetas
+  - Inventário
   
 ##Depósito
--Campos
+- Campos
   1. Empresa
   2. Centro
   3. Região
@@ -22,8 +22,8 @@
   14. Livre 3
   15. Observação
   
-  ##Materiais
-  -Campos
+##Materiais
+- Campos
   1. Código
   2. Texto Breve do Material
   3. Unidade de Medida
@@ -33,8 +33,8 @@
   7. Livre 3
   8. Observação
   
-  ##Etiquetas
-  -Campos
+##Etiquetas
+- Campos
   1. Centro
   2. Material
   3. Qtd

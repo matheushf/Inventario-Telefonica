@@ -21,6 +21,11 @@
   13. Livre 2
   14. Livre 3
   15. Observação
+
+  
+![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/1.png "Depósito")
+
+
   
 ##Materiais
 ####Campos
@@ -33,6 +38,10 @@
   7. Livre 3
   8. Observação
   
+
+![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/2.png "Materiais")
+
+
 ##Etiquetas
 ####Campos
   1. Centro
@@ -41,3 +50,9 @@
   4. Observação
   
   
+![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/3.png "Etiquetas")
+
+
+##Inventario
+
+![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/4.png "Etiquetas")

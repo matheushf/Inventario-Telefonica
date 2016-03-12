@@ -52,6 +52,12 @@
   
 ![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/3.png "Etiquetas")
 
+![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/P%C3%A1gina%20Etiquetas%20-%2017-02(Completo.png "Etiquetas Completo")
+
+###Impressao
+
+![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/image009.jpg "Impressão")
+
 
 ##Inventario
 

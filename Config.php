@@ -8,5 +8,4 @@ define('SCRIPT_URL', 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME
 
 // Requires relacionados a Configurações e Funcões
 require_once 'Funcoes.php';
-require_once 'Config.php';
 require_once 'Global.php';

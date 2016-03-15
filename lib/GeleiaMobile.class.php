@@ -16,7 +16,7 @@
 	/* CONSTANT */
 	define("_PAGE_TITLE", 'Agenda Corporativa | Vivo');
 
-	class Geleia extends FormMobile {
+	class GeleiaMobile extends FormMobile {
 
 		public $error;
 		public $mail_config;

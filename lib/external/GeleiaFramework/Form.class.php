@@ -340,10 +340,6 @@ class Form extends PForm {
 
         $FieldInfo = $this->GetColumnInfoFromTableList($Field);
 
-
-        //_debug($FieldInfo);
-        //_debug($_POST);
-
         if ($FieldInfo != null) {
 
             //echo $Field . " - ";
@@ -391,77 +387,85 @@ class Form extends PForm {
                 $readonly = ' readonly ';
             }
 
-
             switch (strtolower($InputType)) {
                 case "text": case "password": {
 
-                        /* if($FieldInfo->DATA_TYPE == 'varchar') {
-                          $maxlength = " maxlength='$FieldInfo->CHARACTER_MAXIMUM_LENGTH' ";
-                          }
+                        $html = " <label for='$Field'><strong>$Label</strong> </label>
+                                        <input " . $readonly . $FieldPreferences->{'typeof'}
+                                . $FieldPreferences->{'required'}
+                                . $FieldPreferences->{'style'}
+                                . " type='$InputType' $int id='$Field' name='$Field' value='$Value' $maxlength is_nullable='$FieldInfo->IS_NULLABLE'/ class='form-control' style='margin-bottom: 10px'>";
 
-                          if($FieldInfo->DATA_TYPE == 'int') {
-                          $int = " integer='YES' ";
-                          $maxlength = " maxlength='$FieldInfo->NUMERIC_PRECISION' ";
-                          } */
-
-                        return "<label class='Label'><strong>$Label</strong> <input " . $readonly . $FieldPreferences->{'typeof'} . $FieldPreferences->{'required'} . $FieldPreferences->{'style'} . " type='$InputType' $int id='$Field'  name='$Field' value='$Value' $maxlength is_nullable='$FieldInfo->IS_NULLABLE' /></label>";
-
+                        return $html;
                         break;
                     }
 
-
-
                 case "hidden": {
-                        return "<input type='hidden' id='$Field' name='$Field' value='$Value' is_nullable='$FieldInfo->IS_NULLABLE' />";
+                        $html = "<input type='hidden' class='form-control' id='$Field' name='$Field' value='$Value' is_nullable='$FieldInfo->IS_NULLABLE' />";
+
+                        return $html;
                         break;
                     }
 
                 case "select": {
-
                         if ($FieldPreferences->{'datasource-type'} == 'literal') {
-                            return "<label class='Label'><strong>$Label</strong> " . $this->SelectUsingLiteralValues($Field, $FieldPreferences, "Selecione...") . "</label>";
+                            return "<label for='$Field'><strong>$Label</strong> </label>"
+                                    . $this->SelectUsingLiteralValues($Field, $FieldPreferences, "Selecione...")
+                                    . "";
                         } else if ($FieldPreferences->{'datasource-type'} == 'sql') {
-                            return "<label class='Label'><strong>$Label</strong> " . $this->SelectUsingDB($Field, $FieldPreferences, "Selecione...") . "</label>";
+                            return "<div class='form-group'>"
+                                    . "<label for='$Field'><strong>$Label</strong> </label>"
+                                    . $this->SelectUsingDB($Field, $FieldPreferences, "Selecione...")
+                                    . "";
                         } else if ($FieldPreferences->{'datasource-type'} == 'keyvalue') { //Array With Key=>Value
-                            return "<label class='Label'><strong>$Label</strong> " . $this->SelectUsingLiteralKeysAndValues($Field, $FieldPreferences, "Selecione...") . "</label>";
+                            return "<div class='form-group'><label for='$Field'><strong>$Label</strong> </label>"
+                                    . $this->SelectUsingLiteralKeysAndValues($Field, $FieldPreferences, "Selecione...")
+                                    . "";
                         }
-
 
                         break;
                     }
 
                 case "textarea": {
-                        return "<label class='Label'><strong>$Label</strong> <textarea " . $FieldPreferences->{'required'} . $readonly . $FieldPreferences->{'typeof'} . " name='$Field' id='$Field'>" . $Value . "</textarea></label>";
+                        return "<label class='Label' for='$Field'><strong>$Label</strong> </label> "
+                                . "<textarea "
+                                . $FieldPreferences->{'required'}
+                                . $readonly . $FieldPreferences->{'typeof'}
+                                . " name='$Field' id='$Field' class='form-control'>"
+                                . $Value . "</textarea>";
                         break;
                     }
 
                 case "file": {
-                        /*                         * @todo MAX SIZE and ALLOWED EXTENSIONS * */
-                        return "<label class='Label'><strong>$Label</strong> <input " . $FieldPreferences->{'required'} . $readonly . $FieldPreferences->{'typeof'} . " type=\"file\" name=\"" . $Field . "\" id=\"" . $Field . "\"></label>";
+                        //*                         * @todo Adicionar tamanho máximo e extensões permitidas
+                        return "<label class='Label' for='$Field'><strong>$Label</strong> </label> "
+                                . "<input " . $FieldPreferences->{'required'}
+                                . $readonly . $FieldPreferences->{'typeof'}
+                                . " type=\"file\" name=\"" . $Field
+                                . "\" id=\"" . $Field
+                                . "\" class='form-control'>";
                         break;
                     }
 
                 case "checkbox": {
-
                         if ($FieldPreferences->{'datasource-type'} == 'literal') {
-                            return "<label class='Label'><strong>$Label</strong> " . $this->CheckboxUsingLiteralvalues($Field, $FieldPreferences) . "</label>";
-                            //return "<label>$Label " . $this->RadioboxUsingLiteralValues($Field, $FieldPreferences->{'datasource-literal'}) . "</label>";
+                            return "<label class='Label' for='$Field'> </label> <strong>$Label</strong> "
+                                    . $this->CheckboxUsingLiteralvalues($Field, $FieldPreferences);
                         }
 
                         break;
                     }
 
                 case "radio": {
-
                         if ($FieldPreferences->{'datasource-type'} == 'literal') {
-                            return "<label class='Label'><strong>$Label</strong> " . $this->RadioboxUsingLiteralValues($Field, $FieldPreferences) . "</label>";
+                            return "<label class='Label' for='$Field'><strong>$Label</strong> </label>"
+                                    . $this->RadioboxUsingLiteralValues($Field, $FieldPreferences);
                         }
 
                         break;
                     }
 
                 case "datetime": {
-
                         return $this->CreateDateTimeField($Field, $FieldPreferences, $Label);
                         break;
                     }
@@ -501,14 +505,11 @@ class Form extends PForm {
     function SelectUsingLiteralValues($Field, $Options, $FirstOptionText) {
 
         $DataSource = $this->LiteralList[$Options->{'datasource-literal'}];
-
         $ArrayValues = explode("#", $DataSource);
-
-        //asort($ArrayValues);
-
-        $Select = "<select " . $Options->{'required'} . " id='$Field' name='$Field'> ";
-
-        $Select .= "<option value=''>$FirstOptionText</option>";
+        $Select = "
+                <div class='form-group'>
+                     <select " . $Options->{'required'} . " id='$Field' name='$Field' class='form-control'> 
+                            <option value=''>$FirstOptionText</option>";
 
         foreach (($ArrayValues ? $ArrayValues : Array()) as $Value) {
 
@@ -518,23 +519,21 @@ class Form extends PForm {
                 $Select .= "<option value=\"" . trim($Value) . "\">" . htmlentities($Value) . "</option>";
             }
         }
-        $Select .= "</select>";
+        $Select .= "
+                    </select>
+                </div>";
+        
         return $Select;
     }
 
     function SelectUsingDB($Field, $Options, $FirstOptionText) {
         global $db;
 
-
-
         $ObjList = $db->GetObjectList($this->SQList[$Options->{'datasource-sql'}]['sql']);
 
 
         $Select = "<select " . $Options->{'required'} . " id='$Field' name='$Field'> ";
         $Select .= "<option value=''>$FirstOptionText</option>";
-
-        //echo $_POST[$Field];
-        //_debug($Options);
 
         foreach (($ObjList ? $ObjList : Array()) as $Obj) {
             if ($_POST[$Field] == $Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) {
@@ -543,8 +542,6 @@ class Form extends PForm {
                 $SelectOption .= "<option value=\"" . htmlentities($Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) . "\">" . $Obj->{$this->SQList[$Options->{'datasource-sql'}]['value']} . "</option>";
             }
         }
-
-
 
         $Select .= $SelectOption . "</select>";
         return $Select;
@@ -555,7 +552,6 @@ class Form extends PForm {
         $DataSource = $this->LiteralList[$Options->{'datasource-literal'}];
 
         $ArrayValues = explode("#", $DataSource);
-        //asort($ArrayValues);
 
         $Checkbox = "<ul " . $Options->{'required'} . " class='CheckboxForm'> ";
 
@@ -645,13 +641,10 @@ class Form extends PForm {
     function CodeCreateForm($TableName, $InstanceName) {
         $ObjList = $this->GetInfoAboutTable($TableName);
 
-        //_debug($ObjList);
-
         $strFields = "<?php ";
         foreach (($ObjList ? $ObjList : Array()) as $Obj) {
             if ($Obj->COLUMN_COMMENT != '') {
                 $Field = $Obj->COLUMN_NAME;
-
 
                 if (strpos($Obj->COLUMN_COMMENT, 'removed') == false) {
                     $strFields .= "echo $" . $InstanceName . "->Create('" . strtolower($Field) . "');" . "\r\n";

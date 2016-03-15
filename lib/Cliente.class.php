@@ -2,6 +2,7 @@
 abstract class PCliente extends Geleia {
 		
 		function PCliente($Table = "") {
+                    
 			parent::Geleia($Table);
 			$this->LoadSQL4Datasource();
 			$this->LoadLiteralDatasource();

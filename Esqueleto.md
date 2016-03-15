@@ -52,7 +52,7 @@ De fato uma das bases de maior importância em nosso sistema, já que conterá o
 **Etiquetas são campos de vínculos entre Materiais e Depósitos**
 
 ####Campos
-  1. Centro
+  1. Centro (Combo Box)
   2. Material (Combo Box)
   3. Qtd
   4. Observação

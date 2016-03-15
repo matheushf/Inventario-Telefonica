@@ -1,17 +1,17 @@
 <?php
 
 function get_head($Titulo, $path = null) {
-    
-    if (!isset($path) ) $path = 'head.php';
-    
-    require_once (DOCUMENT_ROOT . '/' . $Caminho);
+
+    if (!isset($path)) $path = 'head.php';
+
+    include (DOCUMENT_ROOT . '/' . $path);
 }
 
-function get_foot($Titulo, $path = null) {
-    
-    if (!isset($path) ) $path = 'foot.php';
-    
-    require_once (DOCUMENT_ROOT . '/' . $Caminho);
+function get_foot($path = null) {
+
+    if (!isset($path)) $path = 'foot.php';
+
+    require_once (DOCUMENT_ROOT . '/' . $path);
 }
 
 function _debug($array) {

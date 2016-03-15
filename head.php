@@ -1,7 +1,7 @@
 <?php
 //include( $_SERVER['DOCUMENT_ROOT'] . "/global.php");
 
-require_once 'global.php';
+//require_once 'global.php';
 
 //if(!$util->estaLogado()) {
 //	header('Location: /index.php');
@@ -14,7 +14,7 @@ require_once 'global.php';
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> Vivo Inventário</title>
+        <title> <?php echo $Titulo ?> </title>
 
         <link href="/vivo-inventario/assets/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="/vivo-inventario/assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">

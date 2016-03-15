@@ -8,16 +8,7 @@ ini_set("include_path", ini_get("include_path") . PATH_SEPARATOR . $doc_root . "
 
 //$actions = $doc_root . '/mobile/action.php';
 
-
-
-if (!class_exists("Zend_Validate")) {
-    require '/Zend/Validate.php';
-}
-
-if (!class_exists("Zend_Mail")) {
-    require '/Zend/Mail.php';
-}
-
+// Requires relacionadas a Lib
 require_once $doc_root . 'lib/external/GeleiaFramework/UserControl.class.php';
 require_once $doc_root . 'lib/external/GeleiaFramework/Form.class.php';
 require_once $doc_root . 'lib/external/GeleiaFramework/FormMobile.class.php';
@@ -30,18 +21,21 @@ require_once $doc_root . '/lib/Agenda.class.php';
 require_once $doc_root . '/lib/Checklist.class.php';
 require_once $doc_root . '/lib/Protocolo.class.php';
 require_once $doc_root . '/lib/AgendaAnexo.class.php';
-require_once 'Funcoes.php';
-require_once 'Config.php';
+if (!class_exists("Zend_Validate")) { require '/Zend/Validate.php'; }
+if (!class_exists("Zend_Mail")) { require '/Zend/Mail.php'; }
 
 
-$agenda_anexo = new AgendaAnexo('agenda_anexo');
-$protocolo = new Protocolo('protocolo');
-$checklist = new Checklist('checklist');
-$agenda = new Agenda('agenda');
-$cliente = new Cliente('cliente');
-$usuario = new Usuario('usuario');
-$agenda_feedback = new AgendaFeedback('agenda_feedback');
-$global = new Geleia();
+
+
+// Instanciar Classes
+$Agenda_Anexo = new AgendaAnexo('agenda_anexo');
+$Protocolo = new Protocolo('protocolo');
+$Checklist = new Checklist('checklist');
+$Agenda = new Agenda('agenda');
+$Cliente = new Cliente('cliente');
+$Usuario = new Usuario('usuario');
+$Agenda_Feedback = new AgendaFeedback('agenda_feedback');
+$Global = new Geleia();
 $__dir_upload_agenda = str_replace('//', '/', $doc_root . 'upload/agenda/');
 
 

@@ -27,3 +27,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/head.php';
 // put your code here
     ?>
 </body>
+
+<?php
+
+get_foot();

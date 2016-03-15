@@ -58,7 +58,6 @@ require_once( $_SERVER['DOCUMENT_ROOT'] . "/global.php");
     <div class="animated fadeInDown">
     	<center>
     		<h1>Secretaria Municipal de Saúde</h1>
-    		<h2 class="font-bold"><?= $cidadeInfo->clie_app_nome ?></h2>
     		<br>
     		<img src="<?php echo $cidadeInfo->clie_logomarca ?>" class="img-responsive img-rounded" alt="Consultas Agendadas" style="width: 110px; height: 110px">
     		<br>

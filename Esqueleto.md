@@ -22,11 +22,11 @@
   14. Livre 3
   15. Observação
 
-  
+
 ![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/1.png "Depósito")
 
 
-  
+
 ##Materiais
 ####Campos
   1. Código
@@ -64,6 +64,10 @@ Está circulado de roxo.
 
 
 ##Inventario
+
+A parte sistêmica que apresenta o resultado bruto de todo o trabalho realizado, tem como intuito fornecer as informações finais para a finalização do processo e montagem dos relatórios.
+
+
 
 ![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/4.png "Etiquetas")
 

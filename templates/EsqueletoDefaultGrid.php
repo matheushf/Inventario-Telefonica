@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
-get_head('Etiquetas', 'grid');
+get_head('', 'grid');
 ?>
 
 <body>
@@ -20,11 +20,13 @@ get_head('Etiquetas', 'grid');
             </div>
         </div>
 
-        <br>
-        
-        <div class="alert alert-info text-center"> Use os Filtros:  </div>
+        <br><br>
 
-        <table class="table table-striped">
+        <div class="alert alert-info text-center"> Use os Filtros: </div>
+
+        <br><br>
+
+        <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
                     <th>Thead</th>

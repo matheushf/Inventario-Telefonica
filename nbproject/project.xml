@@ -11,6 +11,7 @@
             <word>EPS</word>
             <word>Excl</word>
             <word>Medida</word>
+            <word>Unitário</word>
         </spellchecker-wordlist>
     </configuration>
 </project>

@@ -1221,7 +1221,7 @@
 	color: #999
 }
 
-.bfh-datepicker-calendar>table.calendar>tbody>tr>td:not (.off) :hover {
+.bfh-datepicker-calendar>table.calendar>tbody>tr>td:not (.off ):hover {
 	color: #262626;
 	cursor: pointer;
 	background-color: #f5f5f5

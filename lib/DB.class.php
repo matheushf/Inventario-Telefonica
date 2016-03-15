@@ -17,8 +17,8 @@
 			
 			$this->host = 'localhost';
 			$this->user = 'root';
-			$this->password = 'root';
-			$this->db = 'inventario_telefonica';		
+			$this->password = '';
+			$this->db = 'agenda';		
 
 			/*$this->host = 'localhost';
 			$this->user = 'empreza';

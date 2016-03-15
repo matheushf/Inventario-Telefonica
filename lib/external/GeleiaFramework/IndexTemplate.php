@@ -58,9 +58,9 @@ var $q = jQuery.noConflict();
 					  <? foreach( ($ObjList ? $ObjList : array()) as $Obj) { ?>
                       <tr>
                         <td align="center">
-                        <input type="checkbox" name="id" id="id" value="<? $Obj->##CHANGE##?>"></td>
-                        <td  class="aleft"><?$Obj->##CHANGE##?></td>
-                        <td  class="aleft"><?$Obj->##CHANGE##?></td>
+                        <input type="checkbox" name="id" id="id" value="<?=$Obj->##CHANGE##?>"></td>
+                        <td  class="aleft"><?=$Obj->##CHANGE##?></td>
+                        <td  class="aleft"><?=$Obj->##CHANGE##?></td>
                       </tr>
 					  <? } ?>
                     </table></td>

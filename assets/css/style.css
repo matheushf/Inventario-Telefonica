@@ -38,7 +38,7 @@ h5 {
   font-weight: 600;
 }
 .nav > li > a {
-  color: #f2f2f2;
+  color: #a7b1c2;
   font-weight: 600;
   padding: 14px 20px 14px 25px;
 }
@@ -50,7 +50,7 @@ h5 {
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus {
-  background-color: #257438;
+  background-color: #293846;
   color: white;
 }
 .nav.navbar-top-links > li > a:hover,
@@ -252,7 +252,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   position: absolute;
   left: 70px;
   top: 0px;
-  background-color: #004d00;
+  background-color: #2f4050;
   padding: 10px 10px 10px 10px;
   font-size: 12px;
 }
@@ -2583,7 +2583,7 @@ a.forum-item-title:hover {
 }
 body {
   font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #3BBA5B;
+  background-color: #2f4050;
   font-size: 13px;
   color: #676a6c;
   overflow-x: hidden;
@@ -2680,7 +2680,7 @@ video {
   background: #f8fafb;
 }
 .inmodal .modal-header {
-  padding: 30px 15px;
+  padding: 20px 15px;
   text-align: center;
 }
 .animated.modal.fade .modal-dialog {
@@ -2737,6 +2737,9 @@ video {
 .ibox-title h4,
 .ibox-title h5 {
   margin-top: 5px;
+}
+.ibox-title h3 {
+	margin-top: 0
 }
 ul.unstyled,
 ol.unstyled {
@@ -2988,7 +2991,7 @@ code {
   color: inherit;
   margin-bottom: 0;
   padding: 14px 15px 7px;
-  height: 48px;
+  min-height: 48px;
 }
 .ibox-content {
   background-color: #ffffff;
@@ -4555,14 +4558,12 @@ body.skin-3 {
   }
 }
 /* Only demo */
-@media (max-width: 1000px) {
+@media (max-width: 1280px) {
   .welcome-message {
     display: none;
   }
 }
 
-
-.loginColumns {
-  width: 760px;
-  margin: 3% auto 0;
+.agendamento_local_0 {
+	background-color: #fdd3b4;
 }

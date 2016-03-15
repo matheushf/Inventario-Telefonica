@@ -3,14 +3,16 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/head.php';
 
 ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
-        <title> Depósitos </title>
+        <title> Titulo </title>
     </head>
     <body>
         <fieldset class="scheduler-border" style="margin-top: 20px">
-            <legend class="scheduler-border">Depósitos </legend> 
+            <legend class="scheduler-border"> Titulo  </legend>
+            
             
             
             

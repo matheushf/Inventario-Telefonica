@@ -1,10 +1,15 @@
 <?php
-//require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/head.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('Adicionar Depósitos');
 
 ?>
+<style>
+    button {
+        width: 120px;
+    }
+    
+</style>
 
 <body>
     <fieldset class="scheduler-border" style="margin-top: 20px">
@@ -12,11 +17,12 @@ get_head('Adicionar Depósitos');
         <p> Preencha as informações corretamente: </p>
         <br>
         
-        <form action="" method="">
+        <form action="" method="" id="form">
 
 
             <!-- Campos do formulário -->
             <?php
+            echo $Deposito->Create('depo_id', 'Id');
             echo $Deposito->Create('depo_empresa', 'Nome da Empresa');
             echo $Deposito->Create('depo_centro', 'Email');
             echo $Deposito->Create('depo_regiao', 'Região');
@@ -37,8 +43,8 @@ get_head('Adicionar Depósitos');
 
 
             <center style="margin-top: 50px">
-                <button class="btn btn-danger"> Cancelar </button>
-                <button class="btn btn-primary"> Salvar </button> 
+                <button class="btn btn-danger" id="cancelar"> Cancelar </button>
+                <button class="btn btn-primary" id="btn-salvar" name="btn-salvar"> Salvar </button> 
             </center>
 
         </form>

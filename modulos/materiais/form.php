@@ -1,8 +1,50 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+get_head('Depósitos');
+?>
+<style>
+    button {
+        width: 120px;
+    }
 
+</style>
+<body>
+    <fieldset class="scheduler-border" style="margin-top: 20px">
+        <legend class="scheduler-border"> Depósitos  </legend>
+        <p> Preencha as informações corretamente: </p>
+        <br>
+
+        <form action="" method="" id="form">
+
+
+            <!-- Campos do formulário -->
+            <?php
+            echo $Materiais->Create('mate_id', 'Id');
+            echo $Materiais->Create('mate_codigo', 'Código');
+            echo $Materiais->Create('mate_texto_breve_do_material', 'Texto Breve do Material');
+            echo $Materiais->Create('mate_unidade_de_medida', 'Unidade de Medida');
+            echo $Materiais->Create('mate_valor_unitario', 'Valor Unitário');
+            echo $Materiais->Create('mate_livre1', 'Livre 1');
+            echo $Materiais->Create('mate_livre2', 'Livre 2');
+            echo $Materiais->Create('mate_livre3', 'Livre 3');
+            echo $Materiais->Create('mate_observacao', 'Observação');
+            ?>
+
+
+            <center style="margin-top: 50px">
+                <button class="btn btn-danger" id="cancelar"> Cancelar </button>
+                <button class="btn btn-primary" id="btn-salvar" name="btn-salvar"> Salvar </button> 
+            </center>
+
+        </form>
+    </fieldset>
+
+
+<?php
+// put your code here
+?>
+</body>
+
+<?php
+get_foot();

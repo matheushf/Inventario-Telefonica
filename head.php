@@ -46,6 +46,22 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <script href="/vivo-inventario/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        
+        <?php 
+        if ($FormGrid == 'form') {
+        ?>
+            <!-- Estilos e javascript Form -->
+            <link href="/vivo-inventario/assets/js/form.js" rel="stylesheet">
+            <link href="/vivo-inventario/assets/css/form.css" rel="stylesheet">
+        <?php
+        } elseif ($FormGrid == 'grid') {
+        ?>
+            <!-- Estilos e javascript Grid -->
+            <link href="/vivo-inventario/assets/css/grid.css" rel="stylesheet">
+            <link href="/vivo-inventario/assets/js/grid.js" rel="stylesheet">
+        <?php
+        }
+        ?>
 
     </head>
 
@@ -56,7 +72,7 @@
                     <ul class="nav metismenu" id="side-menu">
                         <li class="nav-header">
                             <div class="dropdown profile-element">
-                                <span> <img alt="image" class="img-circle" src="https://apprefeitura.s3.amazonaws.com/paciente/padrao.jpg" style="width: 48px;">
+                                <span> <img alt="image" class="img-circle" src="https://placehold.it/80x80" style="width: 48px;">
                                 </span>
                                 <p style="margin-top: 10px">
                                     <span class="clear"> <span class="" style="color: white">
@@ -68,23 +84,19 @@
                             <div class="logo-element">VI</div>
                         </li>
                         <li>
-                            <a href="/Inicio.php"><i class="fa fa-home"></i> <span class="nav-label">Início </span></a>
+                            <a href="/vivo-inventario/modulos/materiais"><i class="fa fa-bars"></i> <span class="nav-label">Materiais </span></a>
                         </li>
 
                         <li>
-                            <a href="/Inicio.php"><i class="fa fa-home"></i> <span class="nav-label">Materiais </span></a>
+                            <a href="/vivo-inventario/modulos/depositos"><i class="fa fa-archive"></i> <span class="nav-label">Depósitos </span></a>
                         </li>
 
                         <li>
-                            <a href="/Inicio.php"><i class="fa fa-home"></i> <span class="nav-label">Depósitos </span></a>
+                            <a href="/vivo-inventario/modulos/etiquetas"><i class="fa fa-barcode"></i> <span class="nav-label">Etiquetas </span></a>
                         </li>
 
                         <li>
-                            <a href="/Inicio.php"><i class="fa fa-home"></i> <span class="nav-label">Etiquetas </span></a>
-                        </li>
-
-                        <li>
-                            <a href="/Inicio.php"><i class="fa fa-home"></i> <span class="nav-label">Inventário </span></a>
+                            <a href="/vivo-inventario/modulos/inventario"><i class="fa fa-book"></i> <span class="nav-label">Inventário </span></a>
                         </li>
 
                     </ul>
@@ -116,6 +128,8 @@
                     <div class="row">
                         <div class="container-fluid">
                             <h1>Vivo Inventário</h1>
+                            <br>
+                            <img src="http://placehold.it/250x100">
                         </div>
                     </div>
                 </div>

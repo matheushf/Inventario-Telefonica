@@ -17,7 +17,7 @@ class PDeposito extends Geleia {
     }
 
     function LoadSQL4Datasource() {
-        $this->SQList['select.deposito']['sql'] = "SELECT * FROM deposito WHERE usua_excluido = 0 ORDER BY usua_nome";
+        $this->SQList['select.deposito']['sql'] = "SELECT * FROM deposito WHERE depo_excluido = 0 ORDER BY depo_nome";
         $this->SQList['select.deposito']['key'] = 'depo_id';
         $this->SQList['select.deposito']['value'] = 'depo_empresa';
     }

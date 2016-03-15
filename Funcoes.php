@@ -1,6 +1,6 @@
 <?php
 
-function get_head($Titulo, $path = null) {
+function get_head($Titulo, $FormGrid = null, $path = null) {
 
     if (!isset($path)) $path = 'head.php';
 

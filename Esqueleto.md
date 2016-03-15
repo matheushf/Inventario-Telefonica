@@ -49,9 +49,11 @@ Base para a inclusão de todos os materiais e seus dados, como Unidade de Medida
 ##Etiquetas
 De fato uma das bases de maior importância em nosso sistema, já que conterá os códigos gerais, códigos de leituras, materiais vinculados aos centros, enfim, tudo o necessário para a realização do inventário.
 
+**Etiquetas são campos de vínculos entre Materiais e Depósitos**
+
 ####Campos
   1. Centro
-  2. Material
+  2. Material (Combo Box)
   3. Qtd
   4. Observação
   

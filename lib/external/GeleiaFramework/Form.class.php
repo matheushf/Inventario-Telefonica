@@ -539,29 +539,28 @@ class Form extends PForm {
 
         $ObjList = $db->GetObjectList($this->SQList[$Options->{'datasource-sql'}]['sql']);
 
-//        var_dump($this->SQList[$Options->{'datasource-sql'}]['key']);
         $key    = $this->SQList[$Options->{'datasource-sql'}]['key'];
         $value  = $this->SQList[$Options->{'datasource-sql'}]['value'];
-//        var_dump($_POST[$Field]);
+        
         $Select = "
                 <div class='form-group'>
                      <select " . $Options->{'required'} . " id='$Field' name='$Field' class='form-control'> 
                             <option value=''>$FirstOptionText</option>";
 
         foreach (($ObjList ? $ObjList : Array()) as $Obj) {
-//            if ($_POST[$Field] == $Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) {
+            if ($_POST[$Field] == $Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) {
                 
-//                $Select .= "<option selected value=\"" 
-//                        . htmlentities($Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) 
-//                        . "\">" . $Obj->{$this->SQList[$Options->{'datasource-sql'}]['value']} 
-//                        . "</option>";
-                        
-//            } else {
-                $Select .= "<option value=\"" 
-                        . $Obj->{$key}
-                        . "\">" . $Obj->{$key}
+                $Select .= "<option selected value=\"" 
+                        . $ObjList->{$key}
+                        . "\">" . $Obj->{$value}
                         . "</option>";
-//            }
+                        
+            } else {
+                $Select .= "<option value=\"" 
+                        . $ObjList->{$key}
+                        . "\">" . $Obj->{$value}
+                        . "</option>";
+            }
         }
 
         $Select .= "

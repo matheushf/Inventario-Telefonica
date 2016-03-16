@@ -538,7 +538,10 @@ class Form extends PForm {
         global $db;
 
         $ObjList = $db->GetObjectList($this->SQList[$Options->{'datasource-sql'}]['sql']);
-
+//        var_dump($Options->{'datasource-sql'});
+//        var_dump($this->SQList[$Options->{'datasource-sql'}]['key']);
+//        var_dump($ObjList);
+//        die();
 
         $Select = "
                 <div class='form-group'>
@@ -546,12 +549,28 @@ class Form extends PForm {
                             <option value=''>$FirstOptionText</option>";
 
         foreach (($ObjList ? $ObjList : Array()) as $Obj) {
-            if ($_POST[$Field] == $Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) {
-                $SelectOption .= "<option selected value=\"" . htmlentities($Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) . "\">" . $Obj->{$this->SQList[$Options->{'datasource-sql'}]['value']} . "</option>";
-            } else {
-                $SelectOption .= "<option value=\"" . htmlentities($Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) . "\">" . $Obj->{$this->SQList[$Options->{'datasource-sql'}]['value']} . "</option>";
-            }
+//        foreach ($ObjList as $Obj) {
+            echo $Obj;
+//            if ($_POST[$Field] != $Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) {
+//                
+//                $SelectOption .= "<option selected value=\"" 
+//                        . htmlentities($Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) 
+//                        . "\">" . $Obj->{$this->SQList[$Options->{'datasource-sql'}]['value']} 
+//                        . "</option>";
+//                        
+//            } else {
+//                $SelectOption .= "<option value=\"" 
+//                        . htmlentities($Obj->{$this->SQList[$Options->{'datasource-sql'}]['value']}) 
+//                        . "\">" . $Obj->{$this->SQList[$Options->{'datasource-sql'}]['value']} 
+//                        . "</option>";
+//            }
+
+            $SelectOption .= "<option value=\"" 
+                        . $Obj 
+                        . "\">" . $Obj 
+                        . "</option>";
         }
+        
 
         $Select .= "
                     </select>

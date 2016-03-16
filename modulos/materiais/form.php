@@ -15,7 +15,7 @@ get_head('Depósitos', 'form');
             <?php
             echo $Materiais->Create('mate_id', 'Id');
             echo $Materiais->Create('mate_codigo', 'Código');
-            echo $Materiais->Create('mate_texto_breve_do_material', 'Texto Breve do Material');
+            echo $Materiais->Create('mate_nome', 'Texto Breve do Material');
             echo $Materiais->Create('mate_unidade_de_medida', 'Unidade de Medida');
             echo $Materiais->Create('mate_valor_unitario', 'Valor Unitário');
             echo $Materiais->Create('mate_livre1', 'Livre 1');

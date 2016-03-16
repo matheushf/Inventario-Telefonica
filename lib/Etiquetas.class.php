@@ -25,7 +25,8 @@ class PEtiquetas extends Geleia {
         $this->SQList['select.centro']['key'] = "depo_centro";
 
         $this->SQList['select.material']['sql'] = "SELECT mate_nome FROM materiais WHERE mate_excluido = 0";
-        $this->SQList['select.centro']['value'] = "mate_nome";
+        $this->SQList['select.material']['value'] = "mate_nome";
+        $this->SQList['select.material']['key'] = "mate_nome";
 
 //        $this->SQList['select. ']['key'] = '';
 //        $this->SQList['select. ']['value'] = '';

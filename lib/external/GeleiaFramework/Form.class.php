@@ -538,39 +538,31 @@ class Form extends PForm {
         global $db;
 
         $ObjList = $db->GetObjectList($this->SQList[$Options->{'datasource-sql'}]['sql']);
-//        var_dump($Options->{'datasource-sql'});
-//        var_dump($this->SQList[$Options->{'datasource-sql'}]['key']);
-//        var_dump($ObjList);
-//        die();
 
+//        var_dump($this->SQList[$Options->{'datasource-sql'}]['key']);
+        $key    = $this->SQList[$Options->{'datasource-sql'}]['key'];
+        $value  = $this->SQList[$Options->{'datasource-sql'}]['value'];
+//        var_dump($_POST[$Field]);
         $Select = "
                 <div class='form-group'>
                      <select " . $Options->{'required'} . " id='$Field' name='$Field' class='form-control'> 
                             <option value=''>$FirstOptionText</option>";
 
         foreach (($ObjList ? $ObjList : Array()) as $Obj) {
-//        foreach ($ObjList as $Obj) {
-            echo $Obj;
-//            if ($_POST[$Field] != $Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) {
-//                
-//                $SelectOption .= "<option selected value=\"" 
+//            if ($_POST[$Field] == $Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) {
+                
+//                $Select .= "<option selected value=\"" 
 //                        . htmlentities($Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) 
 //                        . "\">" . $Obj->{$this->SQList[$Options->{'datasource-sql'}]['value']} 
 //                        . "</option>";
-//                        
+                        
 //            } else {
-//                $SelectOption .= "<option value=\"" 
-//                        . htmlentities($Obj->{$this->SQList[$Options->{'datasource-sql'}]['value']}) 
-//                        . "\">" . $Obj->{$this->SQList[$Options->{'datasource-sql'}]['value']} 
-//                        . "</option>";
-//            }
-
-            $SelectOption .= "<option value=\"" 
-                        . $Obj 
-                        . "\">" . $Obj 
+                $Select .= "<option value=\"" 
+                        . $Obj->{$key}
+                        . "\">" . $Obj->{$key}
                         . "</option>";
+//            }
         }
-        
 
         $Select .= "
                     </select>

@@ -21,10 +21,10 @@ $(document).ready(function() {
 	});
 
 	// Date-picker
-	$(".date-picker").datepicker({
-		format : 'dd/mm/yyyy',
-		language : 'pt-BR',
-		autoclose : true
-	});
+//	$(".date-picker").datepicker({
+//		format : 'dd/mm/yyyy',
+//		language : 'pt-BR',
+//		autoclose : true
+//	});
 
 });

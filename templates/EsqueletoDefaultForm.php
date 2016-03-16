@@ -10,7 +10,7 @@ get_head('', 'form');
         <p> Preencha as informações corretamente: </p>
         <br>
         
-        <form action="" method="" id="form">
+        <form action="" method="post" id="form_ " enctype="multipart/form-data" data-operacao="<?php echo $_GET['operacao']; ?>">
 
 
             <!-- Campos do formulário -->

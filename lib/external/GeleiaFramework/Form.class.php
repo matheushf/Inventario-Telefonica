@@ -128,10 +128,10 @@ abstract class PForm extends UserControl {
 
 class Form extends PForm {
 
-    function Save() {
+    function Save($modulo = null) {
         global $db;
 
-        $Sql = $this->GenerateInsertSQL();
+        $Sql = $this->GenerateInsertSQL($modulo);
 
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());
@@ -140,10 +140,10 @@ class Form extends PForm {
         return false;
     }
 
-    function Update() {
+    function Update($modulo = null) {
         global $db;
 
-        $Sql = $this->GenerateUpdateSQL();
+        $Sql = $this->GenerateUpdateSQL($modulo);
 
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());
@@ -154,9 +154,11 @@ class Form extends PForm {
 
     function GenerateUpdateSQL() {
 
-        $ObjList = $this->GetInfoAboutTable($this->Table);
-
-
+        if ($modulo == null) {
+            $ObjList = $this->GetInfoAboutTable($this->Table);
+        } else {
+            $ObjList = $this->GetInfoAboutTable($modulo);
+        }
 
         $Sql = "UPDATE " . ($ObjList[0]->TABLE_NAME) . " SET ";
 
@@ -225,10 +227,16 @@ class Form extends PForm {
         return $Sql;
     }
 
-    function GenerateInsertSQL() {
+    function GenerateInsertSQL($modulo) {
         global $db;
 
-        $ObjList = $this->GetInfoAboutTable($this->Table);
+//        $ObjList = $this->GetInfoAboutTable($this->Table);
+        if ($modulo == null) {
+            $ObjList = $this->GetInfoAboutTable($this->Table);
+        } else {
+            $ObjList = $this->GetInfoAboutTable($modulo);
+        }
+
         $TotalOfColumns = sizeof($ObjList);
 
         $Sql = "INSERT INTO " . $ObjList[0]->TABLE_NAME . " VALUES (";
@@ -413,10 +421,10 @@ class Form extends PForm {
                                     . $this->SelectUsingLiteralValues($Field, $FieldPreferences, "Selecione...")
                                     . "";
                         } else if ($FieldPreferences->{'datasource-type'} == 'sql') {
-                            return "<div class='form-group'>"
-                                    . "<label for='$Field'><strong>$Label</strong> </label>"
+                            $html = "<label for='$Field'><strong>$Label</strong> </label>"
                                     . $this->SelectUsingDB($Field, $FieldPreferences, "Selecione...")
                                     . "";
+                            return $html;
                         } else if ($FieldPreferences->{'datasource-type'} == 'keyvalue') { //Array With Key=>Value
                             return "<div class='form-group'><label for='$Field'><strong>$Label</strong> </label>"
                                     . $this->SelectUsingLiteralKeysAndValues($Field, $FieldPreferences, "Selecione...")
@@ -522,7 +530,7 @@ class Form extends PForm {
         $Select .= "
                     </select>
                 </div>";
-        
+
         return $Select;
     }
 
@@ -532,8 +540,10 @@ class Form extends PForm {
         $ObjList = $db->GetObjectList($this->SQList[$Options->{'datasource-sql'}]['sql']);
 
 
-        $Select = "<select " . $Options->{'required'} . " id='$Field' name='$Field'> ";
-        $Select .= "<option value=''>$FirstOptionText</option>";
+        $Select = "
+                <div class='form-group'>
+                     <select " . $Options->{'required'} . " id='$Field' name='$Field' class='form-control'> 
+                            <option value=''>$FirstOptionText</option>";
 
         foreach (($ObjList ? $ObjList : Array()) as $Obj) {
             if ($_POST[$Field] == $Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) {
@@ -543,7 +553,10 @@ class Form extends PForm {
             }
         }
 
-        $Select .= $SelectOption . "</select>";
+        $Select .= "
+                    </select>
+                </div>";
+
         return $Select;
     }
 

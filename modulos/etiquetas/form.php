@@ -11,7 +11,6 @@ get_head('Etiquetas', 'form');
 
         <form action="" method="" id="form">
 
-
             <!-- Campos do formulário -->
             <?php
             echo $Etiquetas->Create('etiq_id', 'Id');
@@ -24,7 +23,7 @@ get_head('Etiquetas', 'form');
 
             <center style="margin-top: 50px">
                 <button class="btn btn-danger" id="cancelar"> Cancelar </button>
-                <button class="btn btn-primary" id="btn-salvar" name="btn-salvar"> Salvar </button> 
+                <button class="btn btn-primary" id="btn-salvar" name="btn-salvar" type="submit"> Salvar </button> 
             </center>
 
         </form>

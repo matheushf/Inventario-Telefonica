@@ -24,18 +24,18 @@
         <link href="/vivo-inventario/assets/css/style-adicional.css" rel="stylesheet">
 
         <!-- Mainly scripts -->
-        <script href="/vivo-inventario/assets/js/jquery-1.11.3.min.js"></script>
-        <script href="/vivo-inventario/assets/js/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/vivo-inventario/assets/js/jquery-1.11.3.min.js"></script>
+        <script src="/vivo-inventario/assets/js/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- Mainly scripts -->
-        <script href="/vivo-inventario/assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-        <script href="/vivo-inventario/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-        <script href="/vivo-inventario/assets/js/jquery.maskedinput.min.js"></script>
-        <script href="/vivo-inventario/assets/js/global.js"></script>
+        <script src="/vivo-inventario/assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="/vivo-inventario/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="/vivo-inventario/assets/js/jquery.maskedinput.min.js"></script>
+        <script src="/vivo-inventario/assets/js/global.js"></script>
 
         <!-- Custom and plugin javascript -->
-        <script href="/vivo-inventario/assets/js/inspinia.js"></script>
-        <script href="/vivo-inventario/assets/js/plugins/pace/pace.min.js"></script>
+        <script src="/vivo-inventario/assets/js/inspinia.js"></script>
+        <script src="/vivo-inventario/assets/js/plugins/pace/pace.min.js"></script>
 
         <!-- Date picker -->
         <script type="text/javascript" href="/vivo-inventario/assets/js/plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -45,20 +45,20 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-        <script href="/vivo-inventario/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="/vivo-inventario/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
         
         <?php 
         if ($FormGrid == 'form') {
         ?>
             <!-- Estilos e javascript Form -->
-            <link href="/vivo-inventario/assets/js/form.js" rel="stylesheet">
             <link href="/vivo-inventario/assets/css/form.css" rel="stylesheet">
+            <script src="/vivo-inventario/assets/js/form.js"></script>
         <?php
         } elseif ($FormGrid == 'grid') {
         ?>
             <!-- Estilos e javascript Grid -->
             <link href="/vivo-inventario/assets/css/grid.css" rel="stylesheet">
-            <link href="/vivo-inventario/assets/js/grid.js" rel="stylesheet">
+            <script src="/vivo-inventario/assets/js/grid.js" rel="stylesheet"></script>
         <?php
         }
         ?>

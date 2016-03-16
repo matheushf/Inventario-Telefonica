@@ -1,28 +1,22 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
-get_head('Adicionar Depósitos');
+get_head('Adicionar Depósitos', 'form');
 
 ?>
-<style>
-    button {
-        width: 120px;
-    }
-    
-</style>
-
 <body>
+        
     <fieldset class="scheduler-border" style="margin-top: 20px">
         <legend class="scheduler-border"> Adicionar Depósitos  </legend>
         <p> Preencha as informações corretamente: </p>
         <br>
         
-        <form action="" method="" id="form">
-
+        <form action="" method="post" id="form_deposito" enctype="multipart/form-data" data-operacao="<?php echo $_GET['operacao']; ?>">
 
             <!-- Campos do formulário -->
             <?php
-            echo $Deposito->Create('depo_id', 'Id');
+            
+            echo $Deposito->Create('depo_id', 'Idtestett');
             echo $Deposito->Create('depo_empresa', 'Nome da Empresa');
             echo $Deposito->Create('depo_centro', 'Email');
             echo $Deposito->Create('depo_regiao', 'Região');
@@ -41,15 +35,13 @@ get_head('Adicionar Depósitos');
             
             ?>
 
-
             <center style="margin-top: 50px">
                 <button class="btn btn-danger" id="cancelar"> Cancelar </button>
-                <button class="btn btn-primary" id="btn-salvar" name="btn-salvar"> Salvar </button> 
+                <button class="btn btn-primary" id="btn-salvar" name="btn-salvar" type="submit"> Salvar </button> 
             </center>
 
         </form>
     </fieldset>
-
 
     <?php
 // put your code here

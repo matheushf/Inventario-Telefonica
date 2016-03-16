@@ -1,22 +1,15 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
-get_head('Depósitos');
+get_head('Depósitos', 'form');
 ?>
-<style>
-    button {
-        width: 120px;
-    }
-
-</style>
 <body>
     <fieldset class="scheduler-border" style="margin-top: 20px">
         <legend class="scheduler-border"> Depósitos  </legend>
         <p> Preencha as informações corretamente: </p>
         <br>
 
-        <form action="" method="" id="form">
-
+        <form action="" method="post" id="form_materiais" enctype="multipart/form-data" data-operacao="<?php echo $_GET['operacao']; ?>">
 
             <!-- Campos do formulário -->
             <?php
@@ -34,7 +27,7 @@ get_head('Depósitos');
 
             <center style="margin-top: 50px">
                 <button class="btn btn-danger" id="cancelar"> Cancelar </button>
-                <button class="btn btn-primary" id="btn-salvar" name="btn-salvar"> Salvar </button> 
+                <button class="btn btn-primary" id="btn-salvar" name="btn-salvar" type="submit"> Salvar </button> 
             </center>
 
         </form>

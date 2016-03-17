@@ -3,6 +3,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('Adicionar Depósitos', 'form');
 
+if ($_GET['id']) {
+    $ArrayDeposito = $Deposito->GetById($_GET['id'], true);
+    $Deposito->PopulateFormFromDB($ArrayDeposito);
+}
+
 ?>
 <body>
         

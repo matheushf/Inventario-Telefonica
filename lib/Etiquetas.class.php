@@ -38,11 +38,19 @@ class PEtiquetas extends Geleia {
         $sql = 'SELECT * FROM etiquetas
                 INNER JOIN materiais ON mate_id = etiq_mate_material
                 INNER JOIN deposito ON depo_id = etiq_depo_centro
-                WHERE etiq_excluido = 0';
+                WHERE etiq_excluido = 0
+                ORDER BY etiq_id ASC';
 
         $etiq = $db->GetObjectList($sql);
 
         return $etiq;
+    }
+
+    function GetById($Id, $IsArray = false) {
+        global $db;
+
+        $this->SQL_GetById = "SELECT * FROM etiquetas WHERE etiq_id=" . (int) $Id . " AND etiq_excluido=0";
+        return parent::GetById($IsArray);
     }
 
 }

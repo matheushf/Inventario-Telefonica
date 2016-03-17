@@ -33,19 +33,25 @@ class PDeposito extends Geleia {
     function LoadLiteralDatasource() {
         $this->LiteralList['status'] = 'Ativo#Inativo';
     }
-    
+
     function ListarDeposito() {
         global $db;
-        
-        $sql = 'SELECT * FROM deposito WHERE depo_excluido = 0';
-        
+
+        $sql = 'SELECT * FROM deposito WHERE depo_excluido = 0 ORDER BY depo_id ASC';
+
         $dep = $db->GetObjectList($sql);
-        
+
 //        var_dump($dep);
 //        var_dump($db->ExecSQL($sql));
-        
+
         return $dep;
+    }
+
+    function GetById($Id, $IsArray = false) {
+        global $db;
         
+        $this->SQL_GetById = "SELECT * FROM deposito WHERE depo_id=" . (int) $Id . " AND depo_excluido=0";
+        return parent::GetById($IsArray);
     }
 
 }

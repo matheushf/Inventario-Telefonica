@@ -147,7 +147,7 @@ class Form extends PForm {
         global $db;
 
         $Sql = $this->GenerateUpdateSQL($modulo);
-
+        
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());
             return true;
@@ -155,7 +155,7 @@ class Form extends PForm {
         return false;
     }
 
-    function GenerateUpdateSQL() {
+    function GenerateUpdateSQL($modulo = null) {
 
         if ($modulo == null) {
             $ObjList = $this->GetInfoAboutTable($this->Table);

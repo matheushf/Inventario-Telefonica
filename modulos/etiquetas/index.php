@@ -9,14 +9,16 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas();
 ?>
 
 <body>
+    <input type="hidden" id="modulo" name="modulo" value="etiquetas">
+    
     <fieldset class="scheduler-border" style="margin-top: 20px">
         <legend class=""> Etiquetas  </legend>
 
         <div class="row">
             <div class="col-sm-6">
                 <button class="btn btn-primary" id="btn-novo">Novo</button>
-                <button class="btn btn-primary" id="editar">Editar</button>
-                <button class="btn btn-primary" id="excluir">Excluir</button>
+                <button class="btn btn-primary" id="btn-editar">Editar</button>
+                <button class="btn btn-primary" id="btn-excluir">Excluir</button>
                 <button class="btn btn-primary">Gerar Check-in 2D</button>
             </div>
             <div class="col-sm-6 ">

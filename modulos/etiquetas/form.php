@@ -3,6 +3,12 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('Etiquetas', 'form');
+
+if ($_GET['id']) {
+    $ArrayEtiquetas = $Etiquetas->GetById($_GET['id'], true);
+    $Etiquetas->PopulateFormFromDB($ArrayEtiquetas);
+}
+
 ?>
 <body>
     <fieldset class="scheduler-border" style="margin-top: 20px">

@@ -19,7 +19,6 @@ get_head('Etiquetas', 'form');
             echo $Etiquetas->Create('etiq_mate_material', 'Material');
             echo $Etiquetas->Create('etiq_quantidade', 'Quantidade');
             echo $Etiquetas->Create('etiq_observacao', 'Observação');
-            echo $Etiquetas->Create('mate_id', 'mate_id');
             ?>
 
 

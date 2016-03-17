@@ -5,6 +5,9 @@
  *
  * @author Matheus Victor <hffmatheus@gmail.com>
  */
+require_once 'DB.class.php';
+$db = new DB();
+
 class PDeposito extends Geleia {
 
     function PDeposito($Table = "") {
@@ -33,6 +36,15 @@ class PDeposito extends Geleia {
     
     function ListarDeposito() {
         global $db;
+        
+        $sql = 'SELECT * FROM deposito WHERE depo_excluido = 0';
+        
+        $dep = $db->GetObjectList($sql);
+        
+//        var_dump($dep);
+//        var_dump($db->ExecSQL($sql));
+        
+        return $dep;
         
     }
 

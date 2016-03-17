@@ -2,6 +2,8 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('Materiais', 'grid');
+
+$MateriaisLista = $Materiais->ListarMateriais();
 ?>
 
 <body>
@@ -40,9 +42,37 @@ get_head('Materiais', 'grid');
                     <th>Livre 3                 </th>
                 </tr>
             </thead>
+            
             <tbody>
-                <tr>
-                </tr>
+                <?php
+                foreach ($MateriaisLista as $mate) {
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $mate->mate_codigo ?>
+                        </td>
+                        <td>
+                            <?php echo $mate->mate_nome ?>
+                        </td>
+                        <td>
+                            <?php echo $mate->mate_unidade_medida ?>
+                        </td>
+                        <td>
+                            <?php echo $mate->depo_valor_unitario ?>
+                        </td>
+                        <td>
+                            <?php echo $mate->depo_livre1 ?>
+                        </td>
+                        <td>
+                            <?php echo $mate->depo_livre2 ?>
+                        </td>
+                        <td>
+                            <?php echo $mate->depo_livre3 ?>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
             </tbody>
         </table>
 

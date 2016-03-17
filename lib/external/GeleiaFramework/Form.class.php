@@ -133,11 +133,11 @@ class Form extends PForm {
 
         $Sql = $this->GenerateInsertSQL($modulo);
 
-//        var_dump($Sql);
-//        die();
-        
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());
+            
+            
+            
             return true;
         }
         return false;

@@ -2,6 +2,8 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('Etiquetas', 'grid');
+
+echo mensagem(); 
 ?>
 
 <body>

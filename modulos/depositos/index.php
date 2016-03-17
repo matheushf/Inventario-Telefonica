@@ -2,6 +2,10 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('Depósitos', 'grid');
+
+echo mensagem();
+
+$Depositos = $Deposito->ListarDeposito();
 ?>
 
 <body>
@@ -41,16 +45,37 @@ get_head('Depósitos', 'grid');
                 </tr>
             </thead>
             <tbody>
-                <tr>
-
-                </tr>
+                <?php
+                foreach ($Depositos as $dep) {
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $dep->depo_empresa ?>
+                        </td>
+                        <td>
+                            <?php echo $dep->depo_centro ?>
+                        </td>
+                        <td>
+                            <?php echo $dep->depo_cidade ?>
+                        </td>
+                        <td>
+                            <?php echo $dep->depo_status ?>
+                        </td>
+                        <td>
+                            <?php echo $dep->depo_livre1 ?>
+                        </td>
+                        <td>
+                            <?php echo $dep->depo_livre2 ?>
+                        </td>
+                        <td>
+                            <?php echo $dep->depo_livre3 ?>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
             </tbody>
         </table>
-
-
-
-
-
     </fieldset>
 
 

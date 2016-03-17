@@ -16,7 +16,7 @@ get_head('Materiais', 'form');
             echo $Materiais->Create('mate_id', 'Id');
             echo $Materiais->Create('mate_codigo', 'Código');
             echo $Materiais->Create('mate_nome', 'Texto Breve do Material');
-            echo $Materiais->Create('mate_unidade_de_medida', 'Unidade de Medida');
+            echo $Materiais->Create('mate_unidade_medida', 'Unidade de Medida');
             echo $Materiais->Create('mate_valor_unitario', 'Valor Unitário');
             echo $Materiais->Create('mate_livre1', 'Livre 1');
             echo $Materiais->Create('mate_livre2', 'Livre 2');

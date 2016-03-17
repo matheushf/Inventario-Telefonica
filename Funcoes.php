@@ -2,14 +2,16 @@
 
 function get_head($Titulo, $FormGrid = null, $path = null) {
 
-    if (!isset($path)) $path = 'head.php';
+    if (!isset($path))
+        $path = 'head.php';
 
     include (DOCUMENT_ROOT . '/' . $path);
 }
 
 function get_foot($path = null) {
 
-    if (!isset($path)) $path = 'foot.php';
+    if (!isset($path))
+        $path = 'foot.php';
 
     require_once (DOCUMENT_ROOT . '/' . $path);
 }
@@ -26,4 +28,25 @@ function _GetVarsByCSV($Var) {
         $Value .= "'" . $s . "',";
     }
     return substr($Value, 0, strlen($Value) - 1);
+}
+
+// Exibe mensagens definidas pela sessão
+function mensagem() {
+
+    switch ($_SESSION['Mensagem']['tipo']) {
+
+        case "error": {
+                echo '<div class="alert alert-danger">' . $_SESSION['Mensagem']['texto'] . ' </div>';
+
+                break;
+            }
+
+        case "sucesso": {
+                echo '<div class="alert alert-success">' . $_SESSION['Mensagem']['texto'] . '</div>';
+
+                break;
+            }
+    }
+
+    unset($_SESSION['Mensagem']);
 }

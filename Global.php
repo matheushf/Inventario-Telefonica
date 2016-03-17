@@ -22,8 +22,7 @@ require_once DOCUMENT_ROOT . '/lib/Inventario.class.php';
 require_once DOCUMENT_ROOT . '/lib/Materiais.class.php';
 require_once DOCUMENT_ROOT . '/lib/FuncoesPadroes.php';
 if (!class_exists("Zend_Validate")) { require '/Zend/Validate.php'; }
-if (!class_exists("Zend_Mail")) { require '/Zend/Mail.php'; }
-
+//if (!class_exists("Zend_Mail")) { require '/Zend/Mail.php'; }
 
 // Instanciar Classes
 //$Usuario        = new Usuario('usuario')

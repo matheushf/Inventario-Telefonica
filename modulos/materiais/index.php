@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
-get_head('', 'grid');
+get_head('Materiais', 'grid');
 ?>
 
 <body>

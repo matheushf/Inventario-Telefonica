@@ -133,6 +133,9 @@ class Form extends PForm {
 
         $Sql = $this->GenerateInsertSQL($modulo);
 
+//        var_dump($Sql);
+//        die();
+        
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());
             return true;
@@ -541,7 +544,7 @@ class Form extends PForm {
 
         $key    = $this->SQList[$Options->{'datasource-sql'}]['key'];
         $value  = $this->SQList[$Options->{'datasource-sql'}]['value'];
-        
+
         $Select = "
                 <div class='form-group'>
                      <select " . $Options->{'required'} . " id='$Field' name='$Field' class='form-control'> 
@@ -551,16 +554,17 @@ class Form extends PForm {
             if ($_POST[$Field] == $Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) {
                 
                 $Select .= "<option selected value=\"" 
-                        . $ObjList->{$key}
+                        . $Obj->{$key}
                         . "\">" . $Obj->{$value}
                         . "</option>";
                         
             } else {
                 $Select .= "<option value=\"" 
-                        . $ObjList->{$key}
+                        . $Obj->{$key}
                         . "\">" . $Obj->{$value}
                         . "</option>";
             }
+            
         }
 
         $Select .= "

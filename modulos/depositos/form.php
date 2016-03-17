@@ -16,9 +16,9 @@ get_head('Adicionar Depósitos', 'form');
             <!-- Campos do formulário -->
             <?php
             
-            echo $Deposito->Create('depo_id', 'Idtestett');
+            echo $Deposito->Create('depo_id', 'Id');
             echo $Deposito->Create('depo_empresa', 'Nome da Empresa');
-            echo $Deposito->Create('depo_centro', 'Email');
+            echo $Deposito->Create('depo_centro', 'Centro');
             echo $Deposito->Create('depo_regiao', 'Região');
             echo $Deposito->Create('depo_tipo_logradouro', 'Tipo Logradouro');
             echo $Deposito->Create('depo_logradouro', 'Logradouro');

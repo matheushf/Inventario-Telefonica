@@ -5,3 +5,13 @@
  */
 
 
+$(document).ready(function () {
+    
+    $("#btn-novo").on("click", function() {
+        window.location.assign("form.php?operacao=inserir");
+    })
+    
+    $("#editar").on("click", function() {
+        // TODO implementar editar pegando id
+    })
+})

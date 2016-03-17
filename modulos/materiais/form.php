@@ -1,11 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
-get_head('Depósitos', 'form');
+get_head('Materiais', 'form');
 ?>
 <body>
     <fieldset class="scheduler-border" style="margin-top: 20px">
-        <legend class="scheduler-border"> Depósitos  </legend>
+        <legend class="scheduler-border"> Materiais  </legend>
         <p> Preencha as informações corretamente: </p>
         <br>
 

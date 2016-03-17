@@ -10,7 +10,7 @@ switch ($_GET['acao']) {
     }
         
     case 'atualizar': {
-        $FuncoesPadroes->Save($_GET['modulo']);
+        $FuncoesPadroes->Update($_GET['modulo']);
         
         break;
     }

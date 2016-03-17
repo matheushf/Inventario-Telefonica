@@ -30,6 +30,11 @@ class PDeposito extends Geleia {
     function LoadLiteralDatasource() {
         $this->LiteralList['status'] = 'Ativo#Inativo';
     }
+    
+    function ListarDeposito() {
+        global $db;
+        
+    }
 
 }
 

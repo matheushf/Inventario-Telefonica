@@ -1,8 +1,7 @@
 <?php
 
 require_once 'Useful.class.php';
-if (!class_exists("DB"))
-    require_once 'DB.class.php';
+require_once 'DB.class.php';
 
 // on production
 error_reporting(1);
@@ -14,7 +13,7 @@ date_default_timezone_set("America/Sao_Paulo");
 setlocale(LC_ALL, "pt_BR");
 
 /* CONSTANT */
-define("_PAGE_TITLE", 'Agenda Corporativa | Vivo');
+define("_PAGE_TITLE", 'Vivo Inventário');
 
 class Geleia extends Form {
 
@@ -22,6 +21,7 @@ class Geleia extends Form {
     public $mail_config;
 
     public function Geleia($Table = "") {
+        
         if ($Table != "") {
             parent::Form($Table);
         }

@@ -10,9 +10,9 @@ get_head('Etiquetas', 'grid');
 
         <div class="row">
             <div class="col-sm-6">
-                <button class="btn btn-primary">Novo</button>
-                <button class="btn btn-primary">Editar</button>
-                <button class="btn btn-primary">Excluir</button>
+                <button class="btn btn-primary" id="btn-novo">Novo</button>
+                <button class="btn btn-primary" id="editar">Editar</button>
+                <button class="btn btn-primary" id="excluir">Excluir</button>
                 <button class="btn btn-primary">Gerar Check-in 2D</button>
             </div>
             <div class="col-sm-6 ">

@@ -9,7 +9,7 @@ class DB {
 
         $this->host = 'localhost';
         $this->user = 'root';
-        $this->password = '';
+        $this->password = 'root';
         $this->db = 'vivo_inventario';
         $this->Connect();
     }
@@ -19,6 +19,7 @@ class DB {
      * @return void
      */
     function Connect() {
+        
         if ($this->id = mysql_pconnect($this->host, $this->user, $this->password)) {
             mysql_select_db($this->db, $this->id);
         } else {

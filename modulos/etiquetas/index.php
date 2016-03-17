@@ -3,7 +3,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('Etiquetas', 'grid');
 
-echo mensagem(); 
+echo mensagem();
+
+$EtiquetasLista = $Etiquetas->ListarEtiquetas();
 ?>
 
 <body>
@@ -27,14 +29,15 @@ echo mensagem();
         </div>
 
         <br><br>
-        
+
         <div class="alert alert-info text-center"> Use os Filtros: EPS - Material - Centro</div>
 
         <br><br>
-        
+
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
+                    <th style="width: 50px"></th>
                     <th>Cód Final Inventário</th>
                     <th>Cód Leitura 1       </th>
                     <th>Cód Leitura 2       </th>
@@ -48,22 +51,53 @@ echo mensagem();
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <!-- Linhas tabela -->
-                </tr>
+                <?php
+                foreach ($EtiquetasLista as $etiquetas) {
+                    ?>
+                    <tr>
+                        <td>
+                            <center>
+                                <input type="checkbox" id="<?php echo $etiquetas->etiq_id ?>" value="<?php echo $etiquetas->etiq_id ?>">
+                            </center>
+                        </td>
+                        <td>
+                            <?php echo $etiquetas->etiq_cod_final ?>
+                        </td>
+                        <td>
+                            <?php echo $etiquetas->etiq_cod_leitura1 ?>
+                        </td>
+                        <td>
+                            <?php echo $etiquetas->etiq_cod_leitura2 ?>
+                        </td>
+                        <td>
+                            <?php echo $etiquetas->etiq_cod_leitura3 ?>
+                        </td>
+                        <td>
+                            <?php echo $etiquetas->mate_codigo ?>
+                        </td>
+                        <td>
+                            <?php echo $etiquetas->mate_nome ?>
+                        </td>
+                        <td>
+                            <?php echo $etiquetas->mate_unidade_medida ?>
+                        </td>
+                        <td>
+                            <?php echo $etiquetas->depo_empresa ?>
+                        </td>
+                        <td>
+                            <?php echo $etiquetas->depo_centro ?>
+                        </td>
+                        <td>
+                            <?php echo $etiquetas->depo_cidade ?>
+                        </td>                        
+                    </tr>
+                    <?php
+                }
+                ?>
             </tbody>
         </table>
 
-
-
-
-
     </fieldset>
-
-
-    <?php
-    // put your code here
-    ?>
 </body>
 
 <?php

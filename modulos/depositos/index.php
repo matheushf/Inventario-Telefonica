@@ -35,6 +35,7 @@ $Depositos = $Deposito->ListarDeposito();
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
+                    <th style="width: 50px"></th>
                     <th>EPS     </th>
                     <th>Centro  </th>
                     <th>Cidade  </th>
@@ -49,31 +50,36 @@ $Depositos = $Deposito->ListarDeposito();
                 foreach ($Depositos as $dep) {
                     ?>
                     <tr>
-                        <td>
-                            <?php echo $dep->depo_empresa ?>
-                        </td>
-                        <td>
-                            <?php echo $dep->depo_centro ?>
-                        </td>
-                        <td>
-                            <?php echo $dep->depo_cidade ?>
-                        </td>
-                        <td>
-                            <?php echo $dep->depo_status ?>
-                        </td>
-                        <td>
-                            <?php echo $dep->depo_livre1 ?>
-                        </td>
-                        <td>
-                            <?php echo $dep->depo_livre2 ?>
-                        </td>
-                        <td>
-                            <?php echo $dep->depo_livre3 ?>
-                        </td>
-                    </tr>
-                    <?php
-                }
-                ?>
+                <td>
+                <center>
+                    <input type="checkbox" id="<?php echo $dep->depo_id ?>" value="<?php echo $dep->depo_id ?>">
+                </center>
+                </td>                        
+                <td>
+                    <?php echo $dep->depo_empresa ?>
+                </td>
+                <td>
+                    <?php echo $dep->depo_centro ?>
+                </td>
+                <td>
+                    <?php echo $dep->depo_cidade ?>
+                </td>
+                <td>
+                    <?php echo $dep->depo_status ?>
+                </td>
+                <td>
+                    <?php echo $dep->depo_livre1 ?>
+                </td>
+                <td>
+                    <?php echo $dep->depo_livre2 ?>
+                </td>
+                <td>
+                    <?php echo $dep->depo_livre3 ?>
+                </td>
+                </tr>
+                <?php
+            }
+            ?>
             </tbody>
         </table>
     </fieldset>

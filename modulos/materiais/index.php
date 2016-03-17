@@ -33,6 +33,7 @@ $MateriaisLista = $Materiais->ListarMateriais();
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
+                    <th style="width: 50px"></th>
                     <th>Material                </th>
                     <th>Texto Breve Material    </th>
                     <th>Unidade de Medida       </th>
@@ -42,51 +43,46 @@ $MateriaisLista = $Materiais->ListarMateriais();
                     <th>Livre 3                 </th>
                 </tr>
             </thead>
-            
+
             <tbody>
                 <?php
                 foreach ($MateriaisLista as $mate) {
                     ?>
                     <tr>
-                        <td>
-                            <?php echo $mate->mate_codigo ?>
-                        </td>
-                        <td>
-                            <?php echo $mate->mate_nome ?>
-                        </td>
-                        <td>
-                            <?php echo $mate->mate_unidade_medida ?>
-                        </td>
-                        <td>
-                            <?php echo $mate->depo_valor_unitario ?>
-                        </td>
-                        <td>
-                            <?php echo $mate->depo_livre1 ?>
-                        </td>
-                        <td>
-                            <?php echo $mate->depo_livre2 ?>
-                        </td>
-                        <td>
-                            <?php echo $mate->depo_livre3 ?>
-                        </td>
-                    </tr>
-                    <?php
-                }
-                ?>
+                <td>
+                <center>
+                    <input type="checkbox" id="<?php echo $mate->mate_id ?>" value="<?php echo $mate->mate_id ?>">
+                </center>
+                </td>                            
+                <td>
+                    <?php echo $mate->mate_codigo ?>
+                </td>
+                <td>
+                    <?php echo $mate->mate_nome ?>
+                </td>
+                <td>
+                    <?php echo $mate->mate_unidade_medida ?>
+                </td>
+                <td>
+                    <?php echo $mate->mate_valor_unitario ?>
+                </td>
+                <td>
+                    <?php echo $mate->mate_livre1 ?>
+                </td>
+                <td>
+                    <?php echo $mate->mate_livre2 ?>
+                </td>
+                <td>
+                    <?php echo $mate->mate_livre3 ?>
+                </td>
+                </tr>
+                <?php
+            }
+            ?>
             </tbody>
         </table>
-
-
-
-
-
     </fieldset>
 
-
     <?php
-    // put your code here
-    ?>
-</body>
-
-<?php
-get_foot();
+    get_foot();
+    

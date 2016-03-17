@@ -32,6 +32,19 @@ class PEtiquetas extends Geleia {
 //        $this->SQList['select. ']['value'] = '';
     }
 
+    function ListarEtiquetas() {
+        global $db;
+
+        $sql = 'SELECT * FROM etiquetas
+                INNER JOIN materiais ON mate_id = etiq_mate_material
+                INNER JOIN deposito ON depo_id = etiq_depo_centro
+                WHERE etiq_excluido = 0';
+
+        $etiq = $db->GetObjectList($sql);
+
+        return $etiq;
+    }
+
 }
 
 class Etiquetas extends PEtiquetas {

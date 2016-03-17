@@ -41,7 +41,14 @@ $(document).ready(function () {
                 modulo: modulo
             },
             success: function (data) {
-                $("input:checked").parents().find("tr:eq(0)").remove();
+                if (data == "OK") {
+                    $("input:checked").parents().find("tr:eq(0)").remove();
+                    var mensagem = '<div class="alert alert-sucess"> Registro excluído com sucesso. </div>';
+                    $("#mensagens").html(mensagem);
+                } else if (data == "ERRO") {
+                    var mensagem = '<div class="alert alert-danger"> Ocorreu um erro ao excluir o registro. </div>';
+                    $("#mensagens").html(mensagem);
+                }
             }
         })
     })

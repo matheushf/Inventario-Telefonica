@@ -136,3 +136,4 @@
             </div>
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div id="teste"></div>
+                <div id="mensagens"></div>

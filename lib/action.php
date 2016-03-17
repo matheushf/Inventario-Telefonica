@@ -36,7 +36,11 @@ switch ($acao) {
             $Id = $_POST['id'];
             $Modulo = $_POST['modulo'];
 
-            $FuncoesPadroes->Delete($Id, $Modulo);
+            if ($FuncoesPadroes->Delete($Id, $Modulo)) {
+                echo "OK";
+            } else {
+                echo "ERRO";
+            }
 
             break;
         }

@@ -7,6 +7,7 @@ $MateriaisLista = $Materiais->ListarMateriais();
 ?>
 
 <body>
+    <input type="hidden" id="modulo" name="modulo" value="materiais">
     <fieldset class="scheduler-border" style="margin-top: 20px">
         <legend class=""> Titulo  </legend>
 

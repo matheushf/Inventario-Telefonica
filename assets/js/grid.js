@@ -28,7 +28,6 @@ $(document).ready(function () {
         var modulo = $("#modulo").val();
 
         if (!confirm("Tem certeza que deseja excluir? ")) {
-            alert('n');
             return;
         }
 

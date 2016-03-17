@@ -9,6 +9,7 @@ $Depositos = $Deposito->ListarDeposito();
 ?>
 
 <body>
+    <input type="hidden" id="modulo" name="modulo" value="deposito">
     <fieldset class="scheduler-border" style="margin-top: 20px">
         <legend class=""> Depósitos  </legend>
 

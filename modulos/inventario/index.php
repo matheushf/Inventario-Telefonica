@@ -5,6 +5,7 @@ get_head('Inventário', 'grid');
 ?>
 
 <body>
+    <input type="hidden" id="modulo" name="modulo" value="inventario">
     <fieldset class="scheduler-border" style="margin-top: 20px">
         <legend class=""> Inventário  </legend>
 

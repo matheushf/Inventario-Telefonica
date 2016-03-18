@@ -137,3 +137,8 @@
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div id="teste"></div>
                 <div id="mensagens"></div>
+                
+                <?php 
+                if(isset($_SESSION['Mensagem']['tipo']) && $_SESSION['Mensagem']['tipo'] == 'error') {
+                    mensagem();
+                }

@@ -6,12 +6,14 @@
  * @author Matheus Victor <hffmatheus@gmail.com>
  */
 
-//include "external/phpqrcode/qrlib.php";
+include "external/phpqrcode/qrlib.php";
+require_once 'external/fpdi/fpdi.php';
+require_once 'external/fpdi/fpdf.php';
+
 
 
 class PEtiquetas extends Geleia {
 
-    //put your code here
 
     function PEtiquetas($Table = "") {
 
@@ -60,4 +62,8 @@ class PEtiquetas extends Geleia {
 
 class Etiquetas extends PEtiquetas {
     
+    function GerarQRCode() {
+        $Nome = '';
+        $Link = '';
+    }
 }

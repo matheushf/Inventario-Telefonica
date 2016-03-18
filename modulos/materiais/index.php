@@ -3,13 +3,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('Materiais', 'grid');
 
+mensagem();
+
 $MateriaisLista = $Materiais->ListarMateriais();
 ?>
 
 <body>
     <input type="hidden" id="modulo" name="modulo" value="materiais">
     <fieldset class="scheduler-border" style="margin-top: 20px">
-        <legend class=""> Titulo  </legend>
+        <legend class=""> Materiais  </legend>
 
         <div class="row">
             <div class="col-sm-6">

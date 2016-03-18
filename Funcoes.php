@@ -33,20 +33,21 @@ function _GetVarsByCSV($Var) {
 // Exibe mensagens definidas pela sessão
 function mensagem() {
 
-    switch ($_SESSION['Mensagem']['tipo']) {
+    if (isset($_SESSION['Mensagem']['tipo'])) {
+        switch ($_SESSION['Mensagem']['tipo']) {
 
-        case "error": {
-                echo '<div class="alert alert-danger">' . $_SESSION['Mensagem']['texto'] . ' </div>';
+            case "error": {
+                    echo '<div class="alert alert-danger">' . $_SESSION['Mensagem']['texto'] . ' </div>';
 
-                break;
-            }
+                    break;
+                }
 
-        case "sucesso": {
-                echo '<div class="alert alert-success">' . $_SESSION['Mensagem']['texto'] . '</div>';
+            case "sucesso": {
+                    echo '<div class="alert alert-success">' . $_SESSION['Mensagem']['texto'] . '</div>';
 
-                break;
-            }
+                    break;
+                }
+        }
+        unset($_SESSION['Mensagem']);
     }
-
-    unset($_SESSION['Mensagem']);
 }

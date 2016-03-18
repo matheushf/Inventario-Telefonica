@@ -30,7 +30,7 @@ $Deposito       = new Deposito('deposito');
 $Etiquetas      = new Etiquetas('etiquetas');
 $Inventario     = new Inventario('inventario');
 $Materiais      = new Materiais('materiais');
-$Global         = new Geleia();
+//$Global         = new Geleia();
 $FuncoesPadroes = new FuncoesPadroes();
 
 //$__dir_upload_agenda = str_replace('//', '/', $doc_root . 'upload/agenda/');

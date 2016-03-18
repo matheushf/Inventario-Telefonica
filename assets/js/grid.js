@@ -24,7 +24,7 @@ $(document).ready(function () {
         if (!(id = PegarId())) {
             return false;
         }
-
+        
         var modulo = $("#modulo").val();
 
         if (!confirm("Tem certeza que deseja excluir? ")) {
@@ -41,7 +41,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 if (data == "OK") {
-                    $("input:checked").parents().find("tr:eq(0)").remove();
+                    $("input:checked").parents("tr").remove();
                     var mensagem = '<div class="alert alert-sucess"> Registro excluído com sucesso. </div>';
                     $("#mensagens").html(mensagem);
                 } else if (data == "ERRO") {

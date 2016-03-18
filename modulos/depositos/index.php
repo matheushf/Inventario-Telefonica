@@ -23,6 +23,7 @@ $Depositos = $Deposito->ListarDeposito();
                 <div class="form-inline pull-right">
                     <input type="text" size="20" class="form-control" id="busca" name="busca">
                     <button class="btn btn-primary">Procurar</button>
+                    <button class="btn btn-primary" id="importar-lista">Importar Listar</button>
                 </div>
             </div>
         </div>

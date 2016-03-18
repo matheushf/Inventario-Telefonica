@@ -5,6 +5,10 @@
  *
  * @author Matheus Victor <hffmatheus@gmail.com>
  */
+
+//include "external/phpqrcode/qrlib.php";
+
+
 class PEtiquetas extends Geleia {
 
     //put your code here
@@ -27,22 +31,19 @@ class PEtiquetas extends Geleia {
         $this->SQList['select.material']['sql'] = "SELECT * FROM materiais WHERE mate_excluido = 0";
         $this->SQList['select.material']['value'] = "mate_nome";
         $this->SQList['select.material']['key'] = "mate_id";
-
-//        $this->SQList['select. ']['key'] = '';
-//        $this->SQList['select. ']['value'] = '';
     }
 
     function ListarEtiquetas() {
         global $db;
 
         $sql = 'SELECT * FROM etiquetas
-                INNER JOIN materiais ON mate_id = etiq_mate_material
-                INNER JOIN deposito ON depo_id = etiq_depo_centro
+                INNER JOIN materiais ON mate_id = etiq_mate_material AND mate_excluido = 0
+                INNER JOIN deposito ON depo_id = etiq_depo_centro AND depo_excluido = 0
                 WHERE etiq_excluido = 0
                 ORDER BY etiq_id ASC';
 
         $etiq = $db->GetObjectList($sql);
-
+        
         return $etiq;
     }
 
@@ -52,6 +53,8 @@ class PEtiquetas extends Geleia {
         $this->SQL_GetById = "SELECT * FROM etiquetas WHERE etiq_id=" . (int) $Id . " AND etiq_excluido=0";
         return parent::GetById($IsArray);
     }
+    
+    
 
 }
 

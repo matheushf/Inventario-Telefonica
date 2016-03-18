@@ -10,7 +10,11 @@
             <word>Cidade</word>
             <word>EPS</word>
             <word>Excl</word>
+            <word>Física</word>
             <word>Medida</word>
+            <word>Negati</word>
+            <word>Negativa</word>
+            <word>Positiva</word>
             <word>Unitário</word>
         </spellchecker-wordlist>
     </configuration>

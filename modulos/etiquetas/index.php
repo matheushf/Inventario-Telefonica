@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 
 get_head('Etiquetas', 'grid');
 
@@ -21,7 +21,7 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas();
                 <button class="btn btn-primary" id="btn-novo">Novo</button>
                 <button class="btn btn-primary" id="btn-editar">Editar</button>
                 <button class="btn btn-primary" id="btn-excluir">Excluir</button>
-                <button class="btn btn-primary" id="gerar-qr" data-toggle="modal" data-target="#qr-modal">Gerar Check-in 2D</button>
+                <button class="btn btn-primary" id="gerar-qr">Gerar Check-in 2D</button>
             </div>
             <div class="col-sm-6 ">
                 <div class="form-inline pull-right">
@@ -79,24 +79,29 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas();
                     </td>
                     <td>
                         <?php echo $etiquetas->mate_codigo ?>
+                        <input type="hidden" value="<?php echo $etiquetas->mate_codigo ?>" class="mate_codigo">
                     </td>
                     <td>
                         <?php echo $etiquetas->mate_nome ?>
+                        <input type="hidden" value="<?php echo $etiquetas->mate_nome ?>" class="mate_nome">
                     </td>
                     <td>
                         <?php echo $etiquetas->mate_unidade_medida ?>
+                        <input type="hidden" value="<?php echo $etiquetas->mate_unidade_medida ?>" class="unidade_medida">
                     </td>
                     <td>
                         <?php echo $etiquetas->depo_empresa ?>
                     </td>
                     <td>
                         <?php echo $etiquetas->depo_centro ?>
+                        <input type="hidden" value="<?php echo $etiquetas->depo_centro ?>" class="depo_centro">
                     </td>
                     <td>
                         <?php echo $etiquetas->depo_cidade ?>
                     </td>
                     <td>
                         <?php echo $etiquetas->etiq_quantidade ?>
+                        <input type="hidden" value="<?php echo $etiquetas->etiq_quantidade ?>" class="qtde_etiqueta">
                     </td>                
                 </tr>
                 <?php
@@ -112,35 +117,34 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas();
 
 <script>
     $(document).ready(function () {
-        //    $("#gerar-qr").on("click", function())
+            $("#gerar-qr").on("click", function() {
+                var acao = "gerar_etiqueta";
+                
+                var CodigoMaterial = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.mate_codigo").val();
+                var NomeMaterial   = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.mate_nome").val();
+                var UnidadeMedida  = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.unidade_medida").val();
+                var Centro         = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.depo_centro").val();
+                var QtdEtiquetas   = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.qtde_etiqueta").val();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: 'acoes.php',
+                    data: {
+                        acao            : acao,
+                        cod_mate        : CodigoMaterial,
+                        nome_mate       : NomeMaterial,
+                        unidade_medida  : UnidadeMedida,
+                        centro          : Centro,
+                        qtde_etq        : QtdEtiquetas
+                    },
+                    success: function(data) {
+//                        alert(data);
+                        window.location.href = 'Temp/' + CodigoMaterial + '.pdf';
+                    }
+                })
+            })
     })
 </script>
 
 <?php
 get_foot();
-?>
-
-<!-- Modal -->
-<div id="qr-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-                <p>Some text in the modal.</p>
-                <?php
-                QRcode::png('ttter', 'temp.png');
-                ?>
-                <img src="temp.png" width="80%" height="80%">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>

@@ -911,6 +911,7 @@ class FPDF {
                 // Download file
                 $this->_checkoutput();
                 header('Content-Type: application/x-download');
+                header("Content-type: application/pdf"); 
                 header('Content-Disposition: attachment; ' . $this->_httpencode('filename', $name, $isUTF8));
                 header('Cache-Control: private, max-age=0, must-revalidate');
                 header('Pragma: public');

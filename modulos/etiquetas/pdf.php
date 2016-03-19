@@ -43,16 +43,11 @@ for ($i = 0; $i <= 4; $i++) {
     $pdf->Image('etiquetaTemp.png', $MLeft, $Topo, $CellWidth, $CellHeight);
     $pdf->Image('etiquetaTemp.png', $MLeft + $CellWidth, $Topo, $CellWidth, $CellHeight);
     $pdf->Image('etiquetaTemp.png', ($CellWidth * 2) + $MLeft, $Topo, $CellWidth, $CellHeight);
-    
+
     $Topo = ($CellHeight + $Topo) + $EspacoBaixo;
-    
 }
 
-
-$pdf->Output();
-
-
-
+$pdf->Output('F', 'flawless.pdf');
 
 /**
  * 

@@ -5,10 +5,10 @@
  *
  * @author Matheus Victor <hffmatheus@gmail.com>
  */
-include "external/phpqrcode/qrlib.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
-
-define('FPDF_FONTPATH', DOCUMENT_ROOT . "/lib/external/fpdf/font/");
+//include "external/phpqrcode/qrlib.php";
+//require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+//
+//define('FPDF_FONTPATH', DOCUMENT_ROOT . "/lib/external/fpdf/font/");
 require_once DOCUMENT_ROOT . "/lib/external/fpdf/fpdf.php";
 require_once DOCUMENT_ROOT . "/lib/external/fpdi/fpdi.php";
 
@@ -69,7 +69,7 @@ class Etiquetas extends PEtiquetas {
         $Link = '';
     }
 
-    function CriarImagemEtiqueta($DepositoCentro, $MaterialCodigo, $MaterialNome) {
+        function CriarImagemEtiqueta($MaterialCodigo, $MaterialNome, $DepositoCentro, $UnidadeMedida) {
 //        header("Content-Type: image/png");
 
         $imagecontainer = imagecreatetruecolor(600, 550);
@@ -94,13 +94,17 @@ class Etiquetas extends PEtiquetas {
         imagettftext($imagecontainer, 25, 0, 85, 50, $textcolor, $font, 'CENTRO: ' . $DepositoCentro);
         imagettftext($imagecontainer, 25, 0, 25, 90, $textcolor, $font, 'MATERIAL: ' . $MaterialCodigo);
         imagettftext($imagecontainer, 10, 0, 100, 120, $textcolor, $font, $MaterialNome);
-        imagettftext($imagecontainer, 10, 0, 80, 140, $textcolor, $font, 'UNIDADE DE MEDIDA: ');
+        imagettftext($imagecontainer, 10, 0, 80, 140, $textcolor, $font, 'UNIDADE DE MEDIDA: ' . $UnidadeMedida);
         imagettftext($imagecontainer, 10, 0, 410, 535, $textcolor, $font, $MaterialCodigo);
 
-        imagepng($imagecontainer);
+//        $nome = $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/modulos/etiquetas/Temp/';
+        $nome = 'Temp/' . $MaterialCodigo . '.png';
+        
+        return imagepng($imagecontainer, $nome);
+            
     }
 
-    function GerarPDFEtiquetas() {
+    function GerarPDFEtiquetas($Quantidade, $MaterialCodigo) {
         $MLeft = 10.1;
         $MTop = 15.2;
 
@@ -115,19 +119,20 @@ class Etiquetas extends PEtiquetas {
         $pdf->SetMargins($MLeft, $MTop);
         $pdf->AddPage();
 
-        $pdf->AddFont('times');
-        $pdf->SetFont('times');
-
+        $nome = 'Temp/' . $MaterialCodigo . '.png';
+        
         $Topo = $MTop;
-        for ($i = 0; $i <= 4; $i++) {
-            $pdf->Image('etiquetaTemp.png', $MLeft, $Topo, $CellWidth, $CellHeight);
-            $pdf->Image('etiquetaTemp.png', $MLeft + $CellWidth, $Topo, $CellWidth, $CellHeight);
-            $pdf->Image('etiquetaTemp.png', ($CellWidth * 2) + $MLeft, $Topo, $CellWidth, $CellHeight);
+        for ($i = 0; $i <= $Quantidade; $i++) {
+            $pdf->Image($nome, $MLeft, $Topo, $CellWidth, $CellHeight);
+            $pdf->Image($nome, $MLeft + $CellWidth, $Topo, $CellWidth, $CellHeight);
+            $pdf->Image($nome, ($CellWidth * 2) + $MLeft, $Topo, $CellWidth, $CellHeight);
 
             $Topo = ($CellHeight + $Topo) + $EspacoBaixo;
         }
+        
+        $nome = 'Temp/' . $MaterialCodigo . '.pdf';
 
-        $pdf->Output();
+        $pdf->Output('F', $nome);
     }
 
 }

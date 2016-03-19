@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('Materiais', 'form');
 
-if ($_GET['id']) {
+if (isset($_GET['id'])) {
     $ArrayMateriais = $Materiais->GetById($_GET['id'], true);
     $Materiais->PopulateFormFromDB($ArrayMateriais);
 }

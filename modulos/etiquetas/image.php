@@ -16,8 +16,11 @@
  * ** Death to false markup! *** Cheers!
  */
 
+
 // Tell the browser this script is an image
 header("Content-Type: image/png");
+
+
 
 // Our imagecontainer
 $imagecontainer = imagecreatetruecolor(600, 550);
@@ -26,6 +29,9 @@ imagesavealpha($imagecontainer, true);
 // Now we fill the imagecontainer with a transparent color
 $alphacolor = imagecolorallocatealpha($imagecontainer, 0, 0, 0, 127);
 imagefill($imagecontainer, 0, 0, $alphacolor);
+
+
+
 
 
 // Our background graphic
@@ -46,12 +52,17 @@ imagecopyresampled($imagecontainer, $qrimage, 185, 210, 0, 0, 140, 200, 180, 190
 
 imagecopyresampled($imagecontainer, $qrimage, 345, 210, 0, 0, 140, 200, 180, 190);
 
+$textcolor = imagecolorallocate($imagecontainer, 0, 0, 0);
+$font = './VeraBd.ttf';
 
-// We need a photoshop-style layer effect
-//imagelayereffect($imagecontainer, IMG_EFFECT_OVERLAY);
-//for ($i = 0; $i < 3; $i++) {
-//	// Copy the QR image three time for besser contrast
-//	imagecopyresampled($imagecontainer, $qrimage, 115, 150, 0, 0, 265, 265, 265, 265);
-//}
+//imagestring($imagecontainer, $font, 10, 10, 'tesrrrrrrrrte', $textcolor);
+imagettftext($imagecontainer, 25, 0, 85, 50, $textcolor, $font, 'CENTRO: ');
+imagettftext($imagecontainer, 25, 0, 25, 90, $textcolor, $font, 'MATERIAL: ');
+imagettftext($imagecontainer, 10, 0, 100, 120, $textcolor, $font, '$MaterialNome');
+imagettftext($imagecontainer, 10, 0, 80, 140, $textcolor, $font, 'UNIDADE DE MEDIDA: ');
+imagettftext($imagecontainer, 10, 0, 360, 535, $textcolor, $font, '$MaterialCodigo');
+
+
+
 // Finally render the container
-imagepng($imagecontainer);
+imagepng($imagecontainer, 'etiquetaTemp.png');

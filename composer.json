@@ -1,1 +1,6 @@
-{"endroid/qrcode": "1.5.4"}
+{
+    "require": {
+        "setasign/fpdi": "1.6.1",
+	"setasign/fpdi-fpdf": "1.6.1"
+    }
+}

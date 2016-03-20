@@ -5,7 +5,7 @@ get_head('Materiais', 'grid');
 
 mensagem();
 
-$MateriaisLista = $Materiais->ListarMateriais();
+$MateriaisLista = $Materiais->ListarMateriais($OrderBy);
 ?>
 
 <body>
@@ -38,8 +38,13 @@ $MateriaisLista = $Materiais->ListarMateriais();
             <thead>
                 <tr>
                     <th style="width: 50px"></th>
-                    <th>Material                </th>
-                    <th>Texto Breve Material    </th>
+                    <th>
+                        <?php  ?>
+                        <a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a>
+                    </th>
+                    <th>
+                        <a href="?ordem=<?= $ordem ?>&by=mate_nome">Texto Breve Material    </a>
+                    </th>
                     <th>Unidade de Medida       </th>
                     <th>Valor Unitário          </th>
                     <th>Livre 1                 </th>

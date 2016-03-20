@@ -45,21 +45,21 @@
 
         <script src="/vivo-inventario/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<?php
-if ($FormGrid == 'form') {
-    ?>
+        <?php
+        if ($FormGrid == 'form') {
+            ?>
             <!-- Estilos e javascript Form -->
             <link href="/vivo-inventario/assets/css/form.css" rel="stylesheet">
             <script src="/vivo-inventario/assets/js/form.js"></script>
-    <?php
-} elseif ($FormGrid == 'grid') {
-    ?>
+            <?php
+        } elseif ($FormGrid == 'grid') {
+            ?>
             <!-- Estilos e javascript Grid -->
             <link href="/vivo-inventario/assets/css/grid.css" rel="stylesheet">
             <script src="/vivo-inventario/assets/js/grid.js" rel="stylesheet"></script>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
 
     </head>
 
@@ -97,6 +97,12 @@ if ($FormGrid == 'form') {
                             <a href="/vivo-inventario/modulos/inventario"><i class="fa fa-book"></i> <span class="nav-label">Inventário </span></a>
                         </li>
 
+                        <?php if ($_SESSION['usua_tipo'] == 'Admin') { ?>
+                            <li>
+                                <a href="/vivo-inventario/modulos/usuarios"><i class="fa fa-user"></i> <span class="nav-label">Usuário </span></a>
+                            </li>
+                        <?php } ?>
+
                     </ul>
                 </div>
             </nav>
@@ -112,8 +118,6 @@ if ($FormGrid == 'form') {
                     <ul class="nav navbar-top-links navbar-right">
                         <li><span class="m-r-sm text-muted welcome-message">Bem Vindo, <?php echo $_SESSION['usua_nome']; ?></span>
                         </li>
-
-
 
                         <li><a href="/vivo-inventario/logout.php"> <i class="fa fa-sign-out"></i> Sair
                             </a></li>
@@ -136,7 +140,7 @@ if ($FormGrid == 'form') {
                 <div id="teste"></div>
                 <div id="mensagens"></div>
 
-<?php
-if (isset($_SESSION['Mensagem']['tipo']) && $_SESSION['Mensagem']['tipo'] == 'error') {
-    mensagem();
-}
+                <?php
+                if (isset($_SESSION['Mensagem']['tipo']) && $_SESSION['Mensagem']['tipo'] == 'error') {
+                    mensagem();
+                }

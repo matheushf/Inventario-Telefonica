@@ -16,7 +16,6 @@
  * @param type $ObjetoCampos
  * @return string
  */
-
 function MontarTabela($CamposTabela, $Objeto, $ObjetoCampos) {
 
     $html = " 
@@ -65,4 +64,16 @@ function MontarTabela($CamposTabela, $Objeto, $ObjetoCampos) {
         ";
 
     return $html;
+}
+
+if ($_GET['ordem'] == 'ASC') {
+    $ordem = 'DESC';
+} else {
+    $ordem = 'ASC';
+}
+
+if ($_GET['ordem'] != '') {
+    $OrderBy = 'ORDER BY ' . $_GET['by'] . ' ' . $_GET['ordem'];
+} else {
+    $OrderBy = null;
 }

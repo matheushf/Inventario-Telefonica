@@ -7,7 +7,7 @@ get_head('Etiquetas', 'grid');
 
 echo mensagem();
 
-$EtiquetasLista = $Etiquetas->ListarEtiquetas();
+$EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy);
 ?>
 
 <body>
@@ -46,11 +46,11 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas();
                     <th>Cód Leitura 1       </th>
                     <th>Cód Leitura 2       </th>
                     <th>Cód Leitura 3       </th>
-                    <th>Material            </th>
+                    <th><a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a></th>
                     <th>Texto Breve Material</th>
                     <th>Unidade de Medida   </th>
-                    <th>EPS                 </th>
-                    <th>Centro              </th>
+                    <th><a href="?ordem=<?= $ordem ?>&by=depo_empresa">EPS</a></th>
+                    <th><a href="?ordem=<?= $ordem ?>&by=depo_centro">Centro  </a></th>
                     <th>Cidade              </th>
                     <th>Qtd Etiquetas       </th>
                 </tr>

@@ -33,14 +33,13 @@ class PEtiquetas extends Geleia {
         $this->SQList['select.material']['key'] = "mate_id";
     }
 
-    function ListarEtiquetas() {
+    function ListarEtiquetas($OrderBy = 'ORDER BY etiq_id ASC') {
         global $db;
 
         $sql = 'SELECT * FROM etiquetas
                 INNER JOIN materiais ON mate_id = etiq_mate_material AND mate_excluido = 0
                 INNER JOIN deposito ON depo_id = etiq_depo_centro AND depo_excluido = 0
-                WHERE etiq_excluido = 0
-                ORDER BY etiq_id ASC';
+                WHERE etiq_excluido = 0 ' . $OrderBy;
 
         $etiq = $db->GetObjectList($sql);
 

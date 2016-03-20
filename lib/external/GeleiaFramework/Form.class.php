@@ -132,10 +132,10 @@ class Form extends PForm {
         global $db;
 
         $Sql = $this->GenerateInsertSQL($modulo);
-        
+
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());
-            
+
             return true;
         }
         return false;
@@ -397,7 +397,22 @@ class Form extends PForm {
             }
 
             switch (strtolower($InputType)) {
-                case "text": case "password": {
+                case "password": {
+                    
+//                    $Value = 
+                    
+                    $html = " <label for='$Field'><strong>$Label</strong> </label>
+                                    <input " . $readonly . $FieldPreferences->{'typeof'}
+                            . $FieldPreferences->{'required'}
+                            . $FieldPreferences->{'style'}
+                            . " type='password' $int id='$Field' name='$Field' value='$Value' $maxlength is_nullable='$FieldInfo->IS_NULLABLE'/ class='form-control' style='margin-bottom: 10px'>";
+
+                    return $html;
+                    break;
+                }
+
+
+                case "text": {
 
                         $html = " <label for='$Field'><strong>$Label</strong> </label>
                                         <input " . $readonly . $FieldPreferences->{'typeof'}
@@ -540,8 +555,8 @@ class Form extends PForm {
 
         $ObjList = $db->GetObjectList($this->SQList[$Options->{'datasource-sql'}]['sql']);
 
-        $key    = $this->SQList[$Options->{'datasource-sql'}]['key'];
-        $value  = $this->SQList[$Options->{'datasource-sql'}]['value'];
+        $key = $this->SQList[$Options->{'datasource-sql'}]['key'];
+        $value = $this->SQList[$Options->{'datasource-sql'}]['value'];
 
         $Select = "
                 <div class='form-group'>
@@ -550,19 +565,17 @@ class Form extends PForm {
 
         foreach (($ObjList ? $ObjList : Array()) as $Obj) {
             if ($_POST[$Field] == $Obj->{$this->SQList[$Options->{'datasource-sql'}]['key']}) {
-                
-                $Select .= "<option selected value=\"" 
+
+                $Select .= "<option selected value=\""
                         . $Obj->{$key}
                         . "\">" . $Obj->{$value}
                         . "</option>";
-                        
             } else {
-                $Select .= "<option value=\"" 
+                $Select .= "<option value=\""
                         . $Obj->{$key}
                         . "\">" . $Obj->{$value}
                         . "</option>";
             }
-            
         }
 
         $Select .= "

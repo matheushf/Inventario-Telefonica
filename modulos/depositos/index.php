@@ -5,7 +5,7 @@ get_head('Depósitos', 'grid');
 
 echo mensagem();
 
-$Depositos = $Deposito->ListarDeposito();
+$Depositos = $Deposito->ListarDeposito($OrderBy);
 ?>
 
 <body>
@@ -38,9 +38,11 @@ $Depositos = $Deposito->ListarDeposito();
             <thead>
                 <tr>
                     <th style="width: 50px"></th>
-                    <th>EPS     </th>
-                    <th>Centro  </th>
-                    <th>Cidade  </th>
+                    <th>
+                        <a href="?ordem=<?= $ordem ?>&by=depo_empresa">EPS</a>
+                    </th>
+                    <th><a href="?ordem=<?= $ordem ?>&by=depo_centro">Centro  </a></th>
+                    <th><a href="?ordem=<?= $ordem ?>&by=depo_cidade">Cidade  </a></th>
                     <th>Status  </th>
                     <th>Livre 1 </th>
                     <th>Livre 2 </th>

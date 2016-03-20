@@ -10,39 +10,43 @@ class FuncoesPadroes extends Geleia {
 
     public function Save($modulo) {
 
-
         switch ($modulo) {
 
             case 'usuario': {
-                    $_POST[senha] = sha1(trim($_POST[senha]));
+                    $_POST['senha'] = sha1(trim($_POST['senha']));
 
                     break;
                 }
 
             case 'etiquetas': {
-                $Materiais = new Materiais();
-                $Deposito  = new Deposito();
-                
-                $MaterialCodigo = $Materiais->GetById($_POST['mate_material']);
-                $MaterialCodigo = $MaterialCodigo->mate_codigo;
-                
-                $DepositoCentro = $Deposito->GetById($_POST['depo_centro']);
-                $DepositoCentro = $DepositoCentro->depo_centro;
+                    $Materiais = new Materiais();
+                    $Deposito = new Deposito();
 
-                $_POST['cod_final'] = $DepositoCentro . '-' . $MaterialCodigo;
+                    $MaterialCodigo = $Materiais->GetById($_POST['mate_material']);
+                    $MaterialCodigo = $MaterialCodigo->mate_codigo;
+
+                    $DepositoCentro = $Deposito->GetById($_POST['depo_centro']);
+                    $DepositoCentro = $DepositoCentro->depo_centro;
+
+                    $_POST['cod_final'] = $DepositoCentro . '-' . $MaterialCodigo;
 
                     break;
-            }
+                }
         }
-
-        var_dump($_POST);
-//        die();
-
 
         return parent::Save($modulo);
     }
 
     public function Update($modulo) {
+
+        switch ($modulo) {
+            case 'usuario': {
+                    $_POST['senha'] = sha1(trim($_POST['senha']));
+
+                    break;
+                }
+        }
+
         return parent::Update($modulo);
     }
 

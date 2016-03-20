@@ -3,6 +3,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('', 'form');
 
+
+if (isset($_GET['id'])) {
+    $ArrayModulo = $Modulo->GetById($_GET['id'], true);
+    $Modulo->PopulateFormFromDB($ArrayModulo);
+}
+
 ?>
 <body>
     <fieldset class="scheduler-border" style="margin-top: 20px">

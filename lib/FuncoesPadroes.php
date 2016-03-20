@@ -1,9 +1,43 @@
 <?php
 
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/lib/Materiais.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/lib/Deposito.class.php';
+
 class FuncoesPadroes extends Geleia {
 
     public function Save($modulo) {
-        $_POST[senha] = sha1(trim($_POST[senha]));
+
+
+        switch ($modulo) {
+
+            case 'usuario': {
+                    $_POST[senha] = sha1(trim($_POST[senha]));
+
+                    break;
+                }
+
+            case 'etiquetas': {
+                $Materiais = new Materiais();
+                $Deposito  = new Deposito();
+                
+                $MaterialCodigo = $Materiais->GetById($_POST['mate_material']);
+                $MaterialCodigo = $MaterialCodigo->mate_codigo;
+                
+                $DepositoCentro = $Deposito->GetById($_POST['depo_centro']);
+                $DepositoCentro = $DepositoCentro->depo_centro;
+
+                $_POST['cod_final'] = $DepositoCentro . '-' . $MaterialCodigo;
+
+                    break;
+            }
+        }
+
+        var_dump($_POST);
+//        die();
+
 
         return parent::Save($modulo);
     }

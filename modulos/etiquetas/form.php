@@ -25,12 +25,13 @@ if ($_GET['id']) {
             echo $Etiquetas->Create('etiq_mate_material', 'Material');
             echo $Etiquetas->Create('etiq_quantidade', 'Quantidade');
             echo $Etiquetas->Create('etiq_observacao', 'Observação');
+            echo $Etiquetas->Create('etiq_cod_final', 'cod_final_id');
             ?>
 
 
             <center style="margin-top: 50px">
                 <button class="btn btn-danger" id="cancelar"> Cancelar </button>
-                <button class="btn btn-primary" id="btn-salvar" name="btn-salvar" type="submit"> Salvar </button> 
+                <button class="btn btn-primary" id="btn-salvar" type="submit"> Salvar </button> 
             </center>
 
         </form>

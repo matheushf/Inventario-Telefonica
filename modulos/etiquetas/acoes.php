@@ -13,13 +13,14 @@ if(isset($_GET['acao'])) {
 switch ($acao) {
 
     case "gerar_etiqueta": {
-            $CodigoMaterial = $_POST['cod_mate'];
-            $NomeMaterial = $_POST['nome_mate'];
-            $UnidadeMedida = $_POST['unidade_medida'];
-            $Centro = $_POST['centro'];
-            $QtdEtiquetas = $_POST['qtde_etq'];
+            $IdEtiqueta         = $_POST['id'];
+            $CodigoMaterial     = $_POST['cod_mate'];
+            $NomeMaterial       = $_POST['nome_mate'];
+            $UnidadeMedida      = $_POST['unidade_medida'];
+            $Centro             = $_POST['centro'];
+            $QtdEtiquetas       = $_POST['qtde_etq'];
             
-            $res = $Etiquetas->CriarImagemEtiqueta($CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida);
+            $res = $Etiquetas->CriarImagemEtiqueta($IdEtiqueta, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida);
             
             if ($res) {
                 $Etiquetas->GerarPDFEtiquetas($QtdEtiquetas, $CodigoMaterial);

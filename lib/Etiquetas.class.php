@@ -5,15 +5,9 @@
  *
  * @author Matheus Victor <hffmatheus@gmail.com>
  */
-//include "external/phpqrcode/qrlib.php";
-//require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
-//
-//define('FPDF_FONTPATH', DOCUMENT_ROOT . "/lib/external/fpdf/font/");
 require_once DOCUMENT_ROOT . "/lib/external/fpdf/fpdf.php";
 require_once DOCUMENT_ROOT . "/lib/external/fpdi/fpdi.php";
 
-//require_once 'external/fpdi/fpdi.php';
-//require_once 'external/fpdi/fpdf.php';
 
 
 
@@ -56,9 +50,13 @@ class PEtiquetas extends Geleia {
     function GetById($Id, $IsArray = false) {
         global $db;
 
-        $this->SQL_GetById = "SELECT * FROM etiquetas WHERE etiq_id=" . (int) $Id . " AND etiq_excluido=0";
+        $this->SQL_GetById = "SELECT * FROM etiquetas 
+                INNER JOIN materiais ON mate_id = etiq_mate_material AND mate_excluido = 0
+                INNER JOIN deposito ON depo_id = etiq_depo_centro AND depo_excluido = 0
+                WHERE etiq_id=" . (int) $Id . "
+                AND etiq_excluido=0";
         return parent::GetById($IsArray);
-    }
+    }        
 
 }
 
@@ -69,7 +67,7 @@ class Etiquetas extends PEtiquetas {
         $Link = '';
     }
 
-        function CriarImagemEtiqueta($MaterialCodigo, $MaterialNome, $DepositoCentro, $UnidadeMedida) {
+        function CriarImagemEtiqueta($IdEtiqueta, $MaterialCodigo, $MaterialNome, $DepositoCentro, $UnidadeMedida) {
 //        header("Content-Type: image/png");
 
         $imagecontainer = imagecreatetruecolor(600, 550);
@@ -83,21 +81,24 @@ class Etiquetas extends PEtiquetas {
 // Our QR-Code
 // http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=olaaa
 
-        $qrimage = imagecreatefrompng('qrcode.png');
+//        $qrimage = imagecreatefrompng('qrcode.png');
+        
+        $Link = "http://192.168.100.5/vivo-inventario/modulos/etiquetas/mleitura.php?id=" . $IdEtiqueta;
+        $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=' . $Link);
+        
         imagecopyresampled($imagecontainer, $qrimage, 20, 210, 0, 0, 140, 200, 180, 190);
         imagecopyresampled($imagecontainer, $qrimage, 185, 210, 0, 0, 140, 200, 180, 190);
         imagecopyresampled($imagecontainer, $qrimage, 345, 210, 0, 0, 140, 200, 180, 190);
 
         $textcolor = imagecolorallocate($imagecontainer, 0, 0, 0);
-        $font = './VeraBd.ttf';
+        $font = DOCUMENT_ROOT . '/assets/fonts/OpenSans-Bold.ttf';
 
-        imagettftext($imagecontainer, 25, 0, 85, 50, $textcolor, $font, 'CENTRO: ' . $DepositoCentro);
-        imagettftext($imagecontainer, 25, 0, 25, 90, $textcolor, $font, 'MATERIAL: ' . $MaterialCodigo);
-        imagettftext($imagecontainer, 10, 0, 100, 120, $textcolor, $font, $MaterialNome);
-        imagettftext($imagecontainer, 10, 0, 80, 140, $textcolor, $font, 'UNIDADE DE MEDIDA: ' . $UnidadeMedida);
-        imagettftext($imagecontainer, 10, 0, 410, 535, $textcolor, $font, $MaterialCodigo);
+        imagettftext($imagecontainer, 27, 0, 85, 50, $textcolor, $font, 'CENTRO: ' . strtoupper($DepositoCentro));
+        imagettftext($imagecontainer, 27, 0, 25, 90, $textcolor, $font, 'MATERIAL: ' . strtoupper($MaterialCodigo));
+        imagettftext($imagecontainer, 15, 0, 45, 125, $textcolor, $font, strtoupper($MaterialNome));
+        imagettftext($imagecontainer, 15, 0, 45, 150, $textcolor, $font, 'UNIDADE DE MEDIDA: ' . strtoupper($UnidadeMedida));
+        imagettftext($imagecontainer, 10, 0, 405, 535, $textcolor, $font, strtoupper($MaterialCodigo));
 
-//        $nome = $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/modulos/etiquetas/Temp/';
         $nome = 'Temp/' . $MaterialCodigo . '.png';
         
         return imagepng($imagecontainer, $nome);
@@ -122,12 +123,25 @@ class Etiquetas extends PEtiquetas {
         $nome = 'Temp/' . $MaterialCodigo . '.png';
         
         $Topo = $MTop;
-        for ($i = 0; $i <= $Quantidade; $i++) {
-            $pdf->Image($nome, $MLeft, $Topo, $CellWidth, $CellHeight);
-            $pdf->Image($nome, $MLeft + $CellWidth, $Topo, $CellWidth, $CellHeight);
-            $pdf->Image($nome, ($CellWidth * 2) + $MLeft, $Topo, $CellWidth, $CellHeight);
+        $Esquerdo = $MLeft;
+        $j = 1;
+        for ($i = 1; $i <= $Quantidade; $i++) {
+            
+            $pdf->Image($nome, $Esquerdo, $Topo, $CellWidth, $CellHeight);
+//            $pdf->Image($nome, $Esquerdo, $Topo, $CellWidth, $CellHeight);
+//            $pdf->Image($nome, ($CellWidth * 2) + $MLeft, $Topo, $CellWidth, $CellHeight);
 
-            $Topo = ($CellHeight + $Topo) + $EspacoBaixo;
+            $Esquerdo = $MLeft + $CellWidth;
+            if ($j == 2) {
+                $Esquerdo = ($CellWidth * 2) + $MLeft;
+            }
+            if ($j == 3) {
+                $Topo = ($CellHeight + $Topo) + $EspacoBaixo;
+                $Esquerdo = $MLeft;
+                $j = 0;
+            }
+            $j++;
+            
         }
         
         $nome = 'Temp/' . $MaterialCodigo . '.pdf';

@@ -1,8 +1,6 @@
 <?php
 //include( $_SERVER['DOCUMENT_ROOT'] . "/global.php");
-
 //require_once 'global.php';
-
 //if(!$util->estaLogado()) {
 //	header('Location: /index.php');
 //}
@@ -46,22 +44,22 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <script src="/vivo-inventario/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-        
-        <?php 
-        if ($FormGrid == 'form') {
-        ?>
+
+<?php
+if ($FormGrid == 'form') {
+    ?>
             <!-- Estilos e javascript Form -->
             <link href="/vivo-inventario/assets/css/form.css" rel="stylesheet">
             <script src="/vivo-inventario/assets/js/form.js"></script>
-        <?php
-        } elseif ($FormGrid == 'grid') {
-        ?>
+    <?php
+} elseif ($FormGrid == 'grid') {
+    ?>
             <!-- Estilos e javascript Grid -->
             <link href="/vivo-inventario/assets/css/grid.css" rel="stylesheet">
             <script src="/vivo-inventario/assets/js/grid.js" rel="stylesheet"></script>
-        <?php
-        }
-        ?>
+    <?php
+}
+?>
 
     </head>
 
@@ -112,12 +110,12 @@
                            href="#"><i class="fa fa-bars"></i> </a>
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
-                        <li><span class="m-r-sm text-muted welcome-message">Bem Vindo, <?php ?></span>
+                        <li><span class="m-r-sm text-muted welcome-message">Bem Vindo, <?php echo $_SESSION['usua_nome']; ?></span>
                         </li>
 
 
 
-                        <li><a href="/logout.php"> <i class="fa fa-sign-out"></i> Sair
+                        <li><a href="/vivo-inventario/logout.php"> <i class="fa fa-sign-out"></i> Sair
                             </a></li>
 
                     </ul>
@@ -137,8 +135,8 @@
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div id="teste"></div>
                 <div id="mensagens"></div>
-                
-                <?php 
-                if(isset($_SESSION['Mensagem']['tipo']) && $_SESSION['Mensagem']['tipo'] == 'error') {
-                    mensagem();
-                }
+
+<?php
+if (isset($_SESSION['Mensagem']['tipo']) && $_SESSION['Mensagem']['tipo'] == 'error') {
+    mensagem();
+}

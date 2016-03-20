@@ -33,15 +33,33 @@ switch ($acao) {
         }
 
     case 'excluir': {
-            $Id = $_POST['id'];
-            $Modulo = $_POST['modulo'];
+        $Id = $_POST['id'];
+        $Modulo = $_POST['modulo'];
 
-            if ($FuncoesPadroes->Delete($Id, $Modulo)) {
-                echo "OK";
-            } else {
-                echo "ERRO";
-            }
-
-            break;
+        if ($FuncoesPadroes->Delete($Id, $Modulo)) {
+            echo "OK";
+        } else {
+            echo "ERRO";
         }
+
+        break;
+    }
+    
+    case 'login': {
+        $Email = $_POST['email'];
+        $Senha = $_POST['senha'];
+        
+        if($Usuario->Login($Email, $Senha)) {
+            header('Location: /vivo-inventario/modulos/materiais/');
+            
+        } else {
+            $_SESSION['Mensagem']['tipo'] = 'error';
+            $_SESSION['Mensagem']['texto'] = 'Usuário ou senha inválidos.';
+            
+            header('Location: /vivo-inventario/index.php');
+        }
+        
+        
+    }
+        
 }

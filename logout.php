@@ -5,4 +5,4 @@ session_unset();
 session_destroy();
 $_SESSION = array();
 unset($dados);
-header('Location: /index.php');
+header('Location: /vivo-inventario/index.php');

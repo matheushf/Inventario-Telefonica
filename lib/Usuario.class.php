@@ -86,8 +86,8 @@ abstract class PUsuario extends Geleia {
 		function GetByEmail($Email) {
 			global $db;
 
-			$Sql = "SELECT * FROM `usuario` WHERE usua_excluido=0 AND usua_email='" . mysql_escape_string($Email) . "'";
-
+			$Sql = "SELECT * FROM usuario WHERE usua_excluido = 0 AND usua_email = '" . mysql_escape_string($Email) . "' ";
+                        
 			return $db->GetObject($Sql);
 
 		}

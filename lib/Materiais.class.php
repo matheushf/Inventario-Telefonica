@@ -23,6 +23,7 @@ class PMateriais extends Geleia {
         $this->SQL_GetById = "SELECT * FROM materiais WHERE mate_id=" . (int) $Id . " AND mate_excluido=0";
         return parent::GetById($IsArray);
     }
+    
 }
 
 class Materiais extends PMateriais {

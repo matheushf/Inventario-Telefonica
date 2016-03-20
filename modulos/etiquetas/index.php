@@ -125,12 +125,14 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas();
                 var UnidadeMedida  = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.unidade_medida").val();
                 var Centro         = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.depo_centro").val();
                 var QtdEtiquetas   = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.qtde_etiqueta").val();
+                var Id             = $("input:checked").val();
                 
                 $.ajax({
                     type: 'POST',
                     url: 'acoes.php',
                     data: {
                         acao            : acao,
+                        id              : Id,
                         cod_mate        : CodigoMaterial,
                         nome_mate       : NomeMaterial,
                         unidade_medida  : UnidadeMedida,

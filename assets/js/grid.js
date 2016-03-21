@@ -12,7 +12,6 @@ $(document).ready(function () {
     })
 
     $("#btn-editar").on("click", function () {
-        // TODO implementar editar pegando id
         if (!(id = PegarId())) {
             return false;
         }
@@ -42,7 +41,7 @@ $(document).ready(function () {
             success: function (data) {
                 if (data == "OK") {
                     $("input:checked").parents("tr").remove();
-                    var mensagem = '<div class="alert alert-sucess"> Registro excluído com sucesso. </div>';
+                    var mensagem = '<div class="alert alert-success"> Registro excluído com sucesso. </div>';
                     $("#mensagens").html(mensagem);
                 } else if (data == "ERRO") {
                     var mensagem = '<div class="alert alert-danger"> Ocorreu um erro ao excluir o registro. </div>';

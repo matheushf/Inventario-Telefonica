@@ -8,9 +8,6 @@
 require_once DOCUMENT_ROOT . "/lib/external/fpdf/fpdf.php";
 require_once DOCUMENT_ROOT . "/lib/external/fpdi/fpdi.php";
 
-
-
-
 class PEtiquetas extends Geleia {
 
     function PEtiquetas($Table = "") {
@@ -38,13 +35,13 @@ class PEtiquetas extends Geleia {
 
         if ($Search != null) {
             $Search = "AND ("
-                    . "depo_empresa LIKE '%"    . $Search . "%'"
-                    . "OR mate_codigo LIKE '%"  . $Search . "%'"
-                    . "OR mate_nome LIKE '%"    . $Search . "%'"
-                    . "OR depo_centro LIKE '%"  . $Search . "%'"
+                    . "depo_empresa LIKE '%" . $Search . "%'"
+                    . "OR mate_codigo LIKE '%" . $Search . "%'"
+                    . "OR mate_nome LIKE '%" . $Search . "%'"
+                    . "OR depo_centro LIKE '%" . $Search . "%'"
                     . ") ";
         }
-        
+
         $sql = 'SELECT * FROM etiquetas
                 INNER JOIN materiais ON mate_id = etiq_mate_material AND mate_excluido = 0
                 INNER JOIN deposito ON depo_id = etiq_depo_centro AND depo_excluido = 0
@@ -64,7 +61,7 @@ class PEtiquetas extends Geleia {
                 WHERE etiq_id=" . (int) $Id . "
                 AND etiq_excluido=0";
         return parent::GetById($IsArray);
-    }        
+    }
 
 }
 
@@ -75,7 +72,7 @@ class Etiquetas extends PEtiquetas {
         $Link = '';
     }
 
-        function CriarImagemEtiqueta($IdEtiqueta, $MaterialCodigo, $MaterialNome, $DepositoCentro, $UnidadeMedida) {
+    function CriarImagemEtiqueta($IdEtiqueta, $MaterialCodigo, $MaterialNome, $DepositoCentro, $UnidadeMedida) {
 //        header("Content-Type: image/png");
 
         $imagecontainer = imagecreatetruecolor(600, 550);
@@ -88,12 +85,12 @@ class Etiquetas extends PEtiquetas {
 
 // Our QR-Code
 // http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=olaaa
-
 //        $qrimage = imagecreatefrompng('qrcode.png');
-        
+
         $Link = "http://192.168.100.5/vivo-inventario/modulos/etiquetas/mleitura.php?id=" . $IdEtiqueta;
-        $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=' . $Link);
-        
+//        $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=' . $Link);
+        $qrimage = imagecreatefrompng('qrcode.png');
+
         imagecopyresampled($imagecontainer, $qrimage, 20, 210, 0, 0, 140, 200, 180, 190);
         imagecopyresampled($imagecontainer, $qrimage, 185, 210, 0, 0, 140, 200, 180, 190);
         imagecopyresampled($imagecontainer, $qrimage, 345, 210, 0, 0, 140, 200, 180, 190);
@@ -101,43 +98,62 @@ class Etiquetas extends PEtiquetas {
         $textcolor = imagecolorallocate($imagecontainer, 0, 0, 0);
         $font = DOCUMENT_ROOT . '/assets/fonts/OpenSans-Bold.ttf';
 
-        imagettftext($imagecontainer, 27, 0, 85, 50, $textcolor, $font, 'CENTRO: ' . strtoupper($DepositoCentro));
-        imagettftext($imagecontainer, 27, 0, 25, 90, $textcolor, $font, 'MATERIAL: ' . strtoupper($MaterialCodigo));
-        imagettftext($imagecontainer, 15, 0, 45, 125, $textcolor, $font, strtoupper($MaterialNome));
-        imagettftext($imagecontainer, 15, 0, 45, 150, $textcolor, $font, 'UNIDADE DE MEDIDA: ' . strtoupper($UnidadeMedida));
-        imagettftext($imagecontainer, 10, 0, 405, 535, $textcolor, $font, strtoupper($MaterialCodigo));
+
+
+        imagettftext($imagecontainer, 27, 0, 25, 50, $textcolor, $font, 'CENTRO: ' . strtoupper($DepositoCentro));
+        if (strlen($MaterialCodigo) > 12) {
+//            $p1 = substr(strtoupper($MaterialCodigo), 0, 12);
+//            $p2 = substr(strtoupper($MaterialCodigo), 12, strlen($MaterialCodigo));
+            imagettftext($imagecontainer, 20, 0, 25, 90, $textcolor, $font, 'MATERIAL: ');
+            imagettftext($imagecontainer, 15, 0, 170, 90, $textcolor, $font, $MaterialCodigo);
+        } else {
+            imagettftext($imagecontainer, 27, 0, 25, 90, $textcolor, $font, 'MATERIAL: ' . strtoupper($MaterialCodigo));
+        }
+
+        if (strlen($MaterialNome) > 40) {
+            $MaterialNome = substr($MaterialNome, 0, 45);
+            imagettftext($imagecontainer, 12, 0, 25, 125, $textcolor, $font, strtoupper($MaterialNome) . '..');
+        } else {
+            imagettftext($imagecontainer, 15, 0, 25, 125, $textcolor, $font, strtoupper($MaterialNome));
+        }
+        
+        imagettftext($imagecontainer, 15, 0, 25, 150, $textcolor, $font, 'UNIDADE DE MEDIDA: ' . strtoupper($UnidadeMedida));
+        
+        if (strlen($MaterialCodigo) > 12) {
+            imagettftext($imagecontainer, 10, 0, 340, 535, $textcolor, $font, strtoupper($MaterialCodigo));
+        } else {
+            imagettftext($imagecontainer, 10, 0, 380, 535, $textcolor, $font, strtoupper($MaterialCodigo));
+        }
 
         $nome = 'Temp/' . $MaterialCodigo . '.png';
-        
+
         return imagepng($imagecontainer, $nome);
-            
     }
 
     function GerarPDFEtiquetas($Quantidade, $MaterialCodigo) {
         $MLeft = 10.1;
-        $MTop = 15.2;
+        $MTop = 12.2;
 
         $CellWidth = 63.5;
-        $CellHeight = 46.6;
+        $CellHeight = 45.6;
 
         $EspacoMeio = 2.6;
-        $EspacoBaixo = 4;
+        $EspacoBaixo = 1.5;
 
         $pdf = new FPDF('P', 'mm', 'A4');
 
         $pdf->SetMargins($MLeft, $MTop);
-        $pdf->AddPage();
+        $pdf->AddPage('P', 'A4');
 
         $nome = 'Temp/' . $MaterialCodigo . '.png';
-        
+
         $Topo = $MTop;
         $Esquerdo = $MLeft;
         $j = 1;
+        $k = 1;
         for ($i = 1; $i <= $Quantidade; $i++) {
-            
+
             $pdf->Image($nome, $Esquerdo, $Topo, $CellWidth, $CellHeight);
-//            $pdf->Image($nome, $Esquerdo, $Topo, $CellWidth, $CellHeight);
-//            $pdf->Image($nome, ($CellWidth * 2) + $MLeft, $Topo, $CellWidth, $CellHeight);
 
             $Esquerdo = $MLeft + $CellWidth;
             if ($j == 2) {
@@ -148,10 +164,16 @@ class Etiquetas extends PEtiquetas {
                 $Esquerdo = $MLeft;
                 $j = 0;
             }
+            if ($k >= 18) {
+                $pdf->AddPage('P', 'A4');
+                $Topo = $MTop;
+                $Esquerdo = $MLeft;
+                $k = 0;
+            }
+            $k++;
             $j++;
-            
         }
-        
+
         $nome = 'Temp/' . $MaterialCodigo . '.pdf';
 
         $pdf->Output('F', $nome);

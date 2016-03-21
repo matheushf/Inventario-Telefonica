@@ -20,35 +20,42 @@ $(document).ready(function () {
     })
 
     $("#btn-excluir").on("click", function () {
-        if (!(id = PegarId())) {
-            return false;
-        }
-        
+
         var modulo = $("#modulo").val();
 
         if (!confirm("Tem certeza que deseja excluir? ")) {
             return;
         }
 
-        $.ajax({
-            type: 'POST',
-            url: '/vivo-inventario/lib/action.php',
-            data: {
-                acao: 'excluir',
-                id: id,
-                modulo: modulo
-            },
-            success: function (data) {
-                if (data == "OK") {
-                    $("input:checked").parents("tr").remove();
-                    var mensagem = '<div class="alert alert-success"> Registro excluído com sucesso. </div>';
-                    $("#mensagens").html(mensagem);
-                } else if (data == "ERRO") {
-                    var mensagem = '<div class="alert alert-danger"> Ocorreu um erro ao excluir o registro. </div>';
-                    $("#mensagens").html(mensagem);
+        $("input:checked").each(function () {
+            var id = $(this).val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/vivo-inventario/lib/action.php',
+                data: {
+                    acao: 'excluir',
+                    id: id,
+                    modulo: modulo
+                },
+                success: function (data) {
+                    if (data == "OK") {
+                        $("input:checked").parents("tr").remove();
+                        var mensagem = '<div class="alert alert-success"> Registro excluído com sucesso. </div>';
+                        $("#mensagens").html(mensagem);
+                    } else if (data == "ERRO") {
+                        var mensagem = '<div class="alert alert-danger"> Ocorreu um erro ao excluir o registro. </div>';
+                        $("#mensagens").html(mensagem);
+                    }
                 }
-            }
+            })
         })
+    })
+
+    // Buscador
+    $("#procurar").click(function (event) {
+        event.preventDefault();
+        window.location.assign("?busca=" + $("#busca").val());
     })
 
     // Marcar linha clicada na grid

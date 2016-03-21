@@ -36,4 +36,24 @@ $FuncoesPadroes = new FuncoesPadroes();
 //$__dir_upload_agenda = str_replace('//', '/', $doc_root . 'upload/agenda/');
 
 
+// Operações Usadas em GRID
 
+// Ordenação
+if ($_GET['ordem'] == 'ASC') {
+    $ordem = 'DESC';
+} else {
+    $ordem = 'ASC';
+}
+
+if ($_GET['ordem'] != '') {
+    $OrderBy = 'ORDER BY ' . $_GET['by'] . ' ' . $_GET['ordem'];
+} else {
+    $OrderBy = null;
+}
+
+// Busca
+if ($_GET['busca']) {
+    $Search = $_GET['busca'];
+} else {
+    $Search = null;
+}

@@ -5,7 +5,7 @@ get_head('Materiais', 'grid');
 
 mensagem();
 
-$MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search);
+$MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search, $Paginacao);
 ?>
 
 <body>
@@ -92,8 +92,8 @@ $MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search);
             ?>
             </tbody>
         </table>
-    </fieldset>
+        
 
     <?php
-    get_foot();
+    get_foot('grid');
     

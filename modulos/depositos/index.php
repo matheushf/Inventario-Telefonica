@@ -88,13 +88,6 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search);
             ?>
             </tbody>
         </table>
-    </fieldset>
-
-
-    <?php
-    // put your code here
-    ?>
-</body>
 
 <?php
-get_foot();
+get_foot('grid');

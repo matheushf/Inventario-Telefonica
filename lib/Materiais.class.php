@@ -7,7 +7,7 @@
  */
 class PMateriais extends Geleia {
 
-    function ListarMateriais($OrderBy = 'ORDER BY mate_id ASC', $Search = null, $Limit = 'LIMIT 5') {
+    function ListarMateriais($OrderBy = 'ORDER BY mate_id ASC', $Search = null, $Paginacao = 'LIMIT 50') {
         global $db;
         
         if ($Search != null) {
@@ -17,7 +17,7 @@ class PMateriais extends Geleia {
                     . ") ";
         }
 
-        $sql = 'SELECT * FROM materiais WHERE mate_excluido = 0 ' . $Search . $OrderBy . $Limit;
+        $sql = 'SELECT * FROM materiais WHERE mate_excluido = 0 ' . $Search . $OrderBy . $Paginacao;
 
         $mate = $db->GetObjectList($sql);
 

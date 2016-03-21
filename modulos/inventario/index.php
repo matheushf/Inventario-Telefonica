@@ -141,17 +141,5 @@ $InventarioLista = $Inventario->ListarInventario();
                 </tbody>
             </table>
         </div>
-
-
-
-
-    </fieldset>
-
-
-    <?php
-    // put your code here
-    ?>
-</body>
-
 <?php
-get_foot();
+get_foot('grid');

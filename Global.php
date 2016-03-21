@@ -56,12 +56,18 @@ if ($_GET['busca']) {
     $Search = null;
 }
 
+// Verificar se está logado
 if (!EstaLogado()) {
     header ('Location: /vivo-inventario/index.php');
 }
 
 // Paginação
 if ($_GET['page']) {
-    $Paginacao = $_GET['page'] + $Limit;
-    
+    $Pagina = $_GET['page'];
+    $limit = 50;
+    $ofset = ($limit * $Pagina) - $limit;
+    $Paginacao = 'LIMIT ' . $limit . ' OFFSET ' . $ofset;     
+} else {
+    $Pagina = 1;
+    $Paginacao = null;
 }

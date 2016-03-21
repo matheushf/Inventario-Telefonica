@@ -33,7 +33,7 @@ class PEtiquetas extends Geleia {
         $this->SQList['select.material']['key'] = "mate_id";
     }
 
-    function ListarEtiquetas($OrderBy = 'ORDER BY etiq_id ASC', $Search = null) {
+    function ListarEtiquetas($OrderBy = 'ORDER BY etiq_id ASC', $Search = null, $Paginacao = 'LIMIT 50') {
         global $db;
 
         if ($Search != null) {
@@ -48,7 +48,7 @@ class PEtiquetas extends Geleia {
         $sql = 'SELECT * FROM etiquetas
                 INNER JOIN materiais ON mate_id = etiq_mate_material AND mate_excluido = 0
                 INNER JOIN deposito ON depo_id = etiq_depo_centro AND depo_excluido = 0
-                WHERE etiq_excluido = 0 ' . $Search . $OrderBy;
+                WHERE etiq_excluido = 0 ' . $Search . $OrderBy . $Paginacao;
 
         $etiq = $db->GetObjectList($sql);
 

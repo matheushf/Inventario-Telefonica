@@ -112,11 +112,6 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search);
             </tbody>
         </table>
 
-    </fieldset>
-
-
-</body>
-
 <script>
     $(document).ready(function () {
         $("#gerar-qr").on("click", function () {
@@ -151,4 +146,4 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search);
 </script>
 
 <?php
-get_foot();
+get_foot('grid');

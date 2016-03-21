@@ -77,10 +77,5 @@ $UsuariosLista = $Usuario->Listing($OrderBy, $Search);
             ?>
             </tbody>
         </table>
-
-    </fieldset>
-
-</body>
-
 <?php
-get_foot();
+get_foot('grid');

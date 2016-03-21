@@ -1,13 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
-//error_reporting(E_ALL);
-
 get_head('Etiquetas', 'grid');
 
 echo mensagem();
 
-$EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search);
+$EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
 ?>
 
 <body>

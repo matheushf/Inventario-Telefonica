@@ -34,23 +34,20 @@ class PDeposito extends Geleia {
         $this->LiteralList['status'] = 'Ativo#Inativo';
     }
 
-    function ListarDeposito($OrderBy = 'ORDER BY depo_id ASC', $Search = null) {
+    function ListarDeposito($OrderBy = 'ORDER BY depo_id ASC', $Search = null, $Paginacao = 'LIMIT 50') {
         global $db;
 
         if ($Search != null) {
             $Search = "AND "
-                    . "(depo_empresa LIKE '%" . $Search . "%'"
+                    . "(depo_empresa LIKE '%"  . $Search . "%'"
                     . "OR depo_centro LIKE '%" . $Search . "%'"
                     . "OR depo_cidade LIKE '%" . $Search . "%'"
                     . ") ";
         }
         
-        $sql = 'SELECT * FROM deposito WHERE depo_excluido = 0 ' . $Search . $OrderBy;
+        $sql = 'SELECT * FROM deposito WHERE depo_excluido = 0 ' . $Search . $OrderBy . $Paginacao;
 
         $dep = $db->GetObjectList($sql);
-
-//        var_dump($dep);
-//        var_dump($db->ExecSQL($sql));
 
         return $dep;
     }

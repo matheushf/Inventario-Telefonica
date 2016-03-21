@@ -5,7 +5,7 @@ get_head('Usuarios', 'grid');
 
 mensagem();
 
-$UsuariosLista = $Usuario->Listing($OrderBy, $Search);
+$UsuariosLista = $Usuario->ListarUsuarios($OrderBy, $Search, $Paginacao);
 ?>
 
 <body>
@@ -31,7 +31,7 @@ $UsuariosLista = $Usuario->Listing($OrderBy, $Search);
 
         <br><br>
 
-        <div class="alert alert-info text-center"> Use os Filtros: Nome</div>
+        <div class="alert alert-info text-center"> Use os Filtros: Nome - Email - Tipo</div>
 
         <br><br>
 
@@ -39,10 +39,10 @@ $UsuariosLista = $Usuario->Listing($OrderBy, $Search);
             <thead>
                 <tr>
                     <th></th>
-                    <th>Nome</th>
-                    <th>Email</th>
+                    <th><a href="?ordem=<?= $ordem ?>&by=usua_nome">Nome</a></th>
+                    <th><a href="?ordem=<?= $ordem ?>&by=usua_email">Email</a></th>
                     <th>Celular</th>
-                    <th>Tipo</th>
+                    <th><a href="?ordem=<?= $ordem ?>&by=usua_tipo">Tipo</a></th>
                     <th>Status</th>
                 </tr>
             </thead>

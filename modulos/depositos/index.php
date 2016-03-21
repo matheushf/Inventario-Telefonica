@@ -5,7 +5,7 @@ get_head('Depósitos', 'grid');
 
 echo mensagem();
 
-$Depositos = $Deposito->ListarDeposito($OrderBy, $Search);
+$Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
 ?>
 
 <body>

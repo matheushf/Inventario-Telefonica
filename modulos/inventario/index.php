@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
 get_head('Inventário', 'grid');
 
-$InventarioLista = $Inventario->ListarInventario();
+$InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
 ?>
 
 <body>
@@ -17,8 +17,10 @@ $InventarioLista = $Inventario->ListarInventario();
             </div>
             <div class="col-sm-6 ">
                 <div class="form-inline pull-right">
-                    <input type="text" size="20" class="form-control" id="busca" name="busca">
-                    <button class="btn btn-primary">Procurar</button>
+                    <form class="form-group">
+                        <input type="text" size="20" class="form-control" id="busca" name="busca" value="<?= $_GET['busca'] ?>">
+                        <button class="btn btn-primary" id="procurar" type="submit">Procurar</button>
+                    </form>
                     <button class="btn btn-primary" id="importar-lista">Importar Listar</button>
                 </div>
             </div>
@@ -70,69 +72,69 @@ $InventarioLista = $Inventario->ListarInventario();
                     <?php
                     foreach ($InventarioLista as $inve) {
                         ?>
-                    <tr>
-                        <td>
-                            <center>
-                                <input type="checkbox" id="<?php echo $inve->etiq_id ?>" value="<?php echo $inve->etiq_id ?>">
-                            </center>
-                        </td>
-                        <td><?php ?></td>
+                        <tr>
+                            <td>
+                    <center>
+                        <input type="checkbox" id="<?php echo $inve->etiq_id ?>" value="<?php echo $inve->etiq_id ?>">
+                    </center>
+                    </td>
+                    <td><?php ?></td>
 
-                        <td><?php ?></td>
+                    <td><?php ?></td>
 
-                        <td><?php echo $inve->mate_codigo ?></td>
+                    <td><?php echo $inve->mate_codigo ?></td>
 
-                        <td><?php echo $inve->depo_centro ?></td>
+                    <td><?php echo $inve->depo_centro ?></td>
 
-                        <td><?php echo $inve->mate_nome ?></td>
+                    <td><?php echo $inve->mate_nome ?></td>
 
-                        <td><?php echo $inve->mate_nome ?></td>
+                    <td><?php echo $inve->mate_nome ?></td>
 
-                        <td><?php echo $inve->mate_unidade_medida ?></td>
+                    <td><?php echo $inve->mate_unidade_medida ?></td>
 
-                        <td><?php ?></td>
+                    <td><?php ?></td>
 
-                        <td><?php ?></td>
+                    <td><?php ?></td>
 
-                        <td><?php ?></td>
+                    <td><?php ?></td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
-                        <td> </td>
+                    <td> </td>
 
                     </tr>
                     <?php
@@ -141,5 +143,6 @@ $InventarioLista = $Inventario->ListarInventario();
                 </tbody>
             </table>
         </div>
-<?php
-get_foot('grid');
+        <?php
+        get_foot('grid');
+        

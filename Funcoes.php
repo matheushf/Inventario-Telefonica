@@ -1,5 +1,4 @@
 <?php
-
 function get_head($Titulo, $FormGrid = null, $path = null) {
 
     if (!isset($path))
@@ -13,8 +12,8 @@ function get_foot($path = null) {
     $path = $path . "foot.php";
 //    if (!isset($path))
 //        $path = 'foot.php';
-
-    require_once (DOCUMENT_ROOT . '/' . $path);
+    
+    include (DOCUMENT_ROOT . '/' . $path);
 }
 
 function _debug($array) {
@@ -54,7 +53,7 @@ function mensagem() {
 }
 
 function EstaLogado() {
-    if ($_SESSION['usua_id'] != null) {
+    if (isset($_SESSION['usua_id']) && $_SESSION['usua_id'] != null) {
         return true;
     } else {
         return false;

@@ -1,4 +1,6 @@
-<?php ?>
+<?php 
+global $Pagina;
+?>
 <br><br>
 
 <!-- Fim da Grid -->

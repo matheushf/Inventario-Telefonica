@@ -1,6 +1,11 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Funcoes.php';
+
+if (EstaLogado()) {
+    header('Location: /vivo-inventario/modulos/materiais/');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -65,8 +70,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Funcoes.php';
                         <?php mensagem()  ?>
                         
                         <div class="form-group">
-                            <label for="email">Email: </label>
-                            <input type="text" name="email" id="email" class="form-control">
+                            <label for="email" >Email: </label>
+                            <input type="text" name="email" id="email" class="form-control" autofocus="true">
                         </div>
 
                         <div class="form-group">

@@ -70,8 +70,6 @@
                     <ul class="nav metismenu" id="side-menu">
                         <li class="nav-header">
                             <div class="dropdown profile-element">
-                                <span> <img alt="image" class="img-circle" src="https://placehold.it/80x80" style="width: 48px;">
-                                </span>
                                 <p style="margin-top: 10px">
                                     <span class="clear"> <span class="" style="color: white">
 

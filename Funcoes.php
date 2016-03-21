@@ -1,4 +1,5 @@
 <?php
+
 function get_head($Titulo, $FormGrid = null, $path = null) {
 
     if (!isset($path))
@@ -48,5 +49,13 @@ function mensagem() {
                 }
         }
         unset($_SESSION['Mensagem']);
+    }
+}
+
+function EstaLogado() {
+    if ($_SESSION['usua_id'] != null) {
+        return true;
+    } else {
+        return false;
     }
 }

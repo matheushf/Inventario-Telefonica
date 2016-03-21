@@ -33,13 +33,22 @@ class PEtiquetas extends Geleia {
         $this->SQList['select.material']['key'] = "mate_id";
     }
 
-    function ListarEtiquetas($OrderBy = 'ORDER BY etiq_id ASC') {
+    function ListarEtiquetas($OrderBy = 'ORDER BY etiq_id ASC', $Search = null) {
         global $db;
 
+        if ($Search != null) {
+            $Search = "AND ("
+                    . "depo_empresa LIKE '%"    . $Search . "%'"
+                    . "OR mate_codigo LIKE '%"  . $Search . "%'"
+                    . "OR mate_nome LIKE '%"    . $Search . "%'"
+                    . "OR depo_centro LIKE '%"  . $Search . "%'"
+                    . ") ";
+        }
+        
         $sql = 'SELECT * FROM etiquetas
                 INNER JOIN materiais ON mate_id = etiq_mate_material AND mate_excluido = 0
                 INNER JOIN deposito ON depo_id = etiq_depo_centro AND depo_excluido = 0
-                WHERE etiq_excluido = 0 ' . $OrderBy;
+                WHERE etiq_excluido = 0 ' . $Search . $OrderBy;
 
         $etiq = $db->GetObjectList($sql);
 

@@ -4,8 +4,6 @@ $doc_root = $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/';
 
 ini_set("include_path", ini_get("include_path") . PATH_SEPARATOR . $doc_root . "/lib/" . PATH_SEPARATOR . $doc_root . "/lib/external/");
 
-//$actions = $doc_root . '/mobile/action.php';
-
 // Requires relacionadas a Lib
 require_once DOCUMENT_ROOT . '/lib/external/GeleiaFramework/UserControl.class.php';
 require_once DOCUMENT_ROOT . '/lib/external/GeleiaFramework/Form.class.php';
@@ -20,7 +18,7 @@ require_once DOCUMENT_ROOT . '/lib/Inventario.class.php';
 require_once DOCUMENT_ROOT . '/lib/Materiais.class.php';
 require_once DOCUMENT_ROOT . '/lib/FuncoesPadroes.php';
 require_once DOCUMENT_ROOT . '/lib/MetodosUtil.php';
-if (!class_exists("Zend_Validate")) { require '/Zend/Validate.php'; }
+//if (!class_exists("Zend_Validate")) { require '/Zend/Validate.php'; }
 //if (!class_exists("Zend_Mail")) { require '/Zend/Mail.php'; }
 
 // Instanciar Classes
@@ -56,4 +54,14 @@ if ($_GET['busca']) {
     $Search = $_GET['busca'];
 } else {
     $Search = null;
+}
+
+if (!EstaLogado()) {
+    header ('Location: /vivo-inventario/index.php');
+}
+
+// Paginação
+if ($_GET['page']) {
+    $Paginacao = $_GET['page'] + $Limit;
+    
 }

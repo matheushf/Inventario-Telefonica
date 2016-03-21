@@ -1,8 +1,6 @@
 <?php
-include( $_SERVER['DOCUMENT_ROOT'] . "/global.php");
-
+session_start();
 session_unset();
 session_destroy();
 $_SESSION = array();
-unset($dados);
 header('Location: /vivo-inventario/index.php');

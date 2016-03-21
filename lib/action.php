@@ -58,8 +58,5 @@ switch ($acao) {
             
             header('Location: /vivo-inventario/index.php');
         }
-        
-        
     }
-        
 }

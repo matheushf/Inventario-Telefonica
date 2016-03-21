@@ -5,8 +5,7 @@ get_head('Usuarios', 'grid');
 
 mensagem();
 
-$UsuariosLista = $Usuario->Listing();
-
+$UsuariosLista = $Usuario->Listing($OrderBy, $Search);
 ?>
 
 <body>
@@ -22,8 +21,10 @@ $UsuariosLista = $Usuario->Listing();
             </div>
             <div class="col-sm-6 ">
                 <div class="form-inline pull-right">
-                    <input type="text" size="20" class="form-control" id="busca" name="busca">
-                    <button class="btn btn-primary">Procurar</button>
+                    <form class="form-group">
+                        <input type="text" size="20" class="form-control" id="busca" name="busca" value="<?= $_GET['busca'] ?>">
+                        <button class="btn btn-primary" id="procurar" type="submit">Procurar</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -49,27 +50,27 @@ $UsuariosLista = $Usuario->Listing();
                 <?php
                 foreach ($UsuariosLista as $usuario) {
                     ?>
-                <tr>
-                    <td>
-                    <center>
-                        <input type="checkbox" id="<?php echo $usuario->usua_id ?>" value="<?php echo $usuario->usua_id ?>">
-                    </center>
-                    </td>                            
-                    <td>
-                        <?php echo $usuario->usua_nome ?>
-                    </td>
-                    <td>
-                        <?php echo $usuario->usua_email ?>
-                    </td>
-                    <td>
-                        <?php echo $usuario->usua_celular ?>
-                    </td>
-                    <td>
-                        <?php echo $usuario->usua_tipo ?>
-                    </td>
-                    <td>
-                        <?php echo $usuario->usua_status ?>
-                    </td>
+                    <tr>
+                        <td>
+                <center>
+                    <input type="checkbox" id="<?php echo $usuario->usua_id ?>" value="<?php echo $usuario->usua_id ?>">
+                </center>
+                </td>                            
+                <td>
+                    <?php echo $usuario->usua_nome ?>
+                </td>
+                <td>
+                    <?php echo $usuario->usua_email ?>
+                </td>
+                <td>
+                    <?php echo $usuario->usua_celular ?>
+                </td>
+                <td>
+                    <?php echo $usuario->usua_tipo ?>
+                </td>
+                <td>
+                    <?php echo $usuario->usua_status ?>
+                </td>
                 </tr>
                 <?php
             }

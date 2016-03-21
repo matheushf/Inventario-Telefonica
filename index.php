@@ -1,5 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+session_start();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Funcoes.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +9,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> <?php echo $Titulo ?> </title>
+        <title> Vivo Inventário </title>
 
         <link href="/vivo-inventario/assets/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="/vivo-inventario/assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -61,7 +62,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
                 <div class="ibox-contnt">
                     <form class="m-t" role="form" action="lib/action.php?acao=login" method="post" id="login">
 
-                        <?php mensagem() ?>
+                        <?php mensagem()  ?>
                         
                         <div class="form-group">
                             <label for="email">Email: </label>

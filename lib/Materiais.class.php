@@ -7,10 +7,17 @@
  */
 class PMateriais extends Geleia {
 
-    function ListarMateriais($OrderBy = 'ORDER BY mate_id ASC') {
+    function ListarMateriais($OrderBy = 'ORDER BY mate_id ASC', $Search = null, $Limit = 'LIMIT 5') {
         global $db;
+        
+        if ($Search != null) {
+            $Search = " AND ("
+                    . "mate_codigo LIKE '%" . $Search . "%'"
+                    . "OR mate_nome LIKE '%" . $Search . "%'"
+                    . ") ";
+        }
 
-        $sql = 'SELECT * FROM materiais WHERE mate_excluido = 0 ' . $OrderBy;
+        $sql = 'SELECT * FROM materiais WHERE mate_excluido = 0 ' . $Search . $OrderBy . $Limit;
 
         $mate = $db->GetObjectList($sql);
 

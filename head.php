@@ -1,9 +1,4 @@
 <?php
-//include( $_SERVER['DOCUMENT_ROOT'] . "/global.php");
-//require_once 'global.php';
-//if(!$util->estaLogado()) {
-//	header('Location: /index.php');
-//}
 ?>
 
 <!DOCTYPE html>

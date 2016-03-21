@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * $CamposTabela = ['EPS', 'Centro', 'Cidade', 'Status', 'Livre 1', 'Livre 2', 'Livre 3'];
  * $DepositosCampos = ['depo_empresa', 'depo_centro', 'depo_cidade', 'depo_status', 'depo_livre1', 'depo_livre2', 'depo_livre3', ];

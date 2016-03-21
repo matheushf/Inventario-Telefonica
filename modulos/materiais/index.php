@@ -5,7 +5,7 @@ get_head('Materiais', 'grid');
 
 mensagem();
 
-$MateriaisLista = $Materiais->ListarMateriais($OrderBy);
+$MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search);
 ?>
 
 <body>
@@ -21,8 +21,10 @@ $MateriaisLista = $Materiais->ListarMateriais($OrderBy);
             </div>
             <div class="col-sm-6 ">
                 <div class="form-inline pull-right">
-                    <input type="text" size="20" class="form-control" id="busca" name="busca">
-                    <button class="btn btn-primary">Procurar</button>
+                    <form class="form-group">
+                        <input type="text" size="20" class="form-control" id="busca" name="busca" value="<?= $_GET['busca'] ?>">
+                        <button class="btn btn-primary" id="procurar" type="submit">Procurar</button>
+                    </form>
                     <button class="btn btn-primary" id="importar-lista">Importar Listar</button>
                 </div>
             </div>
@@ -39,7 +41,7 @@ $MateriaisLista = $Materiais->ListarMateriais($OrderBy);
                 <tr>
                     <th style="width: 50px"></th>
                     <th>
-                        <?php  ?>
+                        <?php ?>
                         <a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a>
                     </th>
                     <th>
@@ -58,7 +60,7 @@ $MateriaisLista = $Materiais->ListarMateriais($OrderBy);
                 foreach ($MateriaisLista as $mate) {
                     ?>
                     <tr>
-                <td>
+                        <td>
                 <center>
                     <input type="checkbox" id="<?php echo $mate->mate_id ?>" value="<?php echo $mate->mate_id ?>">
                 </center>

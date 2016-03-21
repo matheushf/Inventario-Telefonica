@@ -1,5 +1,4 @@
 <?php
-
 function get_head($Titulo, $FormGrid = null, $path = null) {
 
     if (!isset($path))

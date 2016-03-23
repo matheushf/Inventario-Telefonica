@@ -39,14 +39,6 @@ class FuncoesPadroes extends Geleia {
 
     public function Update($modulo) {
 
-        switch ($modulo) {
-            case 'usuario': {
-                    $_POST['senha'] = sha1(trim($_POST['senha']));
-
-                    break;
-                }
-        }
-
         return parent::Update($modulo);
     }
 

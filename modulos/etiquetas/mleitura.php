@@ -63,7 +63,9 @@ $EtiquetaInfo = $Etiquetas->getById($EtiquetaId);
                         <label for="livre2">Livre 2: </label>
                         <input type="text" class="form-control"  name="livre2" id="livre2">
                     </div>
-
+                    
+                    <input type="hidden" name="etiq_id" value="<?= $EtiquetaInfo->etiq_id ?>">
+                    <input type="hidden" name="mate_id" value="<?= $EtiquetaInfo->mate_id ?>">
 
                     <center>
                         <input type="submit" class="btn btn-primary" id="confirmar" value="Confirmar Material" style="margin: 30px">

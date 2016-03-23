@@ -145,7 +145,7 @@ class Form extends PForm {
         global $db;
 
         $Sql = $this->GenerateUpdateSQL($modulo);
-        
+
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());
             return true;

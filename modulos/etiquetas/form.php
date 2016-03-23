@@ -19,8 +19,11 @@ if ($_GET['id']) {
         <form action="" method="post" id="form_etiquetas" enctype="multipart/form-data" data-operacao="<?php echo $_GET['operacao']; ?>">
 
             <!-- Campos do formulário -->
+            <?php if($_GET['id']) { ?>
+            <input type="hidden" name="id" id="id" value="<?= $_GET['id'] ?>">
             <?php
-            echo $Etiquetas->Create('etiq_id', 'etiq_id');
+            }
+//            echo $Etiquetas->Create('etiq_id', 'etiq_id');
             echo $Etiquetas->Create('etiq_depo_centro', 'Centro');
             echo $Etiquetas->Create('etiq_mate_material', 'Material');
             echo $Etiquetas->Create('etiq_quantidade', 'Quantidade');

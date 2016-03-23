@@ -31,4 +31,16 @@ switch ($acao) {
             
             break;
         }
+        
+    case "salvar_leitura": {
+        $QuantidadeAferida      = $_POST['quant_aferida'] ;
+        $IdMaterial             = $_POST['id_mate'];
+        $LocMaterial            = $_POST['loc_mate'];
+        $Livre1                 = $_POST['livre1'];
+        $Livre2                 = $_POST['livre2'];
+        $EtiquetaId             = $_POST['etiq_id'];
+        $MateId                 = $_POST['mate_id'];
+        
+        
+    }
 }

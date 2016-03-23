@@ -62,6 +62,8 @@ class PEtiquetas extends Geleia {
                 AND etiq_excluido=0";
         return parent::GetById($IsArray);
     }
+    
+    function GerarL
 
 }
 
@@ -178,5 +180,5 @@ class Etiquetas extends PEtiquetas {
 
         $pdf->Output('F', $nome);
     }
-
+    
 }

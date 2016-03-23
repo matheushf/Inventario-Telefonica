@@ -21,7 +21,9 @@ if (isset($_GET['id'])) {
             <?php
             echo $Usuario->create('usua_id', 'id');
             echo $Usuario->create('usua_nome', 'Nome');
-            echo $Usuario->create('usua_senha', 'Senha');
+            if ($_GET['operacao'] == 'inserir') {
+                echo $Usuario->create('usua_senha', 'Senha');
+            }
             echo $Usuario->create('usua_email', 'Email');
             echo $Usuario->create('usua_celular', 'Celular');
             echo $Usuario->create('usua_tipo', 'Tipo');

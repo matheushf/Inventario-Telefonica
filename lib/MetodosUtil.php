@@ -60,4 +60,30 @@ function MontarTabela($CamposTabela, $Objeto, $ObjetoCampos) {
     return $html;
 }
 
+function ImportarCSV($Posicoes, $ArquivoNome) {
 
+//    $file = fopen(DOCUMENT_ROOT . '/csv/etiquetas.csv', 'r');
+//    $arquivo = fgetcsv($file, ',');
+//    $arquivo = file_get_contents(DOCUMENT_ROOT . '/csv/etiquetas.csv');
+//    $arquivo = explode(',,', $arquivo);
+//    foreach ($arquivo as $arq) {
+//        echo $arq . '<br>';
+//        $arq = explode(',', $arq);
+//        echo $arq[9] . '<br>';
+//        _debug($arq);
+//    }
+//    _debug($arquivo);
+
+    $row = 1;
+    if (($handle = fopen(DOCUMENT_ROOT . '/csv/etiquetas.csv', "r")) !== FALSE) {
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            $num = count($data);
+//            echo "<p> $num fields in line $row: <br /></p>\n";
+            $row++;
+            for ($c = 0; $c < $num; $c++) {
+                echo $data[$c] . "<br />\n";
+            }
+        }
+        fclose($handle);
+    }
+}

@@ -4,9 +4,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 $EtiquetaId = $_GET['id'];
 
 $EtiquetaInfo = $Etiquetas->getById($EtiquetaId);
-$Etiquetas->VerificarLeituraAberta($EtiquetaInfo->etiq_id);
+$NLeituraEtiq = $Etiquetas->VerificarLeituraAberta($EtiquetaInfo->etiq_id);
 
-if 
+$NLeituraDepo = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);
+
+if ($NLeituraDepo < $NLeituraEtiq) {
+    $bloquear = true;
+}
 
 ?>
 
@@ -36,8 +40,18 @@ if
     <body style="background-color: #f3f3f4">
         <div id="page-wrapper">
             <div class="container-fluid">
+                
+                <?php if($bloquear) { ?>
+                    
                 <center>
-                    <h2>Leitura <?=  ?> </h2>
+                    <h3>A leitura ainda não foi liberada pelo depósito.</h3>
+                </center>
+                
+                <?php
+                } else {
+                ?>    
+                <center>
+                    <h2>Leitura <?= $NLeituraEtiq ?> </h2>
                 </center>
                 
                 <h3><b>Centro:</b> <span style="color: blueviolet"><?php echo $EtiquetaInfo->depo_centro ?></span> </h3>
@@ -79,6 +93,7 @@ if
                         <input type="submit" class="btn btn-primary" id="confirmar" value="Confirmar Material" style="margin: 30px">
                     </center>
                 </form>
+                <?php } ?>
             </div>
         </div>
     </body>

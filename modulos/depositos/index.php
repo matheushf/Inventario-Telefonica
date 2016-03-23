@@ -15,11 +15,12 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
 
         <div class="row">
             <div class="col-sm-6">
-                <form class="form-inline">
+                <div class="form-inline">
                     <div class="form-group">
                         <button class="btn btn-primary" id="btn-novo">Novo          </button>
                         <button class="btn btn-primary" id="btn-editar">Editar      </button>
                         <button class="btn btn-primary" id="btn-excluir">Excluir    </button>
+
                         <label for="leitura"> Liberar
                             <select name="leitura" id="leitura" class="form-control">
                                 <option value="">Escolha.. </option>
@@ -28,7 +29,8 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
                             </select>
                         </label>
                     </div>
-                </form>
+                </div>
+
             </div>
             <div class="col-sm-6 ">
                 <div class="form-inline pull-right">
@@ -105,10 +107,10 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
         </table>
 
         <script>
-            $("#leitura").change(function() {
+            $("#leitura").change(function () {
                 var leitura_valor = $(this).val();
                 var id = $("input:checked").val();
-                if(confirm("Deseja alterar a leitura?")) {
+                if (confirm("Deseja alterar a leitura?")) {
                     $.ajax({
                         type: 'POST',
                         url: 'acoes.php',
@@ -121,12 +123,12 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
                             if (data == 'OK') {
                                 $("td#depo_leitura" + id).html(leitura_valor);
                             }
-                    }
+                        }
                     })
                 }
             })
         </script>
-        
+
         <?php
         get_foot('grid');
         

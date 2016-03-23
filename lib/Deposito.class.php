@@ -66,6 +66,15 @@ class PDeposito extends Geleia {
 
         return $db->ExecSQL($sql);
     }
+    
+    function VerificarLeituraDeposito($DepoId) {
+        global $db;
+        
+        $sql = "SELECT depo_leitura FROM deposito WHERE depo_id = " . $DepoId;
+        
+        $leitura = $db->GetObject($sql);
+        return $leitura->depo_leitura;
+    }
 
 }
 

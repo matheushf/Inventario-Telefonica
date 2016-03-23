@@ -32,6 +32,10 @@ class FuncoesPadroes extends Geleia {
 
                     break;
                 }
+                
+            case 'deposito': {
+                $_POST['leitura'] = 1;
+            }
         }
 
         return parent::Save($modulo);

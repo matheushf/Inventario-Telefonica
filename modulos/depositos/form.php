@@ -37,6 +37,7 @@ if ($_GET['id']) {
             echo $Deposito->Create('depo_livre1', 'Livre 2');
             echo $Deposito->Create('depo_livre1', 'Livre 3');
             echo $Deposito->Create('depo_observacao', 'Observação');
+            echo $Deposito->Create('depo_leitura', 'leitura');
             
             ?>
 

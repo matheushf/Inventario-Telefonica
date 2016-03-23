@@ -40,7 +40,11 @@ switch ($acao) {
         $Livre2                 = $_POST['livre2'];
         $EtiquetaId             = $_POST['etiq_id'];
         $MateId                 = $_POST['mate_id'];
+        $Cod_leitura            = $_POST['etiq_cod_final'];
         
+//        var_dump($_POST);
+//        die();
         
+        $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura);
     }
 }

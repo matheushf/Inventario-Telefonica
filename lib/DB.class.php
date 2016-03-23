@@ -29,7 +29,6 @@ class DB {
     }
 
     function ExecSQL($sql) {
-
         /* if($rset = mysql_query($sql, $this->id)) {
           return $rset;
           } else {

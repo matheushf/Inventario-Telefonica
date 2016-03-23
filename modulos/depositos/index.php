@@ -15,9 +15,20 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
 
         <div class="row">
             <div class="col-sm-6">
-                <button class="btn btn-primary" id="btn-novo">Novo          </button>
-                <button class="btn btn-primary" id="btn-editar">Editar      </button>
-                <button class="btn btn-primary" id="btn-excluir">Excluir    </button>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <button class="btn btn-primary" id="btn-novo">Novo          </button>
+                        <button class="btn btn-primary" id="btn-editar">Editar      </button>
+                        <button class="btn btn-primary" id="btn-excluir">Excluir    </button>
+                        <label for="leitura"> Liberar
+                            <select name="leitura" id="leitura" class="form-control">
+                                <option value="">Escolha.. </option>
+                                <option value="2">Leitura 2</option>
+                                <option value="3">Leitura 3</option>
+                            </select>
+                        </label>
+                    </div>
+                </form>
             </div>
             <div class="col-sm-6 ">
                 <div class="form-inline pull-right">
@@ -49,6 +60,7 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
                     <th>Livre 1 </th>
                     <th>Livre 2 </th>
                     <th>Livre 3 </th>
+                    <th>Leitura </th>
                 </tr>
             </thead>
             <tbody>
@@ -56,7 +68,7 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
                 foreach ($Depositos as $dep) {
                     ?>
                     <tr>
-                <td>
+                        <td>
                 <center>
                     <input type="checkbox" id="<?php echo $dep->depo_id ?>" value="<?php echo $dep->depo_id ?>">
                 </center>
@@ -82,6 +94,9 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
                 <td>
                     <?php echo $dep->depo_livre3 ?>
                 </td>
+                <td id="depo_leitura<?php echo $dep->depo_id ?>">
+                    <?php echo $dep->depo_leitura ?>
+                </td>                
                 </tr>
                 <?php
             }
@@ -89,5 +104,29 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
             </tbody>
         </table>
 
-<?php
-get_foot('grid');
+        <script>
+            $("#leitura").change(function() {
+                var leitura_valor = $(this).val();
+                var id = $("input:checked").val();
+                if(confirm("Deseja alterar a leitura?")) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'acoes.php',
+                        data: {
+                            acao: 'alterar_leitura',
+                            id: id,
+                            leitura: leitura_valor
+                        },
+                        success: function (data) {
+                            if (data == 'OK') {
+                                $("td#depo_leitura" + id).html(leitura_valor);
+                            }
+                    }
+                    })
+                }
+            })
+        </script>
+        
+        <?php
+        get_foot('grid');
+        

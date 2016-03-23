@@ -145,7 +145,8 @@ class Form extends PForm {
         global $db;
 
         $Sql = $this->GenerateUpdateSQL($modulo);
-
+//echo $Sql;
+//die();
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());
             return true;
@@ -154,7 +155,6 @@ class Form extends PForm {
     }
 
     function GenerateUpdateSQL($modulo = null) {
-
         if ($modulo == null) {
             $ObjList = $this->GetInfoAboutTable($this->Table);
         } else {
@@ -167,7 +167,7 @@ class Form extends PForm {
 
             $FieldPreferences = json_decode($ObjTable->COLUMN_COMMENT);
 
-
+            
             $temp = explode("_", $ObjTable->COLUMN_NAME);
 
             if (sizeof($temp) >= 2) {
@@ -192,7 +192,7 @@ class Form extends PForm {
                 } else {
                     //$SqlTemp .= $ObjTable->COLUMN_NAME . " = NULL,"; /** CAN OCCUR SOME PROBLEM WHEN ANOTHER FIELD COMES AFTERWARDS **/
                 }
-            } else if ($_POST[$FieldName] == "" && $ObjTable->IS_NULLABLE == 'YES' && $FieldPreferences->{'default-value-php'} == "") {
+            } else if ($_POST[$FieldName] == "" && $ObjTable->IS_NULLABLE == 'YES' && $FieldPreferences->{'default-value-php'} == "" && $FieldPreferences->{'no-update'} != "yes") {
                 $SqlTemp .= " " . $ObjTable->COLUMN_NAME . "=NULL,";
             } else if ($ObjTable->COLUMN_KEY == 'PRI') {
                 $PrimaryKey = $ObjTable->COLUMN_NAME . "= '" . mysql_escape_string($_POST[$FieldName]) . "' ";
@@ -200,13 +200,14 @@ class Form extends PForm {
                 if ($FieldName == $this->RemovedFieldName) {
                     $ExtraClausule = " " . $ObjTable->COLUMN_NAME . "=0 ";
                 } else {
+                    
                     if ($FieldPreferences->{'user-control'} == 'radio') {
                         $SqlTemp .= " " . $ObjTable->COLUMN_NAME . "='" . mysql_escape_string($_POST[$FieldName][0]) . "',";
                     } else if ($FieldPreferences->{'default-value-php'} != "" && $FieldPreferences->{'no-update'} != "yes") {
                         $SqlTemp .= " " . $ObjTable->COLUMN_NAME . "=" . $this->DynamicVars[$FieldPreferences->{'default-value-php'}] . ",";
                     } else {
                         if ($FieldPreferences->{'no-update'} == "yes") { //UPDATE ONLY IF DOES NOT HAVE no-update parameter
-                            //DO NOT DO ANYTHING
+                            //DO NOT DO ANYTHINGdie
                         } else if ($FieldPreferences->{'user-control'} == 'datetime') {
 
                             $Date = useful::DateFormatBD($_POST[$FieldName]); //0000-00-00

@@ -58,6 +58,14 @@ class PDeposito extends Geleia {
         $this->SQL_GetById = "SELECT * FROM deposito WHERE depo_id=" . (int) $Id . " AND depo_excluido=0";
         return parent::GetById($IsArray);
     }
+    
+    function AlterarLeitura($DepoId, $Leitura) {
+        global $db;
+        
+        $sql = "UPDATE deposito SET depo_leitura = '" . $Leitura . "' WHERE depo_id = " . $DepoId;
+
+        return $db->ExecSQL($sql);
+    }
 
 }
 

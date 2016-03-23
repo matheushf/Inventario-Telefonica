@@ -29,6 +29,7 @@ if ($_GET['id']) {
             echo $Etiquetas->Create('etiq_quantidade', 'Quantidade');
             echo $Etiquetas->Create('etiq_observacao', 'Observação');
             echo $Etiquetas->Create('etiq_cod_final', 'cod_final_id');
+            
             ?>
 
 

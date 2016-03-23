@@ -4,6 +4,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 $EtiquetaId = $_GET['id'];
 
 $EtiquetaInfo = $Etiquetas->getById($EtiquetaId);
+$Etiquetas->VerificarLeituraAberta($EtiquetaInfo->etiq_id);
+
+if 
 
 ?>
 
@@ -33,12 +36,16 @@ $EtiquetaInfo = $Etiquetas->getById($EtiquetaId);
     <body style="background-color: #f3f3f4">
         <div id="page-wrapper">
             <div class="container-fluid">
+                <center>
+                    <h2>Leitura <?=  ?> </h2>
+                </center>
+                
                 <h3><b>Centro:</b> <span style="color: blueviolet"><?php echo $EtiquetaInfo->depo_centro ?></span> </h3>
                 <h3><b>Material:</b> <span style="color: blueviolet"><?php echo $EtiquetaInfo->mate_codigo ?> </h3>
                 <h3><b>Descrição:</b> <span style="color: blueviolet"><?php echo $EtiquetaInfo->mate_nome ?> </h3>
 
                 <br><br>
-                <form action="" method="POST" role="form">
+                <form action="acoes.php?acao=salvar_leitura" method="POST" role="form">
                     <div class="form-group">
                         <label for="quant_aferida">Quantidade Aferida: </label>
                         <input type="text" class="form-control"  name="quant_aferida" id="quant_aferida">
@@ -66,6 +73,7 @@ $EtiquetaInfo = $Etiquetas->getById($EtiquetaId);
                     
                     <input type="hidden" name="etiq_id" value="<?= $EtiquetaInfo->etiq_id ?>">
                     <input type="hidden" name="mate_id" value="<?= $EtiquetaInfo->mate_id ?>">
+                    <input type="hidden" name="etiq_cod_final" value="<?= $EtiquetaInfo->etiq_cod_final ?>">
 
                     <center>
                         <input type="submit" class="btn btn-primary" id="confirmar" value="Confirmar Material" style="margin: 30px">

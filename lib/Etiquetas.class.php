@@ -7,6 +7,8 @@
  */
 require_once DOCUMENT_ROOT . "/lib/external/fpdf/fpdf.php";
 require_once DOCUMENT_ROOT . "/lib/external/fpdi/fpdi.php";
+require_once DOCUMENT_ROOT . "/lib/DB.class.php";
+$db = new DB();
 
 class PEtiquetas extends Geleia {
 
@@ -63,8 +65,33 @@ class PEtiquetas extends Geleia {
         return parent::GetById($IsArray);
     }
     
-    function GerarL
-
+    function VerificarLeituraAberta($etiq_id) {
+        global $db;
+        
+        for ($i = 1; $i <= 3; $i++) {
+            $sql = 'SELECT etiq_cod_leitura' . $i . ' FROM etiquetas WHERE etiq_cod_leitura' . $i . ' IS NULL AND etiq_id = ' . $etiq_id;
+            if($db->GetObject($sql)) {
+                return $i;
+            } 
+        }
+        return 1;
+    }
+    
+    function SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura) {
+        global $db;
+        
+        $leitura = $this->VerificarLeituraAberta($EtiquetaId);
+        $Cod_leitura = $leitura . '-' . $Cod_leitura;
+        
+        $sql = "INSERT INTO leitura (leit_quantidade_aferida, leit_id_material, leit_locacao_material, leit_etiq_id, leit_mate_id, leit_livre1, leit_livre2, leit_cod_leitura, leit_nu_leitura) VALUES ('$QuantidadeAferida', '$IdMaterial', '$LocMaterial', '$EtiquetaId', '$MateId', '$Livre1', '$Livre2', '$Cod_leitura', '$leitura')";
+        
+        if($db->ExecSQL($sql)) {
+            $sql = "UPDATE etiquetas SET etiq_cod_leitura" . $leitura . " = '" . $Cod_leitura . "' WHERE etiq_id = " . $EtiquetaId;
+            
+            $db->ExecSQL($sql);
+        }
+    }
+    
 }
 
 class Etiquetas extends PEtiquetas {

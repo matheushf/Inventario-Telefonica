@@ -9,7 +9,7 @@ require_once DOCUMENT_ROOT . "/lib/external/fpdf/fpdf.php";
 require_once DOCUMENT_ROOT . "/lib/external/fpdi/fpdi.php";
 require_once DOCUMENT_ROOT . "/lib/DB.class.php";
 
-include DOCUMENT_ROOT . "/Config.php";
+//include DOCUMENT_ROOT . "/Config.php";
 $db = new DB();
 
 class PEtiquetas extends Geleia {
@@ -222,8 +222,10 @@ class Etiquetas extends PEtiquetas {
                 $Depo_id = $Deposito->ObterIdPorCentro($data[9]);
                 $Mate_id = $Materiais->ObterIdPorCodigo($data[5]);
 
-                $sql = "INSERT INTO etiquetas (etiq_depo_centro, etiq_mate_material, etiq_quantidade) VALUES "
-                        . "('" . $Depo_id . "', '" . $Mate_id . "', '" . $data[13] . "')";
+                $Cod_final = $data[9] . '-' . $data[5];
+                
+                $sql = "INSERT INTO etiquetas (etiq_depo_centro, etiq_mate_material, etiq_quantidade, etiq_cod_final) VALUES "
+                        . "('" . $Depo_id . "', '" . $Mate_id . "', '" . $data[13] . "', '" . $Cod_final . "')";
 
                 $db->ExecSQL($sql);
                 

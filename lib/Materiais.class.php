@@ -6,7 +6,7 @@
  * @author Matheus Victor <hffmatheus@gmail.com>
  */
 
-require_once DOCUMENT_ROOT . "/Global.php";
+//require_once DOCUMENT_ROOT . "/Global.php";
 
 class PMateriais extends Geleia {
 

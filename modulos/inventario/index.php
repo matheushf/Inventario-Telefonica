@@ -21,7 +21,6 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
                         <input type="text" size="20" class="form-control" id="busca" name="busca" value="<?= $_GET['busca'] ?>">
                         <button class="btn btn-primary" id="procurar" type="submit">Procurar</button>
                     </form>
-                    <button class="btn btn-primary" id="importar-lista">Importar Listar</button>
                 </div>
             </div>
         </div>

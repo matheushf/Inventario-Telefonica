@@ -8,6 +8,8 @@
 require_once DOCUMENT_ROOT . "/lib/external/fpdf/fpdf.php";
 require_once DOCUMENT_ROOT . "/lib/external/fpdi/fpdi.php";
 require_once DOCUMENT_ROOT . "/lib/DB.class.php";
+
+include DOCUMENT_ROOT . "/Config.php";
 $db = new DB();
 
 class PEtiquetas extends Geleia {
@@ -64,34 +66,34 @@ class PEtiquetas extends Geleia {
                 AND etiq_excluido=0";
         return parent::GetById($IsArray);
     }
-    
+
     function VerificarLeituraAberta($etiq_id) {
         global $db;
-        
+
         for ($i = 1; $i <= 3; $i++) {
             $sql = 'SELECT etiq_cod_leitura' . $i . ' FROM etiquetas WHERE etiq_cod_leitura' . $i . ' IS NULL AND etiq_id = ' . $etiq_id;
-            if($db->GetObject($sql)) {
+            if ($db->GetObject($sql)) {
                 return $i;
-            } 
+            }
         }
         return 1;
     }
-    
+
     function SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura) {
         global $db;
-        
+
         $leitura = $this->VerificarLeituraAberta($EtiquetaId);
         $Cod_leitura = $leitura . '-' . $Cod_leitura;
-        
+
         $sql = "INSERT INTO leitura (leit_quantidade_aferida, leit_id_material, leit_locacao_material, leit_etiq_id, leit_mate_id, leit_livre1, leit_livre2, leit_cod_leitura, leit_nu_leitura) VALUES ('$QuantidadeAferida', '$IdMaterial', '$LocMaterial', '$EtiquetaId', '$MateId', '$Livre1', '$Livre2', '$Cod_leitura', '$leitura')";
-        
-        if($db->ExecSQL($sql)) {
+
+        if ($db->ExecSQL($sql)) {
             $sql = "UPDATE etiquetas SET etiq_cod_leitura" . $leitura . " = '" . $Cod_leitura . "' WHERE etiq_id = " . $EtiquetaId;
-            
+
             $db->ExecSQL($sql);
         }
     }
-    
+
 }
 
 class Etiquetas extends PEtiquetas {
@@ -145,9 +147,9 @@ class Etiquetas extends PEtiquetas {
         } else {
             imagettftext($imagecontainer, 15, 0, 25, 125, $textcolor, $font, strtoupper($MaterialNome));
         }
-        
+
         imagettftext($imagecontainer, 15, 0, 25, 150, $textcolor, $font, 'UNIDADE DE MEDIDA: ' . strtoupper($UnidadeMedida));
-        
+
         if (strlen($MaterialCodigo) > 12) {
             imagettftext($imagecontainer, 10, 0, 340, 535, $textcolor, $font, strtoupper($MaterialCodigo));
         } else {
@@ -207,5 +209,26 @@ class Etiquetas extends PEtiquetas {
 
         $pdf->Output('F', $nome);
     }
-    
+
+    function ImportarEtiquetas($ArquivoNome) {
+        global $db, $Materiais, $Deposito;
+        
+        $handle = fopen(DOCUMENT_ROOT . '/csv/' . $ArquivoNome, "r");
+        if ($handle !== FALSE) {
+            $data = fgetcsv($handle, 1000, ",");
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                $num = count($data);
+
+                $Depo_id = $Deposito->ObterIdPorCentro($data[9]);
+                $Mate_id = $Materiais->ObterIdPorCodigo($data[5]);
+
+                $sql = "INSERT INTO etiquetas (etiq_depo_centro, etiq_mate_material, etiq_quantidade) VALUES "
+                        . "('" . $Depo_id . "', '" . $Mate_id . "', '" . $data[13] . "')";
+
+                $db->ExecSQL($sql);
+                
+            }
+            fclose($handle);
+        }
+    }
 }

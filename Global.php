@@ -22,7 +22,6 @@ require_once DOCUMENT_ROOT . '/lib/MetodosUtil.php';
 //if (!class_exists("Zend_Mail")) { require '/Zend/Mail.php'; }
 
 // Instanciar Classes
-//$Usuario        = new Usuario('usuario')
 $Usuario        = new Usuario('usuario');
 $Deposito       = new Deposito('deposito');
 $Etiquetas      = new Etiquetas('etiquetas');
@@ -30,9 +29,6 @@ $Inventario     = new Inventario('inventario');
 $Materiais      = new Materiais('materiais');
 //$Global         = new Geleia();
 $FuncoesPadroes = new FuncoesPadroes();
-
-//$__dir_upload_agenda = str_replace('//', '/', $doc_root . 'upload/agenda/');
-
 
 // Operações Usadas em GRID
 

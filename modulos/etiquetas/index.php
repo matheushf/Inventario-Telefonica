@@ -7,9 +7,6 @@ echo mensagem();
 
 $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
 
-$Posicoes = ['8', '9', '13'];
-ImportarCSV($Posicoes, 'etiquetas.csv');
-die();
 ?>
 
 <body>

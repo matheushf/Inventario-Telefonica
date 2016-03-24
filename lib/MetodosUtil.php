@@ -1,5 +1,8 @@
 <?php
 
+require_once DOCUMENT_ROOT . "/lib/DB.class.php";
+$db = new DB();
+
 /**
  * $CamposTabela = ['EPS', 'Centro', 'Cidade', 'Status', 'Livre 1', 'Livre 2', 'Livre 3'];
  * $DepositosCampos = ['depo_empresa', 'depo_centro', 'depo_cidade', 'depo_status', 'depo_livre1', 'depo_livre2', 'depo_livre3', ];
@@ -60,31 +63,42 @@ function MontarTabela($CamposTabela, $Objeto, $ObjetoCampos) {
     return $html;
 }
 
-function ImportarCSV($Posicoes, $ArquivoNome) {
+function GerarInsert($Campos, $Tabela, $Valores) {
 
-//    $file = fopen(DOCUMENT_ROOT . '/csv/etiquetas.csv', 'r');
-//    $arquivo = fgetcsv($file, ',');
-//    $arquivo = file_get_contents(DOCUMENT_ROOT . '/csv/etiquetas.csv');
-//    $arquivo = explode(',,', $arquivo);
-//    foreach ($arquivo as $arq) {
-//        echo $arq . '<br>';
-//        $arq = explode(',', $arq);
-//        echo $arq[9] . '<br>';
-//        _debug($arq);
-//    }
-//    _debug($arquivo);
+    $sql = "INSERT INTO " . $Tabela . " ( ";
 
-    $row = 1;
-    $handle = fopen(DOCUMENT_ROOT . '/csv/etiquetas.csv', "r");
+    foreach ($Campos as $campo) {
+        $sql .= " " . $campo . ", ";
+    }
+
+    $sql = substr($sql, 0, -2);
+
+    $sql .= ") VALUES (''";
+
+    foreach ($Valores as $valor) {
+        $sql .= ",'" . $valor . "'";
+    }
+
+    $sql .= ")";
+
+    return $sql;
+}
+
+function ImportarCSV($Campos, $Tabela, $ArquivoNome) {
+    global $db;
+
+    $handle = fopen(DOCUMENT_ROOT . '/csv/' . $ArquivoNome, "r");
     if ($handle !== FALSE) {
+        $data = fgetcsv($handle, 1000, ",");
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
             $num = count($data);
 
-            $row++;
-            for ($c = 0; $c < $num; $c++) {
-                echo $data[$c] . "<br />\n";
-            }
+//            for ($c = 0; $c < $num; $c++) {
+//            }
+
+            $sql = GerarInsert($Campos, $Tabela, $data);
+            $db->ExecSQL($sql);
         }
-        fclose($handle);
     }
+    fclose($handle);
 }

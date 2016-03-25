@@ -132,7 +132,8 @@ class Form extends PForm {
         global $db;
 
         $Sql = $this->GenerateInsertSQL($modulo);
-
+//        var_dump($Sql);
+//        die();
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());
 
@@ -167,7 +168,7 @@ class Form extends PForm {
 
             $FieldPreferences = json_decode($ObjTable->COLUMN_COMMENT);
 
-            
+
             $temp = explode("_", $ObjTable->COLUMN_NAME);
 
             if (sizeof($temp) >= 2) {
@@ -200,7 +201,7 @@ class Form extends PForm {
                 if ($FieldName == $this->RemovedFieldName) {
                     $ExtraClausule = " " . $ObjTable->COLUMN_NAME . "=0 ";
                 } else {
-                    
+
                     if ($FieldPreferences->{'user-control'} == 'radio') {
                         $SqlTemp .= " " . $ObjTable->COLUMN_NAME . "='" . mysql_escape_string($_POST[$FieldName][0]) . "',";
                     } else if ($FieldPreferences->{'default-value-php'} != "" && $FieldPreferences->{'no-update'} != "yes") {
@@ -246,7 +247,7 @@ class Form extends PForm {
         foreach (($ObjList ? $ObjList : Array()) as $ObjTable) {
 
             $FieldPreferences = json_decode($ObjTable->COLUMN_COMMENT);
-
+            
             if ($FieldPreferences->{'default-value-sql'} != "") {
                 $SqlTemp .= $FieldPreferences->{'default-value-sql'} . ",";
             } else if ($FieldPreferences->{'default-value-php'} != "") {
@@ -293,7 +294,10 @@ class Form extends PForm {
                     $Minute = $_POST[$ObjTable->COLUMN_NAME . "_minute"];
 
                     $SqlTemp .= "'" . mysql_escape_string($Date . " " . $Hour . ":" . $Minute . ":00") . "',";
-                } else {
+                }else if ($FieldPreferences->type == 'CURRENT_TIMESTAMP') {
+                    $SqlTemp .= 'CURRENT_TIMESTAMP, ';
+                } 
+                else {
 
                     if ($ObjTable->DATA_TYPE == 'decimal') { //formatting decimal numbers
                         $_POST[$ObjTable->COLUMN_NAME] = str_replace('.', '', $_POST[$ObjTable->COLUMN_NAME]);
@@ -302,6 +306,7 @@ class Form extends PForm {
 
                     $SqlTemp .= "'" . mysql_escape_string($_POST[$ObjTable->COLUMN_NAME]) . "',";
                 }
+                
             }
 
             //echo $FieldPreferences->{'user-control'} . "<br>";
@@ -399,18 +404,18 @@ class Form extends PForm {
 
             switch (strtolower($InputType)) {
                 case "password": {
-                    
-//                    $Value = 
-                    
-                    $html = " <label for='$Field'><strong>$Label</strong> </label>
-                                    <input " . $readonly . $FieldPreferences->{'typeof'}
-                            . $FieldPreferences->{'required'}
-                            . $FieldPreferences->{'style'}
-                            . " type='password' $int id='$Field' name='$Field' value='$Value' $maxlength is_nullable='$FieldInfo->IS_NULLABLE'/ class='form-control' style='margin-bottom: 10px'>";
 
-                    return $html;
-                    break;
-                }
+//                    $Value = 
+
+                        $html = " <label for='$Field'><strong>$Label</strong> </label>
+                                    <input " . $readonly . $FieldPreferences->{'typeof'}
+                                . $FieldPreferences->{'required'}
+                                . $FieldPreferences->{'style'}
+                                . " type='password' $int id='$Field' name='$Field' value='$Value' $maxlength is_nullable='$FieldInfo->IS_NULLABLE'/ class='form-control' style='margin-bottom: 10px'>";
+
+                        return $html;
+                        break;
+                    }
 
 
                 case "text": {

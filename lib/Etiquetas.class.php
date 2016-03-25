@@ -155,8 +155,6 @@ class Etiquetas extends PEtiquetas {
 
         imagettftext($imagecontainer, 27, 0, 25, 50, $textcolor, $font, 'CENTRO: ' . strtoupper($DepositoCentro));
         if (strlen($MaterialCodigo) > 12) {
-//            $p1 = substr(strtoupper($MaterialCodigo), 0, 12);
-//            $p2 = substr(strtoupper($MaterialCodigo), 12, strlen($MaterialCodigo));
             imagettftext($imagecontainer, 20, 0, 25, 90, $textcolor, $font, 'MATERIAL: ');
             imagettftext($imagecontainer, 15, 0, 170, 90, $textcolor, $font, $MaterialCodigo);
         } else {
@@ -184,14 +182,14 @@ class Etiquetas extends PEtiquetas {
     }
 
     function GerarPDFEtiquetas($Quantidade, $MaterialCodigo) {
-        $MLeft = 10.1;
-        $MTop = 12.2;
+        $MLeft = 0.72;
+        $MTop = 0.91;
 
-        $CellWidth = 63.5;
-        $CellHeight = 45.6;
+        $CellWidth = 6.61;
+        $CellHeight = 4.65;
 
         $EspacoMeio = 2.6;
-        $EspacoBaixo = 1.5;
+        $EspacoBaixo = 0.1;
 
         $pdf = new FPDF('P', 'cm', 'A4');
 

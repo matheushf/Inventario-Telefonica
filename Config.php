@@ -10,5 +10,5 @@ require_once 'Funcoes.php';
 require_once 'Global.php';
 require_once 'lib/action.php';
 
-//error_reporting(E_ALL, ~E_DEPRECATED, ~E_STRICT);
-//ini_set("display_errors", 1);
+error_reporting(E_ALL, ~E_DEPRECATED, ~E_STRICT);
+ini_set("display_errors", 1);

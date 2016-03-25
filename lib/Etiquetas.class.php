@@ -85,12 +85,34 @@ class PEtiquetas extends Geleia {
         $leitura = $this->VerificarLeituraAberta($EtiquetaId);
         $Cod_leitura = $leitura . '-' . $Cod_leitura;
 
-        $sql = "INSERT INTO leitura (leit_quantidade_aferida, leit_id_material, leit_locacao_material, leit_etiq_id, leit_mate_id, leit_livre1, leit_livre2, leit_cod_leitura, leit_nu_leitura) VALUES ('$QuantidadeAferida', '$IdMaterial', '$LocMaterial', '$EtiquetaId', '$MateId', '$Livre1', '$Livre2', '$Cod_leitura', '$leitura')";
+        $sql = "INSERT INTO leitura (leit_quantidade_aferida, leit_id_material, leit_loc_material, leit_etiq_id, leit_mate_id, leit_livre1, leit_livre2, leit_cod_leitura, leit_nu_leitura) VALUES ('$QuantidadeAferida', '$IdMaterial', '$LocMaterial', '$EtiquetaId', '$MateId', '$Livre1', '$Livre2', '$Cod_leitura', '$leitura')";
 
         if ($db->ExecSQL($sql)) {
             $sql = "UPDATE etiquetas SET etiq_cod_leitura" . $leitura . " = '" . $Cod_leitura . "' WHERE etiq_id = " . $EtiquetaId;
 
             $db->ExecSQL($sql);
+        }
+    }
+
+    function ObterLeitura($EtiqId, $MateId, $Leitura) {
+        global $db;
+
+        $sql = "SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiqId . " AND leit_mate_id = " . $MateId . " AND leit_nu_leitura = " . $Leitura;
+//        echo $sql;
+        return $db->GetObject($sql);
+    }
+
+    function ObterLocalizacao($EtiqId, $MateId) {
+        global $db;
+
+        for ($i = 3; $i >= 1; $i--) {
+            $sql = "SELECT leit_loc_material FROM leitura WHERE leit_etiq_id = " . $EtiqId . " AND leit_mate_id = " . $MateId . " AND leit_nu_leitura = " . $i;
+
+            if (!$obj = $db->GetObject($sql)) {
+                
+            } else {
+                return $obj->leit_loc_material;
+            }
         }
     }
 
@@ -171,7 +193,7 @@ class Etiquetas extends PEtiquetas {
         $EspacoMeio = 2.6;
         $EspacoBaixo = 1.5;
 
-        $pdf = new FPDF('P', 'mm', 'A4');
+        $pdf = new FPDF('P', 'cm', 'A4');
 
         $pdf->SetMargins($MLeft, $MTop);
         $pdf->AddPage('P', 'A4');

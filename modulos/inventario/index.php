@@ -77,63 +77,63 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
                         <input type="checkbox" id="<?php echo $inve->etiq_id ?>" value="<?php echo $inve->etiq_id ?>">
                     </center>
                     </td>
-                    <td><?php ?></td>
+                    <td style="white-space: nowrap"><?= $inve->etiq_data_adicionada ?></td>
 
-                    <td><?php ?></td>
+                    <td><?= $inve->etiq_cod_final ?></td>
 
-                    <td><?php echo $inve->mate_codigo ?></td>
+                    <td><?= $inve->mate_codigo ?></td>
 
-                    <td><?php echo $inve->depo_centro ?></td>
+                    <td><?= $inve->depo_centro ?></td>
 
-                    <td><?php echo $inve->mate_nome ?></td>
+                    <td><?= $inve->mate_nome ?></td>
 
-                    <td><?php echo $inve->mate_nome ?></td>
+                    <td><?= $inve->mate_unidade_medida ?></td>
 
-                    <td><?php echo $inve->mate_unidade_medida ?></td>
+                    <td><?php //qtd lvut ?></td>
 
-                    <td><?php ?></td>
+                    <td><?php // qtd amed ?></td>
 
-                    <td><?php ?></td>
+                    <td><?php // total sap ?></td>
 
-                    <td><?php ?></td>
+                    <td><?php  ?></td>
 
+                    <td><?php echo $inve->mate_valor_unitario ?> </td>
+                    
                     <td> </td>
 
-                    <td> </td>
+                    <td><?= $Etiquetas->ObterLeitura($inve->etiq_id, $inve->mate_id, 1)->leit_quantidade_aferida; ?> </td>
 
-                    <td> </td>
+                    <td><?= $Etiquetas->ObterLeitura($inve->etiq_id, $inve->mate_id, 2)->leit_quantidade_aferida; ?> </td>
 
-                    <td> </td>
+                    <td><?= $Etiquetas->ObterLeitura($inve->etiq_id, $inve->mate_id, 3)->leit_quantidade_aferida; ?> </td>
 
-                    <td> </td>
+                    <td><?php // leitura final ?> </td>
 
-                    <td> </td>
+                    <td> <?php //Qtd Exec(EPS)?> </td>
 
-                    <td> </td>
+                    <td> <?php //Qtd AMED(EPS)?> </td>
 
-                    <td> </td>
+                    <td> <?php //Qtd CPCON?> </td>
 
-                    <td> </td>
+                    <td><?php //EXEC+AMED+CONT FÍS ?> </td>
 
-                    <td> </td>
+                    <td> <?php //Dif. Final Qtd?> </td>
 
-                    <td> </td>
+                    <td> <?php //Dif. Negativa?> </td>
 
-                    <td> </td>
+                    <td> <?php //Dif. Positiva?> </td>
 
-                    <td> </td>
+                    <td> <?php //Acurac. Física?> </td>
 
-                    <td> </td>
+                    <td> <?php //Acurac. Fin.?> </td>
 
-                    <td> </td>
+                    <td> <?= $Etiquetas->ObterLocalizacao($inve->etiq_id, $inve->mate_id); ?> </td>
 
-                    <td> </td>
+                    <td> <?= $inve->mate_codigo ?> </td>
 
-                    <td> </td>
+                    <td> <?= $inve->mate_livre1 ?></td>
 
-                    <td> </td>
-
-                    <td> </td>
+                    <td> <?= $inve->mate_livre2 ?></td>
 
                     </tr>
                     <?php

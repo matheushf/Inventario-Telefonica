@@ -122,7 +122,6 @@ abstract class PUsuario extends Geleia {
 class Usuario extends PUsuario {
 
     function Login($Email, $Password) {
-
         $ObjUser = $this->GetByEmail($Email);
 
         if ($ObjUser->usua_email == $Email && $ObjUser->usua_senha == sha1($Password) && $ObjUser->usua_status == 'Ativo') {

@@ -91,11 +91,14 @@ class PDeposito extends Geleia {
 
 class Deposito extends PDeposito {
 
-    function ImportarDepositos() {
+    function ImportarDepositos($ArquivoNome) {
         $Campos = ['depo_id', 'depo_empresa', 'depo_centro', 'depo_cidade', 'depo_status', 'depo_livre1', 'depo_livre2', 'depo_livre3'];
         $Tabela = "deposito";
-        $ArquivoNome = "depositos.csv";
-        ImportarCSV($Campos, $Tabela, $ArquivoNome);
+        if (ImportarCSV($Campos, $Tabela, $ArquivoNome)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

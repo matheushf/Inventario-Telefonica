@@ -212,25 +212,32 @@ class Etiquetas extends PEtiquetas {
 
     function ImportarEtiquetas($ArquivoNome) {
         global $db, $Materiais, $Deposito;
-        
-        $handle = fopen(DOCUMENT_ROOT . '/csv/' . $ArquivoNome, "r");
+
+//        $handle = fopen(DOCUMENT_ROOT . '/csv/' . $ArquivoNome, "r");
+        $handle = fopen($ArquivoNome, "r");
         if ($handle !== FALSE) {
             $data = fgetcsv($handle, 1000, ",");
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 $num = count($data);
 
-                $Depo_id = $Deposito->ObterIdPorCentro($data[9]);
-                $Mate_id = $Materiais->ObterIdPorCodigo($data[5]);
+                $Mate_id = $Materiais->ObterIdPorCodigo($data[0]);
+                $Depo_id = $Deposito->ObterIdPorCentro($data[1]);
 
-                $Cod_final = $data[9] . '-' . $data[5];
-                
+                $Cod_final = $data[1] . '-' . $data[0];
+
                 $sql = "INSERT INTO etiquetas (etiq_depo_centro, etiq_mate_material, etiq_quantidade, etiq_cod_final) VALUES "
-                        . "('" . $Depo_id . "', '" . $Mate_id . "', '" . $data[13] . "', '" . $Cod_final . "')";
+                        . "('" . $Depo_id . "', '" . $Mate_id . "', '" . $data[2] . "', '" . $Cod_final . "')";
 
                 $db->ExecSQL($sql);
-                
             }
             fclose($handle);
+
+            unlink($ArquivoNome);
+
+            return true;
+        } else {
+            return false;
         }
     }
+
 }

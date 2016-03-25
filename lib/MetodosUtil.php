@@ -87,7 +87,8 @@ function GerarInsert($Campos, $Tabela, $Valores) {
 function ImportarCSV($Campos, $Tabela, $ArquivoNome) {
     global $db;
 
-    $handle = fopen(DOCUMENT_ROOT . '/csv/' . $ArquivoNome, "r");
+//    $handle = fopen(DOCUMENT_ROOT . '/csv/' . $ArquivoNome, "r");
+    $handle = fopen($ArquivoNome, "r");
     if ($handle !== FALSE) {
         $data = fgetcsv($handle, 1000, ",");
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
@@ -99,6 +100,13 @@ function ImportarCSV($Campos, $Tabela, $ArquivoNome) {
             $sql = GerarInsert($Campos, $Tabela, $data);
             $db->ExecSQL($sql);
         }
+    } else {
+        return false;
     }
+
     fclose($handle);
+
+    unlink($ArquivoNome);
+
+    return true;
 }

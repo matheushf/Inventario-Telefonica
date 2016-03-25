@@ -1,6 +1,10 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
 
+if(!$Usuario->isAdmin()) {
+    header('Location: /vivo-inventario/modulos/materiais/');
+}
+
 get_head('Usuarios', 'grid');
 
 mensagem();

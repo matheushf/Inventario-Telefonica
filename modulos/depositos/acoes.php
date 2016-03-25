@@ -13,15 +13,31 @@ if (isset($_GET['acao'])) {
 switch ($acao) {
 
     case "alterar_leitura": {
-        $DepoId     = $_POST['id'];
-        $Leitura    = $_POST['leitura'];
-        
-        if($Deposito->AlterarLeitura($DepoId, $Leitura)) {
-            echo 'OK';
-        } else {
-            'erro';
+            $DepoId = $_POST['id'];
+            $Leitura = $_POST['leitura'];
+
+            if ($Deposito->AlterarLeitura($DepoId, $Leitura)) {
+                echo 'OK';
+            } else {
+                'erro';
+            }
+
+            break;
         }
-        
-        break;
-    }
+
+    case "importar": {
+            $nome = md5($_FILES['arquivo_csv']['name'] . time()) . '.csv';
+            $destino = DOCUMENT_ROOT . 'Temp/' . $_FILES['arquivo_csv']['name'];
+
+            var_dump(move_uploaded_file($_FILES["arquivo_csv"]["tmp_name"], $destino));
+
+            if ($Deposito->ImportarDepositos($destino)) {
+                $_SESSION['Mensagem']['tipo'] = "sucesso";
+                $_SESSION['Mensagem']['texto'] = "Deposito importado com sucesso.";
+
+                header('Location: /vivo-inventario/modulos/depositos/');
+            } else {
+                echo 'erro';
+            }
+        }
 }

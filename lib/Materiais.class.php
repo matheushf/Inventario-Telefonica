@@ -49,11 +49,15 @@ class PMateriais extends Geleia {
 
 class Materiais extends PMateriais {
 
-    function ImportarMateriais() {
+    function ImportarMateriais($ArquivoNome) {
         $Campos = ['mate_id', 'mate_codigo', 'mate_nome', 'mate_unidade_medida', 'mate_valor_unitario', 'mate_livre1', 'mate_livre2', 'mate_livre3'];
         $Tabela = "materiais";
-        $ArquivoNome = "material.csv";
-        ImportarCSV($Campos, $Tabela, $ArquivoNome);
+//        $ArquivoNome = "material.csv";
+        if(ImportarCSV($Campos, $Tabela, $ArquivoNome)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

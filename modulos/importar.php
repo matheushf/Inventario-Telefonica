@@ -26,16 +26,17 @@ mensagem();
         <p id=""><a id="modelo_csv" href="#">Link</a></p>
 
         <br>
-        <p><b>Dicas</b></p>
+        <p><b>Importante:</b></p>
         <ul>
             <li>Todas as colunas presentes no modelo são obrigatórias. </li>
+            <li>A quantidade de colunas deve ser exata ao modelo.</li>
             <li>Os dados devem estar exatamente iguais aos dados do modelo. </li>
         </ul>
 
         <br> <br>
         <h3>Passo 2: </h3>
 
-        <input type="file" name="arquivo_csv">
+        <input type="file" name="arquivo_csv" id="arquivo_csv">
 
         <input type="submit" class="btn btn-primary" value="Importar" style="margin-top: 50px">
         
@@ -52,6 +53,36 @@ $(document).ready(function () {
         $("#modelo_csv").attr("href", link);
         $("#modelo_csv").html(valor);
     })
+    
+    // Inicio do Upload
+    
+    // Setar Variaveis
+    var arquivos;
+    
+    $("#arquivo_csv").on("change", prepararUpload);
+    
+    function prepararUpload(event) {
+        arquivos = event.target.files;
+    }
+    
+    // Tratar do formulário
+    $("form").on("submit", uploadArquivo);
+    
+    function uploadArquivo(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        
+        // Criar um formulário de data e adicionar os valores
+        var data = new FormData();
+        
+        $.each(arquivos, function(key, value) {
+            data.append(key, value);
+        })
+        
+        $.ajax({
+            url: '/vivo-inventario/lib/action.php'
+        })
+    }
     
 })
 </script>

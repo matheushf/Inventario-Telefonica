@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 get_head('Materiais', 'grid');
 
@@ -25,7 +25,7 @@ $MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search, $Paginacao);
                         <input type="text" size="20" class="form-control" id="busca" name="busca" value="<?= $_GET['busca'] ?>">
                         <button class="btn btn-primary" id="procurar" type="submit">Procurar</button>
                     </form>
-                    <a class="btn btn-primary" href="/vivo-inventario/modulos/materiais/importar.php">Importar Lista</a>
+                    <a class="btn btn-primary" href="/modulos/materiais/importar.php">Importar Lista</a>
                 </div>
             </div>
         </div>

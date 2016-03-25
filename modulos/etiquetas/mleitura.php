@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 $EtiquetaId = $_GET['id'];
 
@@ -22,15 +22,15 @@ if ($NLeituraDepo < $NLeituraEtiq) {
 
         <title> Leitura </title>
 
-        <link href="/vivo-inventario/assets/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <link href="/vivo-inventario/assets/css/animate.css" rel="stylesheet">
-        <!--<link href="/vivo-inventario/assets/css/style.css" rel="stylesheet">-->
-        <link href="/vivo-inventario/assets/css/style-adicional.css" rel="stylesheet">
+        <link href="/assets/css/animate.css" rel="stylesheet">
+        <!--<link href="/assets/css/style.css" rel="stylesheet">-->
+        <link href="/assets/css/style-adicional.css" rel="stylesheet">
 
         <!-- Mainly scripts -->
-        <script src="/vivo-inventario/assets/js/jquery-1.11.3.min.js"></script>
-        <script src="/vivo-inventario/assets/js/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/js/jquery-1.11.3.min.js"></script>
+        <script src="/assets/js/bootstrap/js/bootstrap.min.js"></script>
 
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">

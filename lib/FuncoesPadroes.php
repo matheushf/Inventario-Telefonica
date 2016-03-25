@@ -3,8 +3,8 @@
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/lib/Materiais.class.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/lib/Deposito.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/Materiais.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/Deposito.class.php';
 
 class FuncoesPadroes extends Geleia {
 

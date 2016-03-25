@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 if (isset($_GET['acao'])) {
     $acao = $_GET['acao'];
@@ -21,7 +21,7 @@ switch ($acao) {
                 $_SESSION['Mensagem']['tipo'] = "sucesso";
                 $_SESSION['Mensagem']['texto'] = "Materiais importados com sucesso.";
 
-                header('Location: /vivo-inventario/modulos/materiais/');
+                header('Location: /modulos/materiais/');
             }
         }
 }

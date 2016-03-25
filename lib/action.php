@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 $acao = $_GET['acao'] ? $_GET['acao'] : $_POST['acao'];
 
@@ -50,13 +50,13 @@ switch ($acao) {
         $Senha = $_POST['senha'];
         
         if($Usuario->Login($Email, $Senha)) {
-            header('Location: /vivo-inventario/modulos/materiais/');
+            header('Location: /modulos/materiais/');
             
         } else {
             $_SESSION['Mensagem']['tipo'] = 'error';
             $_SESSION['Mensagem']['texto'] = 'Usuário ou senha inválidos.';
             
-            header('Location: /vivo-inventario/index.php');
+            header('Location: /index.php');
         }
     }
 }

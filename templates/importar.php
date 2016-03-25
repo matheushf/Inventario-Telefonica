@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 get_head('Importar');
 
@@ -47,7 +47,7 @@ mensagem();
 $(document).ready(function () {
     $("select").change(function() {
         var modulo = $("#modulo").val();
-        var link = "/vivo-inventario/csv/modelo_" + modulo + ".csv";
+        var link = "/csv/modelo_" + modulo + ".csv";
         var valor = "modelo_" + modulo + ".csv";
         
         $("#modelo_csv").attr("href", link);
@@ -80,7 +80,7 @@ $(document).ready(function () {
         })
         
         $.ajax({
-            url: '/vivo-inventario/lib/action.php'
+            url: '/lib/action.php'
         })
     }
     

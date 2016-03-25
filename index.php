@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Funcoes.php';
+require_once 'Funcoes.php';
 
 if (EstaLogado()) {
-    header('Location: /vivo-inventario/modulos/materiais/');
+    header('Location: /modulos/materiais/');
 }
 
 ?>
@@ -16,36 +16,36 @@ if (EstaLogado()) {
 
         <title> Vivo Inventário </title>
 
-        <link href="/vivo-inventario/assets/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/vivo-inventario/assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
 
-        <link href="/vivo-inventario/assets/css/animate.css" rel="stylesheet">
-        <link href="/vivo-inventario/assets/css/style.css" rel="stylesheet">
-        <link href="/vivo-inventario/assets/css/style-adicional.css" rel="stylesheet">
-
-        <!-- Mainly scripts -->
-        <script src="/vivo-inventario/assets/js/jquery-1.11.3.min.js"></script>
-        <script src="/vivo-inventario/assets/js/bootstrap/js/bootstrap.min.js"></script>
+        <link href="/assets/css/animate.css" rel="stylesheet">
+        <link href="/assets/css/style.css" rel="stylesheet">
+        <link href="/assets/css/style-adicional.css" rel="stylesheet">
 
         <!-- Mainly scripts -->
-        <script src="/vivo-inventario/assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-        <script src="/vivo-inventario/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-        <script src="/vivo-inventario/assets/js/jquery.maskedinput.min.js"></script>
-        <script src="/vivo-inventario/assets/js/global.js"></script>
+        <script src="/assets/js/jquery-1.11.3.min.js"></script>
+        <script src="/assets/js/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Mainly scripts -->
+        <script src="/assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.maskedinput.min.js"></script>
+        <script src="/assets/js/global.js"></script>
 
         <!-- Custom and plugin javascript -->
-        <script src="/vivo-inventario/assets/js/inspinia.js"></script>
-        <script src="/vivo-inventario/assets/js/plugins/pace/pace.min.js"></script>
+        <script src="/assets/js/inspinia.js"></script>
+        <script src="/assets/js/plugins/pace/pace.min.js"></script>
 
         <!-- Date picker -->
-        <script type="text/javascript" href="/vivo-inventario/assets/js/plugins/datepicker/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" href="/vivo-inventario/assets/js/plugins/datepicker/bootstrap-datepicker.pt-BR.js"></script>
-        <link href="/vivo-inventario/assets/css/plugins/datepicker/datepicker3.css" rel="stylesheet">
+        <script type="text/javascript" href="/assets/js/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" href="/assets/js/plugins/datepicker/bootstrap-datepicker.pt-BR.js"></script>
+        <link href="/assets/css/plugins/datepicker/datepicker3.css" rel="stylesheet">
 
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-        <script src="/vivo-inventario/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
 
     </head>

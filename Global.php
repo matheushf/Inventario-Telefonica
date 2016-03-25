@@ -1,23 +1,25 @@
 <?php
 
-$doc_root = $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/';
+$doc_root = $_SERVER['DOCUMENT_ROOT'] . '/';
+
+set_include_path( get_include_path() . PATH_SEPARATOR . $_SERVER['DOCUMENT_ROOT'] );
 
 ini_set("include_path", ini_get("include_path") . PATH_SEPARATOR . $doc_root . "/lib/" . PATH_SEPARATOR . $doc_root . "/lib/external/");
 
 // Requires relacionadas a Lib
-require_once DOCUMENT_ROOT . '/lib/external/GeleiaFramework/UserControl.class.php';
-require_once DOCUMENT_ROOT . '/lib/external/GeleiaFramework/Form.class.php';
-require_once DOCUMENT_ROOT . '/lib/external/GeleiaFramework/FormMobile.class.php';
-require_once DOCUMENT_ROOT . '/lib/external/Zend/Mail/Transport/Smtp.php';
-require_once DOCUMENT_ROOT . '/lib/Geleia.class.php';
-require_once DOCUMENT_ROOT . '/lib/GeleiaMobile.class.php';
-require_once DOCUMENT_ROOT . '/lib/Usuario.class.php';
-require_once DOCUMENT_ROOT . '/lib/Deposito.class.php';
-require_once DOCUMENT_ROOT . '/lib/Etiquetas.class.php';
-require_once DOCUMENT_ROOT . '/lib/Inventario.class.php';
-require_once DOCUMENT_ROOT . '/lib/Materiais.class.php';
-require_once DOCUMENT_ROOT . '/lib/FuncoesPadroes.php';
-require_once DOCUMENT_ROOT . '/lib/MetodosUtil.php';
+require_once 'lib/external/GeleiaFramework/UserControl.class.php';
+require_once 'lib/external/GeleiaFramework/Form.class.php';
+require_once 'lib/external/GeleiaFramework/FormMobile.class.php';
+require_once 'lib/external/Zend/Mail/Transport/Smtp.php';
+require_once 'lib/Geleia.class.php';
+require_once 'lib/GeleiaMobile.class.php';
+require_once 'lib/Usuario.class.php';
+require_once 'lib/Deposito.class.php';
+require_once 'lib/Etiquetas.class.php';
+require_once 'lib/Inventario.class.php';
+require_once 'lib/Materiais.class.php';
+require_once 'lib/FuncoesPadroes.php';
+require_once 'lib/MetodosUtil.php';
 //if (!class_exists("Zend_Validate")) { require '/Zend/Validate.php'; }
 //if (!class_exists("Zend_Mail")) { require '/Zend/Mail.php'; }
 
@@ -27,7 +29,7 @@ $Deposito       = new Deposito('deposito');
 $Etiquetas      = new Etiquetas('etiquetas');
 $Inventario     = new Inventario('inventario');
 $Materiais      = new Materiais('materiais');
-//$Global         = new Geleia();
+$Global         = new Geleia();
 $FuncoesPadroes = new FuncoesPadroes();
 
 // Operações Usadas em GRID
@@ -54,7 +56,7 @@ if ($_GET['busca']) {
 
 // Verificar se está logado
 if (!EstaLogado()) {
-    header ('Location: /vivo-inventario/index.php');
+    header ('Location: /index.php');
 }
 
 // Paginação

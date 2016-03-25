@@ -10,8 +10,6 @@ function get_head($Titulo, $FormGrid = null, $path = null) {
 function get_foot($path = null) {
 
     $path = $path . "foot.php";
-//    if (!isset($path))
-//        $path = 'foot.php';
     
     include (DOCUMENT_ROOT . '/' . $path);
 }

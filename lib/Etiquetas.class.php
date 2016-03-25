@@ -140,7 +140,7 @@ class Etiquetas extends PEtiquetas {
 // http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=olaaa
 //        $qrimage = imagecreatefrompng('qrcode.png');
 
-        $Link = "http://192.168.100.5/vivo-inventario/modulos/etiquetas/mleitura.php?id=" . $IdEtiqueta;
+        $Link = "http://192.168.100.5/modulos/etiquetas/mleitura.php?id=" . $IdEtiqueta;
 //        $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=' . $Link);
         $qrimage = imagecreatefrompng('qrcode.png');
 

@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+require_once '../../Config.php';
 
 get_head('Depósitos', 'grid');
 

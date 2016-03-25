@@ -62,34 +62,6 @@ class Geleia extends Form {
         }
     }
 
-    function Logoff($Url = "") {
-        session_unset();
-        session_destroy();
-
-        if ($Url != "") {
-// 				$location = "Location:" . $Url;
-// 				header($location);
-            Useful::JsRedirect($Url);
-        }
-    }
-
-    function DisplayMessage() {
-        echo "<span id='ResultLabel' class='" . $this->error['result-type'] . "'>" . $this->error['result'] . "</span>";
-    }
-
-    function GetTemplateContent($template_file) {
-        global $doc_root;
-
-        $directory = $doc_root . "/template/";
-
-        if (file_exists($directory . $template_file)) {
-            $content = file_get_contents($directory . $template_file);
-            return $content;
-        } else {
-            die("Sorry, but the template file requested doesn't exist.");
-        }
-    }
-
     function GetEmailConfig($from_name = "Aminezia") {
 
         try {

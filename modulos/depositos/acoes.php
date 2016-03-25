@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 //$acao = $_GET['acao'] ? $_GET['acao'] : $_POST['acao'];
 
@@ -35,7 +35,7 @@ switch ($acao) {
                 $_SESSION['Mensagem']['tipo'] = "sucesso";
                 $_SESSION['Mensagem']['texto'] = "Deposito importado com sucesso.";
 
-                header('Location: /vivo-inventario/modulos/depositos/');
+                header('Location: /modulos/depositos/');
             } else {
                 echo 'erro';
             }

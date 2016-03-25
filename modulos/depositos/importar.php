@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 get_head('Importar');
 
@@ -16,7 +16,7 @@ mensagem();
 
         <h3>Passo 1: </h3>
         <p>Baixe o modelo para importação do módulo: </p>
-        <p ><a href="/vivo-inventario/templates/csv/modelo_deposito.csv">Modelo Deposito</a></p>
+        <p ><a href="/templates/csv/modelo_deposito.csv">Modelo Deposito</a></p>
 
         <br>
         <p><b>Importante:</b></p>

@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vivo-inventario/Config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 //$acao = $_GET['acao'] ? $_GET['acao'] : $_POST['acao'];
 
@@ -58,7 +58,7 @@ switch ($acao) {
                 $_SESSION['Mensagem']['tipo'] = "sucesso";
                 $_SESSION['Mensagem']['texto'] = "Etiquetas importado com sucesso.";
 
-                header('Location: /vivo-inventario/modulos/etiquetas/');
+                header('Location: /modulos/etiquetas/');
             } else {
                 echo 'erro';
             }

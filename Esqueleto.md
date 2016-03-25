@@ -117,3 +117,34 @@ Incluir duas colunas para cálculo da acuracidade (física e financeira), indica
 **Resp.:** Incluídos na base final “INVENTÁRIO”
 
 **Identificação Visual das leituras nas etiquetas**: após a contagem de cada item é importante colocar um adesivo colorido identificando que o material já foi inventariado (por exemplo: 1ª. Leitura, cor verde; segunda leitura, cor vermelha; 3ª. Leitura cor preta). Dessa forma facilita a varredura no depósito para identificar se foi realizada 100% das contagens.
+
+###Leituras
+
+![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/view.png "Visualização leitura")
+
+![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/leit1.png "Mobile")
+
+***1ª CONTAGEM:***
+·         Quantidade Aferida: é a quantidade aferida e deverá ser inclusa – Deverá ser mostrada em leitura 1
+·         Confirmar quantidade: é o mesmo valor acima, por isso devem estar iguais para permitir a inclusão da informação, se estiver diferente deve-se corrigir para permitir a finalização. É um trava de segurança
+·         ID MATERIAL: é informado manualmente. Deverá ser carregado em “ID material” na aba Inventário da web
+·         LOC MATERIAL: Informação manual(endereço dentro do depósito). Deverá ser mostrado em Localização interna na web
+·         Livre 1: Livre para o futuro
+·         Livre 2: Livre para o futuro
+
+***2ª CONTAGEM:***
+·         Quantidade Aferida: é a quantidade aferida e deverá ser inclusa – Deverá ser mostrada em leitura 2
+·         Confirmar quantidade: é o mesmo valor acima, por isso devem estar iguais para permitir a inclusão da informação, se estiver diferente deve-se corrigir para permitir a finalização. É um trava de segurança
+·         ID MATERIAL: é informado manualmente. Deverá ser carregado em “LIVRE 1” na aba Inventário da web
+·         LOC MATERIAL: Informação manual(endereço dentro do depósito). Deverá ser mostrado em Localização interna na web
+·         Livre 1: Livre para o futuro
+·         Livre 2: Livre para o futuro
+ 
+
+3ª CONTAGEM:***
+·         Quantidade Aferida: é a quantidade aferida e deverá ser inclusa – Deverá ser mostrada em leitura 3
+·         Confirmar quantidade: é o mesmo valor acima, por isso devem estar iguais para permitir a inclusão da informação, se estiver diferente deve-se corrigir para permitir a finalização. É um trava de segurança
+·         ID MATERIAL: é informado manualmente. Deverá ser carregado em “LIVRE 2” na aba Inventário da web
+·         LOC MATERIAL: Informação manual(endereço dentro do depósito). Deverá ser mostrado em Localização interna na web
+·         Livre 1: Livre para o futuro
+·         Livre 2: Livre para o futuro

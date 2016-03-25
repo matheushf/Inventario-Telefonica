@@ -125,26 +125,37 @@ Incluir duas colunas para cálculo da acuracidade (física e financeira), indica
 ![alt text](https://raw.githubusercontent.com/matheushf/Vivo-Inventario/master/Projeto/leit1.png "Mobile")
 
 ***1ª CONTAGEM:***
-·         Quantidade Aferida: é a quantidade aferida e deverá ser inclusa – Deverá ser mostrada em leitura 1
-·         Confirmar quantidade: é o mesmo valor acima, por isso devem estar iguais para permitir a inclusão da informação, se estiver diferente deve-se corrigir para permitir a finalização. É um trava de segurança
-·         ID MATERIAL: é informado manualmente. Deverá ser carregado em “ID material” na aba Inventário da web
-·         LOC MATERIAL: Informação manual(endereço dentro do depósito). Deverá ser mostrado em Localização interna na web
-·         Livre 1: Livre para o futuro
-·         Livre 2: Livre para o futuro
+- Quantidade Aferida: é a quantidade aferida e deverá ser inclusa – Deverá ser mostrada em leitura 1
+- Confirmar quantidade: é o mesmo valor acima, por isso devem estar iguais para permitir a inclusão da informação, se estiver diferente deve-se corrigir para permitir a finalização. É um trava de segurança
+- ID MATERIAL: é informado manualmente. Deverá ser carregado em “ID material” na aba Inventário da web
+- LOC MATERIAL: Informação manual(endereço dentro do depósito). Deverá ser mostrado em Localização interna na web
+- Livre 1: Livre para o futuro
+- Livre 2: Livre para o futuro
 
 ***2ª CONTAGEM:***
-·         Quantidade Aferida: é a quantidade aferida e deverá ser inclusa – Deverá ser mostrada em leitura 2
-·         Confirmar quantidade: é o mesmo valor acima, por isso devem estar iguais para permitir a inclusão da informação, se estiver diferente deve-se corrigir para permitir a finalização. É um trava de segurança
-·         ID MATERIAL: é informado manualmente. Deverá ser carregado em “LIVRE 1” na aba Inventário da web
-·         LOC MATERIAL: Informação manual(endereço dentro do depósito). Deverá ser mostrado em Localização interna na web
-·         Livre 1: Livre para o futuro
-·         Livre 2: Livre para o futuro
+- Quantidade Aferida: é a quantidade aferida e deverá ser inclusa – Deverá ser mostrada em leitura 2
+- Confirmar quantidade: é o mesmo valor acima, por isso devem estar iguais para permitir a inclusão da informação, se estiver diferente deve-se corrigir para permitir a finalização. É um trava de segurança
+ID MATERIAL: é informado manualmente. Deverá ser carregado em “LIVRE 1” na aba Inventário da web
+- LOC MATERIAL: Informação manual(endereço dentro do depósito). Deverá ser mostrado em Localização interna na web
+- Livre 1: Livre para o futuro
+- Livre 2: Livre para o futuro
  
 
 3ª CONTAGEM:***
-·         Quantidade Aferida: é a quantidade aferida e deverá ser inclusa – Deverá ser mostrada em leitura 3
-·         Confirmar quantidade: é o mesmo valor acima, por isso devem estar iguais para permitir a inclusão da informação, se estiver diferente deve-se corrigir para permitir a finalização. É um trava de segurança
-·         ID MATERIAL: é informado manualmente. Deverá ser carregado em “LIVRE 2” na aba Inventário da web
-·         LOC MATERIAL: Informação manual(endereço dentro do depósito). Deverá ser mostrado em Localização interna na web
-·         Livre 1: Livre para o futuro
-·         Livre 2: Livre para o futuro
+- Quantidade Aferida: é a quantidade aferida e deverá ser inclusa – Deverá ser mostrada em leitura 3
+- Confirmar quantidade: é o mesmo valor acima, por isso devem estar iguais para permitir a inclusão da informação, se estiver diferente deve-se corrigir para permitir a finalização. É um trava de segurança
+- ID MATERIAL: é informado manualmente. Deverá ser carregado em “LIVRE 2” na aba Inventário da web
+- LOC MATERIAL: Informação manual(endereço dentro do depósito). Deverá ser mostrado em Localização interna na web
+- Livre 1: Livre para o futuro
+- Livre 2: Livre para o futuro
+
+###Informações Extras
+Sobre as informações em questão estão nos esquemas que montei, tanto em excel como em ilustração, olhe bem os esquemas que os dados de algumas abas deverão ser repetidos nesta página, assim como onde as leituras deverão ser apresentadas.
+ 
+Ressalto a importância de todos os pontos que indiquei quando conversamos e pelos e-mails nestes dias. Passamos tudo o necessário para não termos surpresas.
+ 
+A questão da impressão das etiquetas, quantidade de cada uma(repetida) e leitura são muito importantes!
+Algumas abas alimentam as outras e a leitura dos QR codes alimentam o resultado de colunas de leituras.
+ 
+Tudo gira em torno de criar as etiquetas baseadas na junção de centro, depósitos e quantidade de itens em cada um deles e realizar as leituras, que alimentarão a aba inventário.
+Volto a repetir, não podemos esquecer das travas que impeçam a leitura das contagem posteriores sem a liberação por sistema.

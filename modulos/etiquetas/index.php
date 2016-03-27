@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 get_head('Etiquetas', 'grid');
 
-//$_SESSION['imagens'] = NULL;
+$_SESSION['imagens'] = NULL;
 
 echo mensagem();
 

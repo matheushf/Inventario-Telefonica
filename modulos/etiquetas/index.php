@@ -3,9 +3,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 get_head('Etiquetas', 'grid');
 
-echo mensagem();
+//$_SESSION['imagens'] = NULL;
 
-//$_SESSION['imagens'] = null;
+echo mensagem();
 
 $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
 ?>
@@ -112,6 +112,7 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
                 </tbody>
             </table>
         </div>
+        <a href="" download id="download"><span style="display: none">download</span></a>
         <?php
         var_dump($_SESSION['imagens']);
         ?>
@@ -174,9 +175,26 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
                             folder: nome_pasta
                         },
                         success: function (data) {
-                            
+                            $("#download").attr("href", data);
+                            $("#download span").trigger('click');
+
+                            nome_pdf = data;
                         }
                     })
+
+                    // Deletar PDF
+                    $.ajax({
+                        type: 'POST',
+                        url: 'acoes.php',
+                        async: false,
+                        data: {
+                            acao: 'deletar_pdf',
+                            arquivo: nome_pdf
+                        },
+                        success: function (data) {
+                        }
+                    })
+
                 })
             })
         </script>

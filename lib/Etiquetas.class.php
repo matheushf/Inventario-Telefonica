@@ -232,6 +232,8 @@ class Etiquetas extends PEtiquetas {
         $nome = 'Temp/' . time() . '.pdf';
 
         $pdf->Output('F', $nome);
+        
+        return $nome;
     }
 
     function ImportarEtiquetas($ArquivoNome) {

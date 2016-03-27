@@ -13,6 +13,9 @@ if (isset($_GET['acao'])) {
 switch ($acao) {
 
     case "diretorio_image": {
+            $_SESSION['imagens'] = NULL;
+            unset($_SESSION['imagens']);
+
             $folder = md5(time());
             if (mkdir('Temp/' . $folder)) {
                 echo $folder;
@@ -20,7 +23,6 @@ switch ($acao) {
                 echo 'erro';
             }
 
-//            $_SESSION['imagens'] = array();
         }
 
     case "gerar_imagem_etiqueta": {
@@ -47,11 +49,24 @@ switch ($acao) {
 
     case "gerar_pdf_etiqueta": {
             $Folder = $_POST['folder'];
-            $Etiquetas->GerarPDFEtiquetas($Folder);
+            $nome = $Etiquetas->GerarPDFEtiquetas($Folder);
 
-            
+            $_SESSION['imagens'] = NULL;
+            unset($_SESSION['imagens']);
+
+            rrmdir('Temp/' . $Folder);
+
+            echo $nome;
+
             break;
         }
+        
+    case "deletar_pdf": {
+        $Arquivo = $_POST['arquivo'];
+        
+        unlink($Arquivo);
+        
+    }
 
     case "salvar_leitura": {
             $QuantidadeAferida = $_POST['quant_aferida'];

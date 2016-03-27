@@ -1,4 +1,5 @@
 <?php
+
 function get_head($Titulo, $FormGrid = null, $path = null) {
 
     if (!isset($path))
@@ -10,7 +11,7 @@ function get_head($Titulo, $FormGrid = null, $path = null) {
 function get_foot($path = null) {
 
     $path = $path . "foot.php";
-    
+
     include (DOCUMENT_ROOT . '/' . $path);
 }
 
@@ -56,4 +57,13 @@ function EstaLogado() {
     } else {
         return false;
     }
+}
+
+function rrmdir($dir) {
+    foreach (glob($dir . '/*') as $file) {
+        if (is_dir($file))
+            rrmdir($file);
+        else
+            unlink($file);
+    } rmdir($dir);
 }

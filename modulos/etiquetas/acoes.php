@@ -12,23 +12,44 @@ if (isset($_GET['acao'])) {
 
 switch ($acao) {
 
-    case "gerar_etiqueta": {
+    case "diretorio_image": {
+            $folder = md5(time());
+            if (mkdir('Temp/' . $folder)) {
+                echo $folder;
+            } else {
+                echo 'erro';
+            }
+
+//            $_SESSION['imagens'] = array();
+        }
+
+    case "gerar_imagem_etiqueta": {
             $IdEtiqueta = $_POST['id'];
             $CodigoMaterial = $_POST['cod_mate'];
             $NomeMaterial = $_POST['nome_mate'];
             $UnidadeMedida = $_POST['unidade_medida'];
             $Centro = $_POST['centro'];
             $QtdEtiquetas = $_POST['qtde_etq'];
+            $Folder = $_POST['folder'];
 
-            $res = $Etiquetas->CriarImagemEtiqueta($IdEtiqueta, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida);
+            $res = $Etiquetas->CriarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder);
 
             if ($res) {
-                $Etiquetas->GerarPDFEtiquetas($QtdEtiquetas, $CodigoMaterial);
+                echo $IdEtiqueta;
+
+
+//                return true;
+//                $Etiquetasb->GerarPDFEtiquetas($QtdEtiquetas, $CodigoMaterial);
             }
 
-//            var_dump($res);
-//            die();
+            break;
+        }
 
+    case "gerar_pdf_etiqueta": {
+            $Folder = $_POST['folder'];
+            $Etiquetas->GerarPDFEtiquetas($Folder);
+
+            
             break;
         }
 

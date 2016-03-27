@@ -5,8 +5,9 @@ get_head('Etiquetas', 'grid');
 
 echo mensagem();
 
-$EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
+//$_SESSION['imagens'] = null;
 
+$EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
 ?>
 
 <body>
@@ -111,34 +112,69 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
                 </tbody>
             </table>
         </div>
-
+        <?php
+        var_dump($_SESSION['imagens']);
+        ?>
         <script>
             $(document).ready(function () {
                 $("#gerar-qr").on("click", function () {
-                    var acao = "gerar_etiqueta";
-
-                    var CodigoMaterial = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.mate_codigo").val();
-                    var NomeMaterial = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.mate_nome").val();
-                    var UnidadeMedida = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.unidade_medida").val();
-                    var Centro = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.depo_centro").val();
-                    var QtdEtiquetas = $("input:checked").parentsUntil("tr").nextAll().find("input:hidden.qtde_etiqueta").val();
-                    var Id = $("input:checked").val();
 
                     $.ajax({
                         type: 'POST',
                         url: 'acoes.php',
+                        async: false,
                         data: {
-                            acao: acao,
-                            id: Id,
-                            cod_mate: CodigoMaterial,
-                            nome_mate: NomeMaterial,
-                            unidade_medida: UnidadeMedida,
-                            centro: Centro,
-                            qtde_etq: QtdEtiquetas
+                            acao: 'diretorio_image'
                         },
                         success: function (data) {
-                            //                        alert(data);
-                            window.location.href = 'Temp/' + CodigoMaterial + '.pdf';
+                            if (data == 'erro') {
+                                alert("Ocorreu um erro, tente novamente.");
+                            } else {
+                                nome_pasta = data;
+                            }
+                        }
+                    })
+
+                    $("input:checked").each(function () {
+
+                        var CodigoMaterial = $(this).parentsUntil("tr").nextAll().find("input:hidden.mate_codigo").val();
+                        var NomeMaterial = $(this).parentsUntil("tr").nextAll().find("input:hidden.mate_nome").val();
+                        var UnidadeMedida = $(this).parentsUntil("tr").nextAll().find("input:hidden.unidade_medida").val();
+                        var Centro = $(this).parentsUntil("tr").nextAll().find("input:hidden.depo_centro").val();
+                        var QtdEtiquetas = $(this).parentsUntil("tr").nextAll().find("input:hidden.qtde_etiqueta").val();
+                        var Id = $(this).val();
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'acoes.php',
+                            data: {
+                                acao: 'gerar_imagem_etiqueta',
+                                id: Id,
+                                cod_mate: CodigoMaterial,
+                                nome_mate: NomeMaterial,
+                                unidade_medida: UnidadeMedida,
+                                centro: Centro,
+                                qtde_etq: QtdEtiquetas,
+                                folder: nome_pasta
+                            },
+                            success: function (data) {
+//                                alert(data);
+//                                window.location.href = 'Temp/' + CodigoMaterial + '.pdf';
+                            }
+                        })
+                    })
+
+                    // Gerar PDF
+                    $.ajax({
+                        type: 'POST',
+                        url: 'acoes.php',
+                        async: false,
+                        data: {
+                            acao: 'gerar_pdf_etiqueta',
+                            folder: nome_pasta
+                        },
+                        success: function (data) {
+                            
                         }
                     })
                 })

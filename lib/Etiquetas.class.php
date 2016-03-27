@@ -120,14 +120,12 @@ class PEtiquetas extends Geleia {
 
 class Etiquetas extends PEtiquetas {
 
-    function GerarQRCode() {
-        $Nome = '';
-        $Link = '';
-    }
+    function CriarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $MaterialCodigo, $MaterialNome, $DepositoCentro, $UnidadeMedida, $Folder) {
 
-    function CriarImagemEtiqueta($IdEtiqueta, $MaterialCodigo, $MaterialNome, $DepositoCentro, $UnidadeMedida) {
-//        header("Content-Type: image/png");
+        // Salvar na sessão
+        $_SESSION['imagens'][$IdEtiqueta] = $QtdEtiquetas;
 
+        // Criando o container da imagem
         $imagecontainer = imagecreatetruecolor(600, 550);
         imagesavealpha($imagecontainer, true);
         $alphacolor = imagecolorallocatealpha($imagecontainer, 0, 0, 0, 127);
@@ -144,15 +142,16 @@ class Etiquetas extends PEtiquetas {
 //        $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=' . $Link);
         $qrimage = imagecreatefrompng('qrcode.png');
 
+        // Adicionando as leituras QR-Code na imagem por coordenadas
         imagecopyresampled($imagecontainer, $qrimage, 20, 210, 0, 0, 140, 200, 180, 190);
         imagecopyresampled($imagecontainer, $qrimage, 185, 210, 0, 0, 140, 200, 180, 190);
         imagecopyresampled($imagecontainer, $qrimage, 345, 210, 0, 0, 140, 200, 180, 190);
 
         $textcolor = imagecolorallocate($imagecontainer, 0, 0, 0);
-        $font = DOCUMENT_ROOT . '/assets/fonts/OpenSans-Bold.ttf';
+        $font = $_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/OpenSans-Bold.ttf';
 
 
-
+        // Escrevendo as informaçẽs em texto na imagem
         imagettftext($imagecontainer, 27, 0, 25, 50, $textcolor, $font, 'CENTRO: ' . strtoupper($DepositoCentro));
         if (strlen($MaterialCodigo) > 12) {
             imagettftext($imagecontainer, 20, 0, 25, 90, $textcolor, $font, 'MATERIAL: ');
@@ -176,12 +175,12 @@ class Etiquetas extends PEtiquetas {
             imagettftext($imagecontainer, 10, 0, 380, 535, $textcolor, $font, strtoupper($MaterialCodigo));
         }
 
-        $nome = 'Temp/' . $MaterialCodigo . '.png';
+        $nome = 'Temp/' . $Folder . '/' . $IdEtiqueta . '.png';
 
         return imagepng($imagecontainer, $nome);
     }
 
-    function GerarPDFEtiquetas($Quantidade, $MaterialCodigo) {
+    function GerarPDFEtiquetas($Folder) {
         $MLeft = 0.72;
         $MTop = 0.91;
 
@@ -196,36 +195,41 @@ class Etiquetas extends PEtiquetas {
         $pdf->SetMargins($MLeft, $MTop);
         $pdf->AddPage('P', 'A4');
 
-        $nome = 'Temp/' . $MaterialCodigo . '.png';
+        // Loop entre array de imagens criadas, salvas na sessão
+        $_SESSION['imagens'] = array_filter($_SESSION['imagens']);
+        $Caminho = 'Temp/' . $Folder . '/';
 
         $Topo = $MTop;
         $Esquerdo = $MLeft;
         $j = 1;
         $k = 1;
-        for ($i = 1; $i <= $Quantidade; $i++) {
+        foreach ($_SESSION['imagens'] as $IdEtiqueta => $Quantidade) {
+            $Imagem = $Caminho . $IdEtiqueta . '.png';
 
-            $pdf->Image($nome, $Esquerdo, $Topo, $CellWidth, $CellHeight);
+            for ($i = 1; $i <= $Quantidade ; $i++) {
+                $pdf->Image($Imagem, $Esquerdo, $Topo, $CellWidth, $CellHeight);
 
-            $Esquerdo = $MLeft + $CellWidth;
-            if ($j == 2) {
-                $Esquerdo = ($CellWidth * 2) + $MLeft;
+                $Esquerdo = $MLeft + $CellWidth;
+                if ($j == 2) {
+                    $Esquerdo = ($CellWidth * 2) + $MLeft;
+                }
+                if ($j == 3) {
+                    $Topo = ($CellHeight + $Topo) + $EspacoBaixo;
+                    $Esquerdo = $MLeft;
+                    $j = 0;
+                }
+                if ($k >= 18) {
+                    $pdf->AddPage('P', 'A4');
+                    $Topo = $MTop;
+                    $Esquerdo = $MLeft;
+                    $k = 0;
+                }
+                $k++;
+                $j++;
             }
-            if ($j == 3) {
-                $Topo = ($CellHeight + $Topo) + $EspacoBaixo;
-                $Esquerdo = $MLeft;
-                $j = 0;
-            }
-            if ($k >= 18) {
-                $pdf->AddPage('P', 'A4');
-                $Topo = $MTop;
-                $Esquerdo = $MLeft;
-                $k = 0;
-            }
-            $k++;
-            $j++;
         }
 
-        $nome = 'Temp/' . $MaterialCodigo . '.pdf';
+        $nome = 'Temp/' . time() . '.pdf';
 
         $pdf->Output('F', $nome);
     }

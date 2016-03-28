@@ -22,7 +22,6 @@ switch ($acao) {
             } else {
                 echo 'erro';
             }
-
         }
 
     case "gerar_imagem_etiqueta": {
@@ -60,13 +59,12 @@ switch ($acao) {
 
             break;
         }
-        
+
     case "deletar_pdf": {
-        $Arquivo = $_POST['arquivo'];
-        
-        unlink($Arquivo);
-        
-    }
+            $Arquivo = $_POST['arquivo'];
+
+            unlink($Arquivo);
+        }
 
     case "salvar_leitura": {
             $QuantidadeAferida = $_POST['quant_aferida'];
@@ -78,17 +76,26 @@ switch ($acao) {
             $MateId = $_POST['mate_id'];
             $Cod_leitura = $_POST['etiq_cod_final'];
 
-//        var_dump($_POST);
-//        die();
+            $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura);
 
-            $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura);
+            if ($res) {
+                $_SESSION['Mensagem']['tipo'] = "sucesso";
+                $_SESSION['Mensagem']['texto'] = "Leitura salva com sucesso.";
+
+                header('Location: /modulos/etiquetas/');
+            } else {
+                $_SESSION['Mensagem']['tipo'] = "erro";
+                $_SESSION['Mensagem']['texto'] = "Ocorreu algum erro, tente novamente.";
+            }
+
+            break;
         }
 
     case "importar": {
             $nome = md5($_FILES['arquivo_csv']['name'] . time()) . '.csv';
-            $destino = DOCUMENT_ROOT . 'Temp/' . $_FILES['arquivo_csv']['name'];
+            $destino = $_SERVER['DOCUMENT_ROOT'] . 'Temp/' . $_FILES['arquivo_csv']['name'];
 
-            var_dump(move_uploaded_file($_FILES["arquivo_csv"]["tmp_name"], $destino));
+            move_uploaded_file($_FILES["arquivo_csv"]["tmp_name"], $destino);
 
             if ($Etiquetas->ImportarEtiquetas($destino)) {
                 $_SESSION['Mensagem']['tipo'] = "sucesso";

@@ -30,6 +30,7 @@ $Materiais      = new Materiais('materiais');
 $Global         = new Geleia();
 $FuncoesPadroes = new FuncoesPadroes();
 
+
 // Operações Usadas em GRID
 
 // Ordenação
@@ -53,7 +54,7 @@ if ($_GET['busca']) {
 }
 
 // Verificar se está logado
-if (!EstaLogado()) {
+if (!EstaLogado() && !preg_match('/mleitura/', $_SERVER['SCRIPT_FILENAME'])) {
     header ('Location: /index.php');
 }
 

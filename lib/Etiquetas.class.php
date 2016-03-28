@@ -70,13 +70,15 @@ class PEtiquetas extends Geleia {
     function VerificarLeituraAberta($etiq_id) {
         global $db;
 
-        for ($i = 1; $i <= 3; $i++) {
-            $sql = 'SELECT etiq_cod_leitura' . $i . ' FROM etiquetas WHERE etiq_cod_leitura' . $i . ' IS NULL AND etiq_id = ' . $etiq_id;
-            if ($db->GetObject($sql)) {
-                return $i;
-            }
+        $sql = 'SELECT etiq_leitura FROM etiquetas WHERE etiq_id = ' . $etiq_id;
+        
+        $leitura = $db->GetObject($sql);
+
+        if ($leitura) {
+            return $leitura->etiq_leitura;
+        } else {
+            return false;
         }
-        return 1;
     }
 
     function SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura) {
@@ -88,9 +90,12 @@ class PEtiquetas extends Geleia {
         $sql = "INSERT INTO leitura (leit_quantidade_aferida, leit_id_material, leit_loc_material, leit_etiq_id, leit_mate_id, leit_livre1, leit_livre2, leit_cod_leitura, leit_nu_leitura) VALUES ('$QuantidadeAferida', '$IdMaterial', '$LocMaterial', '$EtiquetaId', '$MateId', '$Livre1', '$Livre2', '$Cod_leitura', '$leitura')";
 
         if ($db->ExecSQL($sql)) {
-            $sql = "UPDATE etiquetas SET etiq_cod_leitura" . $leitura . " = '" . $Cod_leitura . "' WHERE etiq_id = " . $EtiquetaId;
-
+            $sql = "UPDATE etiquetas SET etiq_cod_leitura " . $leitura . " = '" . $Cod_leitura . "' , etiq_leitura = " . $leitura + 1 . " WHERE etiq_id = " . $EtiquetaId;
             $db->ExecSQL($sql);
+
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -98,7 +103,7 @@ class PEtiquetas extends Geleia {
         global $db;
 
         $sql = "SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiqId . " AND leit_mate_id = " . $MateId . " AND leit_nu_leitura = " . $Leitura;
-//        echo $sql;
+
         return $db->GetObject($sql);
     }
 
@@ -135,13 +140,12 @@ class Etiquetas extends PEtiquetas {
         imagecopyresampled($imagecontainer, $background, 0, 0, 0, 0, 500, 555, 605, 550);
 
 // Our QR-Code
-// http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=olaaa
+//        http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=olaaa
+//        $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=');
+
+        $Link = "https://vivoinventario.asix6.com/modulos/etiquetas/mleitura.php?id=" . $IdEtiqueta;
+        $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=' . $Link);
 //        $qrimage = imagecreatefrompng('qrcode.png');
-
-        $Link = "http://192.168.100.5/modulos/etiquetas/mleitura.php?id=" . $IdEtiqueta;
-//        $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=' . $Link);
-        $qrimage = imagecreatefrompng('qrcode.png');
-
         // Adicionando as leituras QR-Code na imagem por coordenadas
         imagecopyresampled($imagecontainer, $qrimage, 20, 210, 0, 0, 140, 200, 180, 190);
         imagecopyresampled($imagecontainer, $qrimage, 185, 210, 0, 0, 140, 200, 180, 190);
@@ -206,7 +210,7 @@ class Etiquetas extends PEtiquetas {
         foreach ($_SESSION['imagens'] as $IdEtiqueta => $Quantidade) {
             $Imagem = $Caminho . $IdEtiqueta . '.png';
 
-            for ($i = 1; $i <= $Quantidade ; $i++) {
+            for ($i = 1; $i <= $Quantidade; $i++) {
                 $pdf->Image($Imagem, $Esquerdo, $Topo, $CellWidth, $CellHeight);
 
                 $Esquerdo = $MLeft + $CellWidth;
@@ -232,7 +236,7 @@ class Etiquetas extends PEtiquetas {
         $nome = 'Temp/' . time() . '.pdf';
 
         $pdf->Output('F', $nome);
-        
+
         return $nome;
     }
 

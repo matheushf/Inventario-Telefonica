@@ -13,7 +13,7 @@ if (isset($_GET['acao'])) {
 switch ($acao) {
 
     case "alterar_leitura": {
-            $DepoId = $_POST['id'];
+            $DepoId  = $_POST['id'];
             $Leitura = $_POST['leitura'];
 
             if ($Deposito->AlterarLeitura($DepoId, $Leitura)) {
@@ -27,9 +27,9 @@ switch ($acao) {
 
     case "importar": {
             $nome = md5($_FILES['arquivo_csv']['name'] . time()) . '.csv';
-            $destino = DOCUMENT_ROOT . 'Temp/' . $_FILES['arquivo_csv']['name'];
+            $destino = $_SERVER['DOCUMENT_ROOT'] . 'Temp/' . $_FILES['arquivo_csv']['name'];
 
-            var_dump(move_uploaded_file($_FILES["arquivo_csv"]["tmp_name"], $destino));
+            move_uploaded_file($_FILES["arquivo_csv"]["tmp_name"], $destino);
 
             if ($Deposito->ImportarDepositos($destino)) {
                 $_SESSION['Mensagem']['tipo'] = "sucesso";

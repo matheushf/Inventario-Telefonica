@@ -5,7 +5,6 @@ require_once 'Funcoes.php';
 if (EstaLogado()) {
     header('Location: /modulos/materiais/');
 }
-
 ?>
 
 <!DOCTYPE html>

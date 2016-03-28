@@ -1,11 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
-
-
 get_head('Materiais', 'grid');
 
-echo get_include_path();
 mensagem();
 
 $MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search, $Paginacao);

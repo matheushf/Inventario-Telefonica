@@ -113,9 +113,6 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
             </table>
         </div>
         <a href="" download id="download"><span style="display: none">download</span></a>
-        <?php
-        var_dump($_SESSION['imagens']);
-        ?>
         <script>
             $(document).ready(function () {
                 $("#gerar-qr").on("click", function () {

@@ -10,7 +10,7 @@
 
 class PMateriais extends Geleia {
 
-    function ListarMateriais($OrderBy = 'ORDER BY mate_id ASC', $Search = null, $Paginacao = 'LIMIT 50') {
+    function ListarMateriais($OrderBy = 'ORDER BY mate_nome ASC', $Search = null, $Paginacao = 'LIMIT 50') {
         global $db;
 
         if ($Search != null) {

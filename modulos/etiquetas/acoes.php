@@ -80,6 +80,8 @@ switch ($acao) {
             $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $cpf);
 
             if ($res) {
+                setcookie('cpf', $cpf, time() + (1000 * 30), '/');
+
                 $_SESSION['Mensagem']['tipo'] = "sucesso";
                 $_SESSION['Mensagem']['texto'] = "Leitura salva com sucesso.";
 

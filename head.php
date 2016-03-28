@@ -35,7 +35,6 @@
         <script type="text/javascript" href="/assets/js/plugins/datepicker/bootstrap-datepicker.pt-BR.js"></script>
         <link href="/assets/css/plugins/datepicker/datepicker3.css" rel="stylesheet">
 
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <script src="/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>

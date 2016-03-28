@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c> 
+	Options +FollowSymLinks 
+	Options -Indexes 
+	RewriteEngine On 
+	RewriteBase / 
+
+## Retirar a extensão da url
+# ## hide .php extension snippet
+# ## To externally redirect /dir/foo.php to /dir/foo
+#RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+#RewriteCond %{THE_REQUEST} !index.php [NC]
+#RewriteCond %{THE_REQUEST} !Confirmacao.php [NC]
+#RewriteCond %{THE_REQUEST} !acoes.php [NC]
+#RewriteRule ^ %1 [R,L]
+# ## To internally forward /dir/foo to /dir/foo.php
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME}.php -f
+#RewriteRule ^(.*?)/?$ $1.php [L]
+  
+   ErrorDocument 404 /lib/erros/404.php
+   ErrorDocument 403 /lib/erros/403.php
+   ErrorDocument 500 /lib/erros/500.php
+
+## Forçar o uso de HTTPS   
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https:#example.com/$1 [R,L]   
+</IfModule>

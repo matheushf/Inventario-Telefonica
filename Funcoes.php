@@ -5,14 +5,14 @@ function get_head($Titulo, $FormGrid = null, $path = null) {
     if (!isset($path))
         $path = 'head.php';
 
-    include (DOCUMENT_ROOT . '/' . $path);
+    include ($_SERVER['DOCUMENT_ROOT'] . '/' . $path);
 }
 
 function get_foot($path = null) {
 
     $path = $path . "foot.php";
 
-    include (DOCUMENT_ROOT . '/' . $path);
+    include ($_SERVER['DOCUMENT_ROOT'] . '/' . $path);
 }
 
 function _debug($array) {

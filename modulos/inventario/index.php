@@ -34,7 +34,11 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
             <table class="table table-striped table-hover table-bordered ">
                 <thead>
                     <tr>
-                        <th> </th>
+                        <th style="width: 50px">
+                            <center>
+                                <input type="checkbox" id="check_all" value="">
+                            </center>
+                        </th>
                         <th>Data</th>
                         <th>Cód Inventário</th>
                         <th>Cód Material</th>

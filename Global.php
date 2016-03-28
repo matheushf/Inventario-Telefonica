@@ -2,8 +2,6 @@
 
 $doc_root = $_SERVER['DOCUMENT_ROOT'] . '/';
 
-set_include_path( get_include_path() . PATH_SEPARATOR . $_SERVER['DOCUMENT_ROOT'] );
-
 ini_set("include_path", ini_get("include_path") . PATH_SEPARATOR . $doc_root . "/lib/" . PATH_SEPARATOR . $doc_root . "/lib/external/");
 
 // Requires relacionadas a Lib

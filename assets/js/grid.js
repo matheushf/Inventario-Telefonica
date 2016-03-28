@@ -60,7 +60,28 @@ $(document).ready(function () {
 
     // Marcar linha clicada na grid
     var selecionado = null;
-
+    var todos_selecionados = false;
+    
+    // Selecionar todos checkbox
+    $("#check_all").on("change", function () {
+        alert('ue');
+        if (todos_selecionados) {
+            todos_selecionados = false;
+        } else {
+            todos_selecionados = true;
+        }
+        
+        $("input:checkbox").each(function () {
+            if (todos_selecionados) {
+                $(this).prop("checked", true);
+                
+            } else {
+                $(this).prop("checked", false);
+            }
+        })
+    })
+    
+    // pequeno hack para tirar o bug ao selecionar todos
     $("input:checkbox").on("click", function () {
         selecionado = true;
     })
@@ -75,6 +96,7 @@ $(document).ready(function () {
         }
 
         if (!checkbox.is(':checked')) {
+            alert('mas');
             checkbox.prop("checked", true);
         } else {
             checkbox.prop("checked", false);

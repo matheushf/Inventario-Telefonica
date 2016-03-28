@@ -52,7 +52,11 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
-                    <th style="width: 50px"></th>
+                    <th style="width: 50px">
+                        <center>
+                            <input type="checkbox" id="check_all" value="">
+                        </center>
+                    </th>
                     <th>
                         <a href="?ordem=<?= $ordem ?>&by=depo_empresa">EPS</a>
                     </th>

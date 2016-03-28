@@ -88,5 +88,5 @@ if (EstaLogado()) {
 
         </div>
 
-    </body>
-</html>
+<?php
+get_foot();

@@ -1,9 +1,10 @@
 <?php
 session_start();
 
+set_include_path( get_include_path() . PATH_SEPARATOR . $_SERVER['DOCUMENT_ROOT'] );
+set_include_path($_SERVER['DOCUMENT_ROOT'] . '/lib/' . ';' .  $_SERVER['DOCUMENT_ROOT'] . '/lib/external/GeleiaFramework');
 // Variaveis globais de sistema
 define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/');
-define('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
 
 // Requires relacionados a Configurações e Funcões
 require_once 'Funcoes.php';

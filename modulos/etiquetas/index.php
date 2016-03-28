@@ -43,7 +43,11 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr style="white-space: nowrap">
-                        <th style="width: 50px"></th>
+                        <th style="width: 50px">
+                            <center>
+                                <input type="checkbox" id="check_all" value="">
+                            </center>
+                        </th>
                         <th>Cód Final Inventário</th>
                         <th>Cód Leitura 1       </th>
                         <th>Cód Leitura 2       </th>

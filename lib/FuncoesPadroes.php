@@ -29,6 +29,7 @@ class FuncoesPadroes extends Geleia {
                     $DepositoCentro = $DepositoCentro->depo_centro;
 
                     $_POST['cod_final'] = $DepositoCentro . '-' . $MaterialCodigo;
+                    $_POST['leitura'] = 1;
 
                     break;
                 }
@@ -47,7 +48,9 @@ class FuncoesPadroes extends Geleia {
     }
 
     function Delete($Id, $Modulo) {
-        $this->SQL_Delete = "UPDATE " . $Modulo . " SET " . substr($Modulo, 0, 4) . "_excluido = 1 WHERE " . substr($Modulo, 0, 4) . "_id = " . (int) $Id;
+//        $this->SQL_Delete = "UPDATE " . $Modulo . " SET " . substr($Modulo, 0, 4) . "_excluido = 1 WHERE " . substr($Modulo, 0, 4) . "_id = " . (int) $Id;
+        
+        $this->SQL_Delete = "DELETE FROM " . $Modulo . " WHERE " . substr($Modulo, 0, 4) . "_id = " . (int) $Id;
 
         return parent::Delete();
     }

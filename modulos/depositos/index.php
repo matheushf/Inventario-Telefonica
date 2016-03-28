@@ -49,66 +49,68 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
 
         <br><br>
 
-        <table class="table table-striped table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th style="width: 50px">
-                        <center>
-                            <input type="checkbox" id="check_all" value="">
-                        </center>
-                    </th>
-                    <th>
-                        <a href="?ordem=<?= $ordem ?>&by=depo_empresa">EPS</a>
-                    </th>
-                    <th><a href="?ordem=<?= $ordem ?>&by=depo_centro">Centro  </a></th>
-                    <th><a href="?ordem=<?= $ordem ?>&by=depo_cidade">Cidade  </a></th>
-                    <th>Status  </th>
-                    <th>Livre 1 </th>
-                    <th>Livre 2 </th>
-                    <th>Livre 3 </th>
-                    <th>Leitura </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($Depositos as $dep) {
-                    ?>
+        <div  class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
                     <tr>
-                        <td>
+                        <th style="width: 50px">
                 <center>
-                    <input type="checkbox" id="<?php echo $dep->depo_id ?>" value="<?php echo $dep->depo_id ?>">
+                    <input type="checkbox" id="check_all" value="">
                 </center>
-                </td>                        
-                <td>
-                    <?php echo $dep->depo_empresa ?>
-                </td>
-                <td>
-                    <?php echo $dep->depo_centro ?>
-                </td>
-                <td>
-                    <?php echo $dep->depo_cidade ?>
-                </td>
-                <td>
-                    <?php echo $dep->depo_status ?>
-                </td>
-                <td>
-                    <?php echo $dep->depo_livre1 ?>
-                </td>
-                <td>
-                    <?php echo $dep->depo_livre2 ?>
-                </td>
-                <td>
-                    <?php echo $dep->depo_livre3 ?>
-                </td>
-                <td id="depo_leitura<?php echo $dep->depo_id ?>">
-                    <?php echo $dep->depo_leitura ?>
-                </td>                
+                </th>
+                <th>
+                    <a href="?ordem=<?= $ordem ?>&by=depo_empresa">EPS</a>
+                </th>
+                <th><a href="?ordem=<?= $ordem ?>&by=depo_centro">Centro  </a></th>
+                <th><a href="?ordem=<?= $ordem ?>&by=depo_cidade">Cidade  </a></th>
+                <th>Status  </th>
+                <th>Livre 1 </th>
+                <th>Livre 2 </th>
+                <th>Livre 3 </th>
+                <th>Leitura </th>
                 </tr>
-                <?php
-            }
-            ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($Depositos as $dep) {
+                        ?>
+                        <tr>
+                            <td>
+                    <center>
+                        <input type="checkbox" id="<?php echo $dep->depo_id ?>" value="<?php echo $dep->depo_id ?>">
+                    </center>
+                    </td>                        
+                    <td>
+                        <?php echo $dep->depo_empresa ?>
+                    </td>
+                    <td>
+                        <?php echo $dep->depo_centro ?>
+                    </td>
+                    <td>
+                        <?php echo $dep->depo_cidade ?>
+                    </td>
+                    <td>
+                        <?php echo $dep->depo_status ?>
+                    </td>
+                    <td>
+                        <?php echo $dep->depo_livre1 ?>
+                    </td>
+                    <td>
+                        <?php echo $dep->depo_livre2 ?>
+                    </td>
+                    <td>
+                        <?php echo $dep->depo_livre3 ?>
+                    </td>
+                    <td id="depo_leitura<?php echo $dep->depo_id ?>">
+                        <?php echo $dep->depo_leitura ?>
+                    </td>                
+                    </tr>
+                    <?php
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
 
         <script>
             $("#leitura").change(function () {

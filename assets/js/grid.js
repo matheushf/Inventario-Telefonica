@@ -32,7 +32,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: 'POST',
-                url: '/vivo-inventario/lib/action.php',
+                url:'/lib/action.php',
                 data: {
                     acao: 'excluir',
                     id: id,
@@ -96,7 +96,6 @@ $(document).ready(function () {
         }
 
         if (!checkbox.is(':checked')) {
-            alert('mas');
             checkbox.prop("checked", true);
         } else {
             checkbox.prop("checked", false);

@@ -75,8 +75,9 @@ switch ($acao) {
             $EtiquetaId = $_POST['etiq_id'];
             $MateId = $_POST['mate_id'];
             $Cod_leitura = $_POST['etiq_cod_final'];
+            $cpf = $_POST['cpf'];
 
-            $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura);
+            $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $cpf);
 
             if ($res) {
                 $_SESSION['Mensagem']['tipo'] = "sucesso";

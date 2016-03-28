@@ -36,64 +36,70 @@ $MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search, $Paginacao);
 
         <br><br>
 
-        <table class="table table-striped table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th style="width: 50px"></th>
-                    <th>
-                        <?php ?>
-                        <a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a>
-                    </th>
-                    <th>
-                        <a href="?ordem=<?= $ordem ?>&by=mate_nome">Texto Breve Material    </a>
-                    </th>
-                    <th>Unidade de Medida       </th>
-                    <th>Valor Unitário          </th>
-                    <th>Livre 1                 </th>
-                    <th>Livre 2                 </th>
-                    <th>Livre 3                 </th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <?php
-                foreach ($MateriaisLista as $mate) {
-                    ?>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
                     <tr>
-                        <td>
-                <center>
-                    <input type="checkbox" id="<?php echo $mate->mate_id ?>" value="<?php echo $mate->mate_id ?>">
-                </center>
-                </td>                            
-                <td>
-                    <?php echo $mate->mate_codigo ?>
-                </td>
-                <td>
-                    <?php echo $mate->mate_nome ?>
-                </td>
-                <td>
-                    <?php echo $mate->mate_unidade_medida ?>
-                </td>
-                <td>
-                    <?php echo $mate->mate_valor_unitario ?>
-                </td>
-                <td>
-                    <?php echo $mate->mate_livre1 ?>
-                </td>
-                <td>
-                    <?php echo $mate->mate_livre2 ?>
-                </td>
-                <td>
-                    <?php echo $mate->mate_livre3 ?>
-                </td>
-                </tr>
-                <?php
-            }
-            ?>
-            </tbody>
-        </table>
-        
+                        <th style="width: 50px">
+                            <center>
+                                <input type="checkbox" id="check_all" value="">
+                            </center>
+                        </th>
+                        <th>
+                            <?php ?>
+                            <a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a>
+                        </th>
+                        <th>
+                            <a href="?ordem=<?= $ordem ?>&by=mate_nome">Texto Breve Material    </a>
+                        </th>
+                        <th>Unidade de Medida       </th>
+                        <th>Valor Unitário          </th>
+                        <th>Livre 1                 </th>
+                        <th>Livre 2                 </th>
+                        <th>Livre 3                 </th>
+                    </tr>
+                </thead>
 
-    <?php
-    get_foot('grid');
-    
+                <tbody>
+                    <?php
+                    foreach ($MateriaisLista as $mate) {
+                        ?>
+                        <tr>
+                            <td>
+                    <center>
+                        <input type="checkbox" id="<?php echo $mate->mate_id ?>" value="<?php echo $mate->mate_id ?>">
+                    </center>
+                    </td>                            
+                    <td>
+                        <?php echo $mate->mate_codigo ?>
+                    </td>
+                    <td>
+                        <?php echo $mate->mate_nome ?>
+                    </td>
+                    <td>
+                        <?php echo $mate->mate_unidade_medida ?>
+                    </td>
+                    <td>
+                        <?php echo $mate->mate_valor_unitario ?>
+                    </td>
+                    <td>
+                        <?php echo $mate->mate_livre1 ?>
+                    </td>
+                    <td>
+                        <?php echo $mate->mate_livre2 ?>
+                    </td>
+                    <td>
+                        <?php echo $mate->mate_livre3 ?>
+                    </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+
+
+        <?php
+        get_foot('grid');
+        

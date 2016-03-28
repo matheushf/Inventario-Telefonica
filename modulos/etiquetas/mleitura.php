@@ -9,13 +9,13 @@ $NLeituraEtiq = $Etiquetas->VerificarLeituraAberta($EtiquetaInfo->etiq_id);
 
 $NLeituraDepo = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);
 
-if ($NLeituraDepo < $NLeituraEtiq) {
-    $bloquear = true;
-    $mensagem = 'A leitura ainda não foi liberada pelo depósito';
-} elseif ($NLeituraDepo <= $NLeituraEtiq) {
+if ($NLeituraEtiq == 3) {
     $bloquear = true;
     $mensagem = 'A leitura atingiu seu limite.';
-}
+} elseif ($NLeituraDepo < $NLeituraEtiq) {
+    $bloquear = true;
+    $mensagem = 'A leitura ainda não foi liberada pelo depósito';
+} 
 
 mensagem();
 ?>
@@ -66,6 +66,10 @@ mensagem();
 
                     <br><br>
                     <form action="acoes.php?acao=salvar_leitura" method="POST" role="form">
+                        <div class="form-group">
+                            <label for="quant_aferida">CPF: </label>
+                            <input type="text" class="form-control"  name="cpf" id="cpf" required="true">
+                        </div>
                         <div class="form-group">
                             <label for="quant_aferida">Quantidade Aferida: </label>
                             <input type="text" class="form-control"  name="quant_aferida" id="quant_aferida" required="true">

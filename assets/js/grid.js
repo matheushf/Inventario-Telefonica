@@ -32,7 +32,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: 'POST',
-                url:'/lib/action.php',
+                url: '/lib/action.php',
                 data: {
                     acao: 'excluir',
                     id: id,
@@ -59,29 +59,18 @@ $(document).ready(function () {
     })
 
     // Marcar linha clicada na grid
-    var selecionado = null;
-    var todos_selecionados = false;
-    
+    selecionado = null;
+    todos_selecionados = false;
+    tr_click = false;
+
     // Selecionar todos checkbox
     $("#check_all").on("change", function () {
-        alert('ue');
-        if (todos_selecionados) {
-            todos_selecionados = false;
-        } else {
-            todos_selecionados = true;
+        if (!tr) {
+            ChecarTodos();
         }
-        
-        $("input:checkbox").each(function () {
-            if (todos_selecionados) {
-                $(this).prop("checked", true);
-                
-            } else {
-                $(this).prop("checked", false);
-            }
-        })
     })
-    
-    // pequeno hack para tirar o bug ao selecionar todos
+
+    // Pequeno hack para tirar o bug ao selecionar todos
     $("input:checkbox").on("click", function () {
         selecionado = true;
     })
@@ -89,6 +78,12 @@ $(document).ready(function () {
     $("tr").on("click", function () {
 
         var checkbox = $(this).find(':checkbox');
+
+        if (checkbox.attr("id") == "check_all") {
+            tr_click = true;
+            ChecarTodos();
+            return;
+        }
 
         if (selecionado) {
             selecionado = false;
@@ -117,4 +112,21 @@ function PegarId() {
     var id = $("input:checked").val();
 
     return id;
+}
+
+function ChecarTodos() {
+    if (todos_selecionados) {
+        todos_selecionados = false;
+    } else {
+        todos_selecionados = true;
+    }
+
+    $("input:checkbox").each(function () {
+        if (todos_selecionados) {
+            $(this).prop("checked", true);
+
+        } else {
+            $(this).prop("checked", false);
+        }
+    })
 }

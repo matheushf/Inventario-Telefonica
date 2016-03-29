@@ -135,25 +135,32 @@ class Etiquetas extends PEtiquetas {
         $_SESSION['imagens'][$IdEtiqueta] = $QtdEtiquetas;
 
         // Criando o container da imagem
-        $imagecontainer = imagecreatetruecolor(600, 550);
+        $imagecontainer = imagecreatetruecolor(620, 550);
         imagesavealpha($imagecontainer, true);
         $alphacolor = imagecolorallocatealpha($imagecontainer, 0, 0, 0, 127);
         imagefill($imagecontainer, 0, 0, $alphacolor);
 
         $background = imagecreatefrompng('TemplateEtiqueta.png');
-        imagecopyresampled($imagecontainer, $background, 0, 0, 0, 0, 500, 555, 605, 550);
+        imagecopyresampled($imagecontainer, $background, 0, 0, 0, 0, 600, 550, 608, 542);
+//        imagecopyresampled($dst_image, $src_image, $dst_x = 0, $dst_y = 0, $src_x = 0, $src_y = 0, $dst_w, $dst_h, $src_w, $src_h);
 
-// Our QR-Code
 //        http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=olaaa
 //        $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=');
 
         $Link = "https://vivoinventario.asix6.com/modulos/etiquetas/mleitura.php?id=" . $IdEtiqueta;
         $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=' . $Link);
 //        $qrimage = imagecreatefrompng('qrcode.png');
+//        
+
+        $src_wid = 165;
+        $src_hei = 165;
+        $dst_wid = 155;
+        $dst_hei = 155;
+        $y       = 225;
         // Adicionando as leituras QR-Code na imagem por coordenadas
-        imagecopyresampled($imagecontainer, $qrimage, 20, 210, 0, 0, 140, 200, 180, 190);
-        imagecopyresampled($imagecontainer, $qrimage, 185, 210, 0, 0, 140, 200, 180, 190);
-        imagecopyresampled($imagecontainer, $qrimage, 345, 210, 0, 0, 140, 200, 180, 190);
+        imagecopyresampled($imagecontainer, $qrimage, 30, $y, 0, 0, $dst_wid, $dst_hei, $src_wid, $src_hei);
+        imagecopyresampled($imagecontainer, $qrimage, 220, $y, 0, 0, $dst_wid, $dst_hei, $src_wid, $src_hei);
+        imagecopyresampled($imagecontainer, $qrimage, 415, $y, 0, 0, $dst_wid, $dst_hei, $src_wid, $src_hei);
 
         $textcolor = imagecolorallocate($imagecontainer, 0, 0, 0);
         $font = $_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/OpenSans-Bold.ttf';
@@ -184,19 +191,20 @@ class Etiquetas extends PEtiquetas {
         }
 
         $nome = 'Temp/' . $Folder . '/' . $IdEtiqueta . '.png';
-
+//        $nome = 'Temp/imagem.png';
+        
         return imagepng($imagecontainer, $nome);
     }
 
     function GerarPDFEtiquetas($Folder) {
-        $MLeft = 0.72;
-        $MTop = 0.91;
+        $MLeft = 0.74;
+        $MTop = 0.93;
 
         $CellWidth = 6.61;
         $CellHeight = 4.65;
 
         $EspacoMeio = 2.6;
-        $EspacoBaixo = 0.1;
+        $EspacoBaixo = 0.02;
 
         $pdf = new FPDF('P', 'cm', 'A4');
 

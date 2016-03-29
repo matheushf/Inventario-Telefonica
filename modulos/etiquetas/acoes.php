@@ -37,10 +37,6 @@ switch ($acao) {
 
             if ($res) {
                 echo $IdEtiqueta;
-
-
-//                return true;
-//                $Etiquetasb->GerarPDFEtiquetas($QtdEtiquetas, $CodigoMaterial);
             }
 
             break;

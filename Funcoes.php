@@ -8,11 +8,8 @@ function get_head($Titulo, $FormGrid = null, $path = null) {
     include ($_SERVER['DOCUMENT_ROOT'] . '/' . $path);
 }
 
-function get_foot($path = null) {
-
-    $path = $path . "foot.php";
-
-    include ($_SERVER['DOCUMENT_ROOT'] . '/' . $path);
+function get_foot($tipo = null) {
+    include ($_SERVER['DOCUMENT_ROOT'] . '/foot.php');
 }
 
 function _debug($array) {

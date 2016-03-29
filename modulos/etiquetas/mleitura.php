@@ -1,12 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
-$EtiquetaId = $_GET['id'];
-
+$EtiquetaId   = $_GET['id'];
 $EtiquetaInfo = $Etiquetas->getById($EtiquetaId);
-
 $NLeituraEtiq = $Etiquetas->VerificarLeituraAberta($EtiquetaInfo->etiq_id);
-
 $NLeituraDepo = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);
 
 if ($NLeituraEtiq == 4) {
@@ -64,7 +61,7 @@ mensagem();
                 } else {
                     ?>    
                     <center>
-                        <h2>Leitura <?= $NLeituraEtiq ?> </h2>
+                        <h2>Contagem <?= $NLeituraEtiq ?> </h2>
                     </center>
 
                     <h3><b>Centro:</b> <span style="color: blueviolet"><?php echo $EtiquetaInfo->depo_centro ?></span> </h3>
@@ -125,3 +122,7 @@ mensagem();
             })
         })
     </script>
+    
+<?php
+get_foot();
+?>

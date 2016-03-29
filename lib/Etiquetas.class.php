@@ -5,11 +5,10 @@
  *
  * @author Matheus Victor <hffmatheus@gmail.com>
  */
-require_once DOCUMENT_ROOT . "/lib/external/fpdf/fpdf.php";
-require_once DOCUMENT_ROOT . "/lib/external/fpdi/fpdi.php";
-require_once DOCUMENT_ROOT . "/lib/DB.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/lib/external/fpdf/fpdf.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/lib/external/fpdi/fpdi.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/lib/DB.class.php";
 
-//include DOCUMENT_ROOT . "/Config.php";
 $db = new DB();
 
 class PEtiquetas extends Geleia {
@@ -34,8 +33,12 @@ class PEtiquetas extends Geleia {
         $this->SQList['select.material']['key'] = "mate_id";
     }
 
-    function ListarEtiquetas($OrderBy = 'ORDER BY etiq_id ASC', $Search = null, $Paginacao = 'LIMIT 50') {
+    function ListarEtiquetas($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50') {
         global $db;
+        
+        if($OrderBy == null) {
+            $OrderBy = 'ORDER BY etiq_id ASC';
+        }
 
         if ($Search != null) {
             $Search = "AND ("

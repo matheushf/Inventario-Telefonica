@@ -7,10 +7,12 @@
  */
 class PInventario extends Geleia {
 
-//put your code here
-
-    function ListarInventario($OrderBy = 'ORDER BY inve_id ASC', $Search = null, $Paginacao = 'LIMIT 50') {
+    function ListarInventario($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50') {
         global $db;
+        
+        if ($OrderBy == null) {
+            $OrderBy = 'ORDER BY etiq_id ASC';
+        }
 
         if ($Search != null) {
             $Search = "AND ("

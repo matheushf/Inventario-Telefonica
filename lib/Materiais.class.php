@@ -6,13 +6,15 @@
  * @author Matheus Victor <hffmatheus@gmail.com>
  */
 
-//require_once DOCUMENT_ROOT . "/Global.php";
-
 class PMateriais extends Geleia {
 
-    function ListarMateriais($OrderBy = 'ORDER BY mate_nome ASC', $Search = null, $Paginacao = 'LIMIT 50') {
+    function ListarMateriais($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50') {
         global $db;
 
+        if($OrderBy == null) {
+            $OrderBy = 'ORDER BY mate_nome ASC';
+        }
+        
         if ($Search != null) {
             $Search = " AND ("
                     . "mate_codigo LIKE '%" . $Search . "%'"

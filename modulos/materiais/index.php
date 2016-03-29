@@ -41,23 +41,23 @@ $MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search, $Paginacao);
                 <thead>
                     <tr>
                         <th style="width: 50px">
-                            <center>
-                                <input type="checkbox" id="check_all" value="">
-                            </center>
-                        </th>
-                        <th>
-                            <?php ?>
-                            <a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a>
-                        </th>
-                        <th>
-                            <a href="?ordem=<?= $ordem ?>&by=mate_nome">Texto Breve Material    </a>
-                        </th>
-                        <th>Unidade de Medida       </th>
-                        <th>Valor Unitário          </th>
-                        <th>Livre 1                 </th>
-                        <th>Livre 2                 </th>
-                        <th>Livre 3                 </th>
-                    </tr>
+                <center>
+                    <input type="checkbox" id="check_all" value="">
+                </center>
+                </th>
+                <th>
+                    <?php ?>
+                    <a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a>
+                </th>
+                <th>
+                    <a href="?ordem=<?= $ordem ?>&by=mate_nome">Texto Breve Material    </a>
+                </th>
+                <th>Unidade de Medida       </th>
+                <th>Valor Unitário          </th>
+                <th>Livre 1                 </th>
+                <th>Livre 2                 </th>
+                <th>Livre 3                 </th>
+                </tr>
                 </thead>
 
                 <tbody>

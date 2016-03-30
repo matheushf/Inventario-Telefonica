@@ -68,7 +68,7 @@ function GerarInsert($Campos, $Tabela, $Valores) {
     $sql = "INSERT INTO " . $Tabela . " ( ";
 
     foreach ($Campos as $campo) {
-        $sql .= " " . trim($campo) . ", ";
+        $sql .= " " . $campo . ", ";
     }
 
     $sql = substr($sql, 0, -2);
@@ -76,7 +76,7 @@ function GerarInsert($Campos, $Tabela, $Valores) {
     $sql .= ") VALUES (''";
 
     foreach ($Valores as $valor) {
-        $sql .= ",'" . trim($valor) . "'";
+        $sql .= ",'" . $valor . "'";
     }
 
     $sql .= ")";
@@ -94,9 +94,10 @@ function ImportarCSV($Campos, $Tabela, $ArquivoNome) {
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
             $num = count($data);
 
+//            for ($c = 0; $c < $num; $c++) {
+//            }
+
             $sql = GerarInsert($Campos, $Tabela, $data);
-//            echo $sql;
-//            die();
             $db->ExecSQL($sql);
         }
     } else {

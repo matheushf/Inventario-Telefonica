@@ -22,7 +22,7 @@ class PMateriais extends Geleia {
                     . ") ";
         }
 
-        $sql = 'SELECT * FROM materiais ' . $Search . $OrderBy . $Paginacao;
+        $sql = 'SELECT * FROM materiais WHERE mate_excluido = 0 ' . $Search . $OrderBy . $Paginacao;
 
         $mate = $db->GetObjectList($sql);
 
@@ -32,7 +32,7 @@ class PMateriais extends Geleia {
     function GetById($Id, $IsArray = false) {
         global $db;
 
-        $this->SQL_GetById = "SELECT * FROM materiais WHERE mate_id=" . (int) $Id;
+        $this->SQL_GetById = "SELECT * FROM materiais WHERE mate_id=" . (int) $Id . " AND mate_excluido=0";
         return parent::GetById($IsArray);
     }
     

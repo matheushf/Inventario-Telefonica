@@ -24,6 +24,7 @@
         <script src="/assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
         <script src="/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
         <script src="/assets/js/jquery.maskedinput.min.js"></script>
+        <script src="/assets/js/global.js"></script>
 
         <!-- Custom and plugin javascript -->
         <script src="/assets/js/inspinia.js"></script>
@@ -65,7 +66,7 @@
                             <div class="dropdown profile-element">
                                 <p style="margin-top: 10px">
                                     <span class="clear"> <span class="" style="color: white">
-                                            <img src="/assets/imagens/empz2.jpg" width="170" height="60">
+                                            <img src="http://placehold.it/150x50">
 
 
                                         </span>

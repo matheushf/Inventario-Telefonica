@@ -20,14 +20,24 @@ abstract class PUsuario extends Geleia {
         $this->SQList['select.supervisor']['value'] = 'usua_nome';
     }
 
+    function Delete($Id) {
+        $this->SQL_Delete = "UPDATE usuario SET usua_excluido=1 WHERE usua_id=" . (int) $Id;
+        return parent::Delete();
+    }
+
     function LoadLiteralDatasource() {
         $this->LiteralList['status'] = 'Ativo#Inativo';
         $this->LiteralList['tipo'] = 'Admin#Lider#Tecnico';
     }
 
     function GetById($Id, $IsArray = false) {
-        $this->SQL_GetById = "SELECT * FROM usuario WHERE usua_id=" . (int) $Id;
+        $this->SQL_GetById = "SELECT * FROM usuario WHERE usua_id=" . (int) $Id . " AND usua_excluido=0";
         return parent::GetById($IsArray);
+    }
+
+    function GetAll() {
+        global $db;
+        return $db->GetObjectList("SELECT * FROM usuario WHERE usua_excluido=0 ORDER BY usua_nome");
     }
 
     function ListarUsuarios($OrderBy = 'ORDER BY usua_id ASC', $Search = null, $Paginacao = 'LIMIT 50') {
@@ -41,7 +51,7 @@ abstract class PUsuario extends Geleia {
                     . ") ";
         }
 
-        $sql = 'SELECT * FROM usuario ' . $Search . $OrderBy . $Paginacao;
+        $sql = 'SELECT * FROM usuario WHERE usua_excluido = 0 ' . $Search . $OrderBy . $Paginacao;
 
         $usuarios = $db->GetObjectList($sql);
 
@@ -51,7 +61,7 @@ abstract class PUsuario extends Geleia {
     function Listing($_field = "usua_nome ASC", $limit = 0, $total_per_page = 50, $search = '') {
         global $db;
 
-        $sql = "SELECT * FROM usuario ";
+        $sql = "SELECT * FROM usuario WHERE usua_excluido=0 ";
 
         if ($search != "") {
             $search = str_replace("%", "", $search);
@@ -93,7 +103,7 @@ abstract class PUsuario extends Geleia {
     function GetByEmail($Email) {
         global $db;
 
-        $Sql = "SELECT * FROM usuario WHERE usua_email = '" . mysql_escape_string($Email) . "' ";
+        $Sql = "SELECT * FROM usuario WHERE usua_excluido = 0 AND usua_email = '" . mysql_escape_string($Email) . "' ";
 
         return $db->GetObject($Sql);
     }
@@ -130,7 +140,6 @@ class Usuario extends PUsuario {
 
     function Update() {
 
-        die('aqui');
         if ($_POST[current_password] == $_POST[senha]) { //did not change
             $_POST[senha] = $_POST[current_password];
         } else {

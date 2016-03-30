@@ -65,7 +65,7 @@
                             <div class="dropdown profile-element">
                                 <p style="margin-top: 10px">
                                     <span class="clear"> <span class="" style="color: white">
-                                            <img src="/assets/imagens/empz2.jpg" width="170" height="60">
+                                            <img src="/assets/imagens/empz2.jpg" width="150" height="50">
 
 
                                         </span>

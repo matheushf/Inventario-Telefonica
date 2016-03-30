@@ -130,7 +130,6 @@ class Usuario extends PUsuario {
 
     function Update() {
 
-        die('aqui');
         if ($_POST[current_password] == $_POST[senha]) { //did not change
             $_POST[senha] = $_POST[current_password];
         } else {

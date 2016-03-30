@@ -59,7 +59,7 @@ if (!EstaLogado() && !preg_match('/mleitura/', $_SERVER['SCRIPT_FILENAME']) && $
 }
 
 // Paginação
-if ($_GET['page']) {
+if ($_GET['page'] && $_GET['page'] != 1) {
     $Pagina = $_GET['page'];
     $limit = 50;
     $ofset = ($limit * $Pagina) - $limit;

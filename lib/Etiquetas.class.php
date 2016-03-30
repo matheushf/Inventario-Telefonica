@@ -24,11 +24,11 @@ class PEtiquetas extends Geleia {
 
     function LoadSQL4Datasource() {
 
-        $this->SQList['select.centro']['sql'] = "SELECT * FROM deposito WHERE depo_excluido = 0 ORDER BY depo_centro ASC";
+        $this->SQList['select.centro']['sql'] = "SELECT * FROM deposito ORDER BY depo_centro ASC";
         $this->SQList['select.centro']['value'] = "depo_centro";
         $this->SQList['select.centro']['key'] = "depo_id";
 
-        $this->SQList['select.material']['sql'] = "SELECT * FROM materiais WHERE mate_excluido = 0 ORDER BY mate_nome ASC";
+        $this->SQList['select.material']['sql'] = "SELECT * FROM materiais ORDER BY mate_nome ASC";
         $this->SQList['select.material']['value'] = "mate_nome";
         $this->SQList['select.material']['key'] = "mate_id";
     }
@@ -50,9 +50,9 @@ class PEtiquetas extends Geleia {
         }
 
         $sql = 'SELECT * FROM etiquetas
-                INNER JOIN materiais ON mate_id = etiq_mate_material AND mate_excluido = 0
-                INNER JOIN deposito ON depo_id = etiq_depo_centro AND depo_excluido = 0
-                WHERE etiq_excluido = 0 ' . $Search . $OrderBy . $Paginacao;
+                INNER JOIN materiais ON mate_id = etiq_mate_material
+                INNER JOIN deposito ON depo_id = etiq_depo_centro
+               ' . $Search . $OrderBy . $Paginacao;
 
         $etiq = $db->GetObjectList($sql);
 
@@ -63,10 +63,10 @@ class PEtiquetas extends Geleia {
         global $db;
 
         $this->SQL_GetById = "SELECT * FROM etiquetas 
-                INNER JOIN materiais ON mate_id = etiq_mate_material AND mate_excluido = 0
-                INNER JOIN deposito ON depo_id = etiq_depo_centro AND depo_excluido = 0
-                WHERE etiq_id=" . (int) $Id . "
-                AND etiq_excluido=0";
+                INNER JOIN materiais ON mate_id = etiq_mate_material
+                INNER JOIN deposito ON depo_id = etiq_depo_centro
+                WHERE etiq_id=" . (int) $Id;
+        
         return parent::GetById($IsArray);
     }
 
@@ -197,14 +197,14 @@ class Etiquetas extends PEtiquetas {
     }
 
     function GerarPDFEtiquetas($Folder) {
-        $MLeft = 0.74;
+        $MLeft = 0.73;
         $MTop = 0.93;
 
         $CellWidth = 6.61;
         $CellHeight = 4.65;
 
         $EspacoMeio = 2.6;
-        $EspacoBaixo = 0.02;
+        $EspacoBaixo = 0.001;
 
         $pdf = new FPDF('P', 'cm', 'A4');
 

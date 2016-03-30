@@ -58,10 +58,11 @@ $(document).ready(function () {
         window.location.assign("?busca=" + $("#busca").val());
     })
 
-    // Marcar linha clicada na grid
-    selecionado = null;
-    todos_selecionados = false;
-    tr_click = false;
+    // Variáveis para funcionalidade de marcar linha clicada na grid
+    selecionado         = null;
+    todos_selecionados  = false;
+    tr_click            = false;
+    link                = false;
 
     // Selecionar todos checkbox
     $("#check_all").on("change", function () {
@@ -73,10 +74,19 @@ $(document).ready(function () {
     // Pequeno hack para tirar o bug ao selecionar todos
     $("input:checkbox").on("click", function () {
         selecionado = true;
-    })
+    })        
+
+    $("a").on("click", function() {
+        link = true;
+    });
 
     $("tr").on("click", function () {
 
+        if (link) {
+            link = false;
+            return;
+        }
+        
         var checkbox = $(this).find(':checkbox');
 
         if (checkbox.attr("id") == "check_all") {

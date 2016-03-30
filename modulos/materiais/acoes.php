@@ -13,7 +13,7 @@ switch ($acao) {
     case "importar": {
             error_reporting();
             $nome = md5($_FILES['arquivo_csv']['name'] . time()) . '.csv';
-            $destino = $_SERVER['DOCUMENT_ROOT'] . 'Temp/' . $_FILES['arquivo_csv']['name'];
+            $destino = $_SERVER['DOCUMENT_ROOT'] . '/Temp/' . $_FILES['arquivo_csv']['name'];
 
             move_uploaded_file($_FILES["arquivo_csv"]["tmp_name"], $destino);
 

@@ -4,6 +4,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 get_head('Inventário', 'grid');
 
 $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
+_debug($InventarioLista);
+
 ?>
 
 <body>

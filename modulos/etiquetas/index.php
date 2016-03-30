@@ -149,6 +149,7 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
                         $.ajax({
                             type: 'POST',
                             url: 'acoes.php',
+                            async: false,
                             data: {
                                 acao: 'gerar_imagem_etiqueta',
                                 id: Id,

@@ -44,22 +44,22 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
                 <thead>
                     <tr style="white-space: nowrap">
                         <th style="width: 50px">
-                            <center>
-                                <input type="checkbox" id="check_all" value="">
-                            </center>
-                        </th>
-                        <th>Cód Final Inventário</th>
-                        <th>Cód Leitura 1       </th>
-                        <th>Cód Leitura 2       </th>
-                        <th>Cód Leitura 3       </th>
-                        <th><a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a></th>
-                        <th >Texto Breve Material</th>
-                        <th>Unidade de Medida   </th>
-                        <th><a href="?ordem=<?= $ordem ?>&by=depo_empresa">EPS</a></th>
-                        <th><a href="?ordem=<?= $ordem ?>&by=depo_centro">Centro  </a></th>
-                        <th>Cidade              </th>
-                        <th>Qtd Etiquetas       </th>
-                    </tr>
+                <center>
+                    <input type="checkbox" id="check_all" value="">
+                </center>
+                </th>
+                <th>Cód Final Inventário</th>
+                <th>Cód Leitura 1       </th>
+                <th>Cód Leitura 2       </th>
+                <th>Cód Leitura 3       </th>
+                <th><a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a></th>
+                <th >Texto Breve Material</th>
+                <th>Unidade de Medida   </th>
+                <th><a href="?ordem=<?= $ordem ?>&by=depo_empresa">EPS</a></th>
+                <th><a href="?ordem=<?= $ordem ?>&by=depo_centro">Centro  </a></th>
+                <th>Cidade              </th>
+                <th>Qtd Etiquetas       </th>
+                </tr>
                 </thead>
                 <tbody>
                     <?php
@@ -121,21 +121,38 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
             $(document).ready(function () {
                 $("#gerar-qr").on("click", function () {
 
-                    $.ajax({
-                        type: 'POST',
-                        url: 'acoes.php',
-                        async: false,
-                        data: {
-                            acao: 'diretorio_image'
-                        },
-                        success: function (data) {
-                            if (data == 'erro') {
-                                alert("Ocorreu um erro, tente novamente.");
-                            } else {
-                                nome_pasta = data;
-                            }
-                        }
-                    })
+//                    $.ajax({
+//                        type: 'POST',
+//                        url: 'acoes.php',
+//                        async: false,
+//                        data: {
+//                            acao: 'gerar_qr'
+//                        },
+//                        success: function (data) {
+//                            if (data == 'erro') {
+//                                alert("Ocorreu um erro, tente novamente.");
+//                            } else {
+//                                nome_pasta = data;
+//                            }
+//                        }
+//                    })
+
+
+//                    $.ajax({
+//                        type: 'POST',
+//                        url: 'acoes.php',
+//                        async: false,
+//                        data: {
+//                            acao: 'diretorio_image'
+//                        },
+//                        success: function (data) {
+//                            if (data == 'erro') {
+//                                alert("Ocorreu um erro, tente novamente.");
+//                            } else {
+//                                nome_pasta = data;
+//                            }
+//                        }
+//                    })
 
                     $("input:checked").each(function () {
 

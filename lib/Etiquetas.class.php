@@ -35,8 +35,8 @@ class PEtiquetas extends Geleia {
 
     function ListarEtiquetas($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50') {
         global $db;
-        
-        if($OrderBy == null) {
+
+        if ($OrderBy == null) {
             $OrderBy = 'ORDER BY etiq_id ASC';
         }
 
@@ -66,7 +66,7 @@ class PEtiquetas extends Geleia {
                 INNER JOIN materiais ON mate_id = etiq_mate_material
                 INNER JOIN deposito ON depo_id = etiq_depo_centro
                 WHERE etiq_id=" . (int) $Id;
-        
+
         return parent::GetById($IsArray);
     }
 
@@ -143,7 +143,6 @@ class Etiquetas extends PEtiquetas {
         $background = imagecreatefrompng('TemplateEtiqueta.png');
         imagecopyresampled($imagecontainer, $background, 0, 0, 0, 0, 600, 550, 608, 542);
 //        imagecopyresampled($dst_image, $src_image, $dst_x = 0, $dst_y = 0, $src_x = 0, $src_y = 0, $dst_w, $dst_h, $src_w, $src_h);
-
 //        http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=olaaa
 //        $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=');
 
@@ -156,7 +155,7 @@ class Etiquetas extends PEtiquetas {
         $src_hei = 165;
         $dst_wid = 155;
         $dst_hei = 155;
-        $y       = 225;
+        $y = 225;
         // Adicionando as leituras QR-Code na imagem por coordenadas
         imagecopyresampled($imagecontainer, $qrimage, 30, $y, 0, 0, $dst_wid, $dst_hei, $src_wid, $src_hei);
         imagecopyresampled($imagecontainer, $qrimage, 220, $y, 0, 0, $dst_wid, $dst_hei, $src_wid, $src_hei);
@@ -192,7 +191,7 @@ class Etiquetas extends PEtiquetas {
 
         $nome = 'Temp/' . $Folder . '/' . $IdEtiqueta . '.png';
 //        $nome = 'Temp/imagem.png';
-        
+
         return imagepng($imagecontainer, $nome);
     }
 
@@ -245,7 +244,8 @@ class Etiquetas extends PEtiquetas {
             }
         }
 
-        $nome = 'Temp/' . time() . '.pdf';
+        $Diretorio = $_SERVER['DOCUMENT_ROOT'] . '/modulos/etiquetas/';
+        $nome = $Diretorio . 'Temp/' . time() . '.pdf';
 
         $pdf->Output('F', $nome);
 
@@ -280,6 +280,67 @@ class Etiquetas extends PEtiquetas {
         } else {
             return false;
         }
+    }
+
+    function gerar_qr_code() {
+//        $IdEtiqueta = $_POST['id'];
+//        $CodigoMaterial = $_POST['cod_mate'];
+//        $NomeMaterial = $_POST['nome_mate'];
+//        $UnidadeMedida = $_POST['unidade_medida'];
+//        $Centro = $_POST['centro'];
+//        $QtdEtiquetas = $_POST['qtde_etq'];
+        
+        $Diretorio = $_SERVER['DOCUMENT_ROOT'] . '/modulos/etiquetas/';
+
+        $Folder = $this->CriarDiretorio($Diretorio);
+
+        if ($this->GerarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder)) {
+            if ($Arquivo = $this->GerarPdfEtiqueta($Folder)) {
+                $this->DeletarPdf($Arquivo);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function CriarDiretorio($Diretorio) {
+        $_SESSION['imagens'] = NULL;
+        unset($_SESSION['imagens']);
+
+        $folder = md5(time());
+        if (mkdir($Diretorio . 'Temp/' . $folder)) {
+            return $folder;
+        } else {
+            return 'erro';
+        }
+    }
+
+    function GerarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder) {
+
+        $res = $Etiquetas->CriarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder);
+
+        if ($res) {
+            return $IdEtiqueta;
+        } else {
+            return false;
+        }
+    }
+
+    function GerarPdfEtiqueta($Folder, $Diretorio) {
+        $nome = $this->GerarPDFEtiquetas($Folder);
+
+        $_SESSION['imagens'] = NULL;
+        unset($_SESSION['imagens']);
+
+        rrmdir($Diretorio .  'Temp/' . $Folder);
+
+        return $nome;
+    }
+
+    function DeletarPdf($Arquivo) {
+        unlink($Arquivo);
     }
 
 }

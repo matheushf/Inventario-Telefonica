@@ -34,17 +34,8 @@ mensagem();
         <!-- Mainly scripts -->
         <script src="/assets/js/jquery-1.11.3.min.js"></script>
         <script src="/assets/js/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/assets/js/jquery.maskedinput.min.js"></script>
-
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-
-        <script type="text/javascript">
-            jQuery(function ($) {
-                $("#cpf").mask("999.999.999-99");
-            });
-        </script>
     </head>
 
     <body style="background-color: #f3f3f4">
@@ -70,10 +61,6 @@ mensagem();
 
                     <br><br>
                     <form action="acoes.php?acao=salvar_leitura" method="POST" role="form">
-                        <div class="form-group">
-                            <label for="quant_aferida">CPF: </label>
-                            <input type="text" class="form-control"  name="cpf" id="cpf" required="true" value="<?php if (isset($_COOKIE['cpf'])) { echo $_COOKIE['cpf']; } ?>">
-                        </div>
                         <div class="form-group">
                             <label for="quant_aferida">Quantidade Aferida: </label>
                             <input type="text" class="form-control"  name="quant_aferida" id="quant_aferida" required="true">

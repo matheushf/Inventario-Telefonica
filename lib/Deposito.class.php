@@ -20,14 +20,9 @@ class PDeposito extends Geleia {
     }
 
     function LoadSQL4Datasource() {
-        $this->SQList['select.deposito']['sql'] = "SELECT * FROM deposito WHERE depo_excluido = 0 ORDER BY depo_nome";
+        $this->SQList['select.deposito']['sql'] = "SELECT * FROM deposito ORDER BY depo_nome";
         $this->SQList['select.deposito']['key'] = 'depo_id';
         $this->SQList['select.deposito']['value'] = 'depo_empresa';
-    }
-
-    function Delete($Id) {
-        $this->SQL_Delete = "UPDATE deposito SET depo_excluido = 1 WHERE depo_id = " . (int) $Id;
-        return parent::Delete();
     }
 
     function LoadLiteralDatasource() {
@@ -49,7 +44,7 @@ class PDeposito extends Geleia {
                     . ") ";
         }
 
-        $sql = 'SELECT * FROM deposito WHERE depo_excluido = 0 ' . $Search . $OrderBy . $Paginacao;
+        $sql = 'SELECT * FROM deposito ' . $Search . $OrderBy . $Paginacao;
 
         $dep = $db->GetObjectList($sql);
 
@@ -59,7 +54,7 @@ class PDeposito extends Geleia {
     function GetById($Id, $IsArray = false) {
         global $db;
 
-        $this->SQL_GetById = "SELECT * FROM deposito WHERE depo_id=" . (int) $Id . " AND depo_excluido=0";
+        $this->SQL_GetById = "SELECT * FROM deposito WHERE depo_id=" . (int) $Id;
         return parent::GetById($IsArray);
     }
 

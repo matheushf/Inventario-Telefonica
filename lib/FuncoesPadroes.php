@@ -30,10 +30,10 @@ class FuncoesPadroes extends Geleia {
 
                     break;
                 }
-                
+
             case 'deposito': {
-                $_POST['leitura'] = 1;
-            }
+                    $_POST['leitura'] = 1;
+                }
         }
 
         return parent::Save($modulo);
@@ -41,12 +41,27 @@ class FuncoesPadroes extends Geleia {
 
     public function Update($modulo) {
 
+//        var_dump($_POST);
+//        die();
+
+        switch ($modulo) {
+            case 'usuario': {
+                    $_POST['senha'] = sha1(trim($_POST['senha']));
+                    break;
+                }
+        }
+        
         return parent::Update($modulo);
     }
 
     function Delete($Id, $Modulo) {
 //        $this->SQL_Delete = "UPDATE " . $Modulo . " SET " . substr($Modulo, 0, 4) . "_excluido = 1 WHERE " . substr($Modulo, 0, 4) . "_id = " . (int) $Id;
-        
+
+        if ($Modulo == 'etiquetas') {
+            global $db;
+            $db->ExecSQL('DELETE FROM leitura WHERE leit_etiq_id = ' . $Id);
+        }
+
         $this->SQL_Delete = "DELETE FROM " . $Modulo . " WHERE " . substr($Modulo, 0, 4) . "_id = " . (int) $Id;
 
         return parent::Delete();

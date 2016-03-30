@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 get_head('Adicionar Usuário', 'form');
 
-if (isset($_GET['id'])) {
+if (isset($_GET['id'])) {    
     $ArrayUsuario = $Usuario->GetById($_GET['id'], true);
     $Usuario->PopulateFormFromDB($ArrayUsuario);
 }
@@ -21,9 +21,9 @@ if (isset($_GET['id'])) {
             <?php
             echo $Usuario->create('usua_id', 'id');
             echo $Usuario->create('usua_nome', 'Nome');
-            if ($_GET['operacao'] == 'inserir') {
+//            if ($_GET['operacao'] == 'inserir') {
                 echo $Usuario->create('usua_senha', 'Senha');
-            }
+//            }
             echo $Usuario->create('usua_email', 'Email');
             echo $Usuario->create('usua_celular', 'Celular');
             echo $Usuario->create('usua_tipo', 'Tipo');
@@ -40,11 +40,29 @@ if (isset($_GET['id'])) {
     </fieldset>
 
 
-<?php
+    <?php
 // put your code here
-?>
+    ?>
 </body>
 
-    <?php
-    get_foot();
+<script>
     
+    $(document).ready(function () {
+        pass = $("#senha");
+        s = pass.val();
+        pass.val(12345);
+        
+        $("#btn-salvar").on("click", function(event) {
+//            event.preventDefault();
+            
+            if(pass.val() == '') {
+                pass.val(s);
+                alert(pass.val());
+                return;
+            }
+        })
+    })
+
+</script>
+<?php
+get_foot();

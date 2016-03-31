@@ -12,21 +12,6 @@ if (isset($_GET['acao'])) {
 
 switch ($acao) {
 
-
-    case "gerar_qr": {
-            $IdEtiqueta = $_POST['id'];
-            $CodigoMaterial = $_POST['cod_mate'];
-            $NomeMaterial = $_POST['nome_mate'];
-            $UnidadeMedida = $_POST['unidade_medida'];
-            $Centro = $_POST['centro'];
-            $QtdEtiquetas = $_POST['qtde_etq'];
-            
-            $Etiquetas->gerar_qr_code($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida);
-            
-            break;
-        }
-
-
     case "diretorio_image": {
             $_SESSION['imagens'] = NULL;
             unset($_SESSION['imagens']);
@@ -38,6 +23,26 @@ switch ($acao) {
                 echo 'erro';
             }
         }
+
+    case "gerar_qr": {
+            $IdEtiqueta = $_POST['id'];
+            $CodigoMaterial = $_POST['cod_mate'];
+            $NomeMaterial = $_POST['nome_mate'];
+            $UnidadeMedida = $_POST['unidade_medida'];
+            $Centro = $_POST['centro'];
+            $QtdEtiquetas = $_POST['qtde_etq'];
+            $Folder = $_POST['folder'];
+            
+
+            $Etiquetas->GerarQrCode($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder);
+            
+            
+
+            break;
+        }
+
+
+
 
     case "gerar_imagem_etiqueta": {
             $IdEtiqueta = $_POST['id'];

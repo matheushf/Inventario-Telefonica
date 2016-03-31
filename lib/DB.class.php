@@ -9,7 +9,7 @@ class DB {
 
         $this->host = 'localhost';
         $this->user = 'root';
-        $this->password = '';
+        $this->password = 'toor';
         $this->db = 'vivo_inventario';
         $this->Connect();
     }

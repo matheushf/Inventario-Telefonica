@@ -129,7 +129,7 @@ class PEtiquetas extends Geleia {
 
 class Etiquetas extends PEtiquetas {
 
-    function CriarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $MaterialCodigo, $MaterialNome, $DepositoCentro, $UnidadeMedida, $Folder) {
+    function CriarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $MaterialCodigo, $MaterialNome, $DepositoCentro, $UnidadeMedida, $Folder, $Diretorio) {
 
         // Salvar na sessão
         $_SESSION['imagens'][$IdEtiqueta] = $QtdEtiquetas;
@@ -149,7 +149,6 @@ class Etiquetas extends PEtiquetas {
         $Link = "http://vivoinventario.asix6.com/modulos/etiquetas/mleitura.php?id=" . $IdEtiqueta;
         $qrimage = imagecreatefrompng('http://api.qrserver.com/v1/create-qr-code/?size=165x165&data=' . $Link);
 //        $qrimage = imagecreatefrompng('qrcode.png');
-//        
 
         $src_wid = 165;
         $src_hei = 165;
@@ -195,7 +194,7 @@ class Etiquetas extends PEtiquetas {
         return imagepng($imagecontainer, $nome);
     }
 
-    function GerarPDFEtiquetas($Folder) {
+    function GerarPDFEtiquetas($Folder, $Diretorio) {
         $MLeft = 0.73;
         $MTop = 0.93;
 
@@ -212,7 +211,7 @@ class Etiquetas extends PEtiquetas {
 
         // Loop entre array de imagens criadas, salvas na sessão
         $_SESSION['imagens'] = array_filter($_SESSION['imagens']);
-        $Caminho = 'Temp/' . $Folder . '/';
+        $Caminho = $Diretorio . 'Temp/' . $Folder . '/';
 
         $Topo = $MTop;
         $Esquerdo = $MLeft;
@@ -245,10 +244,12 @@ class Etiquetas extends PEtiquetas {
         }
 
         $Diretorio = $_SERVER['DOCUMENT_ROOT'] . '/modulos/etiquetas/';
-        $nome = $Diretorio . 'Temp/' . time() . '.pdf';
+        $nome = 'Temp/' . time() . '.pdf';
 
         $pdf->Output('F', $nome);
 
+        echo $nome;
+        
         return $nome;
     }
 
@@ -282,44 +283,38 @@ class Etiquetas extends PEtiquetas {
         }
     }
 
-    function gerar_qr_code() {
-//        $IdEtiqueta = $_POST['id'];
-//        $CodigoMaterial = $_POST['cod_mate'];
-//        $NomeMaterial = $_POST['nome_mate'];
-//        $UnidadeMedida = $_POST['unidade_medida'];
-//        $Centro = $_POST['centro'];
-//        $QtdEtiquetas = $_POST['qtde_etq'];
-        
-        $Diretorio = $_SERVER['DOCUMENT_ROOT'] . '/modulos/etiquetas/';
-
-        $Folder = $this->CriarDiretorio($Diretorio);
-
-        if ($this->GerarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder)) {
-            if ($Arquivo = $this->GerarPdfEtiqueta($Folder)) {
-                $this->DeletarPdf($Arquivo);
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
     function CriarDiretorio($Diretorio) {
         $_SESSION['imagens'] = NULL;
         unset($_SESSION['imagens']);
 
         $folder = md5(time());
-        if (mkdir($Diretorio . 'Temp/' . $folder)) {
-            return $folder;
+        mkdir($Diretorio . 'Temp/' . $folder);
+        
+        return $folder;
+    }
+
+    function GerarQrCode($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida) {
+
+        $Diretorio = $_SERVER['DOCUMENT_ROOT'] . '/modulos/etiquetas/';
+
+        $Folder = $this->CriarDiretorio($Diretorio);
+
+        foreach ($IdEtiqueta as $key => $etiquetas) {
+
+            $this->GerarImagemEtiqueta($IdEtiqueta[$key], $QtdEtiquetas[$key], $CodigoMaterial[$key], $NomeMaterial[$key], $Centro[$key], $UnidadeMedida[$key], $Folder);
+        }
+
+        if ($Arquivo = $this->GerarPdfEtiqueta($Folder, $Diretorio)) {
+//            echo $Arquivo;
+//            $this->DeletarPdf($Arquivo);
         } else {
-            return 'erro';
+            return false;
         }
     }
 
     function GerarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder) {
 
-        $res = $Etiquetas->CriarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder);
+        $res = $this->CriarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder);
 
         if ($res) {
             return $IdEtiqueta;
@@ -329,12 +324,13 @@ class Etiquetas extends PEtiquetas {
     }
 
     function GerarPdfEtiqueta($Folder, $Diretorio) {
-        $nome = $this->GerarPDFEtiquetas($Folder);
+        $nome = $this->GerarPDFEtiquetas($Folder, $Diretorio);
 
         $_SESSION['imagens'] = NULL;
         unset($_SESSION['imagens']);
 
-        rrmdir($Diretorio .  'Temp/' . $Folder);
+
+        rrmdir($Diretorio . 'Temp/' . $Folder);
 
         return $nome;
     }

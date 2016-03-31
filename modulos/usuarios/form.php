@@ -61,6 +61,9 @@ if (isset($_GET['id'])) {
     });
 
     $(document).ready(function () {
+        
+        <?php if ($_GET['atualizar']) { ?>
+                
         pass = $("#senha");
         pass.val(null);
 
@@ -72,6 +75,8 @@ if (isset($_GET['id'])) {
                 return;
             }
         })
+        
+        <?php } ?>
     })
 
 </script>

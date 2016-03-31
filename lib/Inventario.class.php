@@ -27,6 +27,7 @@ class PInventario extends Geleia {
         $sql = 'SELECT * FROM etiquetas e
                 INNER JOIN deposito ON depo_id = e.etiq_depo_centro
                 INNER JOIN materiais ON materiais.mate_id = e.etiq_mate_material
+                LEFT OUTER JOIN leitura ON leit_etiq_id = e.etiq_id
                ' . $Search . $OrderBy . $Paginacao;
 
         $inventario = $db->GetObjectList($sql);

@@ -22,6 +22,7 @@ switch ($acao) {
             } else {
                 echo 'erro';
             }
+            break;
         }
 
     case "gerar_qr": {
@@ -32,7 +33,6 @@ switch ($acao) {
             $Centro = $_POST['centro'];
             $QtdEtiquetas = $_POST['qtde_etq'];
             $Folder = $_POST['folder'];
-            
 
             $Etiquetas->GerarQrCode($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder);
             
@@ -91,13 +91,10 @@ switch ($acao) {
             $EtiquetaId = $_POST['etiq_id'];
             $MateId = $_POST['mate_id'];
             $Cod_leitura = $_POST['etiq_cod_final'];
-            $cpf = $_POST['cpf'];
 
-            $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $cpf);
+            $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura);
 
             if ($res) {
-                setcookie('cpf', $cpf, time() + (1000 * 30), '/');
-
                 $_SESSION['Mensagem']['tipo'] = "sucesso";
                 $_SESSION['Mensagem']['texto'] = "Leitura salva com sucesso.";
 

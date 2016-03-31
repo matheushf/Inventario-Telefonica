@@ -17,7 +17,11 @@ switch ($acao) {
             $Search         = $_POST['search'];
             $Paginacao      = $_POST['paginacao'];
             
-            $Inventario->ExportarCsv($OrderBy, $Search, $Paginacao);
+            if($nome = $Inventario->ExportarCsv($OrderBy, $Search, $Paginacao)) {
+                echo $nome;
+            } else {
+                echo 'erro';
+            }
 
             break;
         }

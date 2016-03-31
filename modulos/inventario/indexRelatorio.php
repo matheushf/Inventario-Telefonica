@@ -4,7 +4,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 get_head('Inventário', 'grid');
 
 $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
-//_debug($InventarioLista);
 ?>
 
 <body>
@@ -48,21 +47,34 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
                     <a href="?ordem=<?= $ordem ?>&by=mate_nome">Descrição Material</a>
                 </th>
                 <th>Unidade de Medida</th>
+                <th>Qtd LVUT</th>
+                <th>Qtd Exec</th>
+                <th>Qtd Amed</th>
+                <th>Total SAP</th>
                 <th>R$ Unitário</th>
                 <th>R$ Total</th>
-                <th>Leitura </th>
+                <th>Leitura 1</th>
+                <th>Leitura 2</th>
+                <th>Leitura 3</th>
+                <th>Leitura Final</th>
+                <th>Qtd Exec(EPS)</th>
+                <th>Qtd AMED(EPS)</th>
                 <th>Qtd EMPZ</th>
+                <th>EXEC+AMED+CONT FÍS</th>
+                <th>Dif. Final Qtd</th>
+                <th>Dif. Negativa</th>
+                <th>Dif. Positiva</th>
+                <th>Acurac. Física</th>
+                <th>Acurac. Fin.</th>
                 <th>Localização Interna</th>
-                <th>Id Material</th>
+                <th>Material</th>
                 <th>Livre 1</th>
                 <th>Livre 2</th>
-                <th> N. Leitura </th>
 
                 </tr>
                 </thead>
                 <tbody>
                     <?php
-                    
                     foreach ($InventarioLista as $inve) {
                         ?>
                         <tr>
@@ -83,30 +95,55 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
 
                     <td><?= $inve->mate_unidade_medida ?></td>
 
-                    <td><?= $inve->mate_valor_unitario ?> </td>
-                    
-                    <td> </td>
-                    
-                    <td><?= $inve->leit_quantidade_aferida ?> </td>
-                    
-                    <td> <?php // qtd empz ?> </td>
-                    
-                    <td> <?= $inve->leit_loc_material ?> </td>
+                    <td><?php //qtd lvut        ?></td>
 
-                    
+                    <td><?php // qtd amed        ?></td>
+
+                    <td><?php // total sap        ?></td>
+
+                    <td><?php ?></td>
+
+                    <td><?php echo $inve->mate_valor_unitario ?> </td>
+
+                    <td> </td>
+
+                    <td><?= $Etiquetas->ObterLeitura($inve->etiq_id, $inve->mate_id, 1); ?> </td>
+
+                    <td><?= $Etiquetas->ObterLeitura($inve->etiq_id, $inve->mate_id, 2); ?> </td>
+
+                    <td><?= $Etiquetas->ObterLeitura($inve->etiq_id, $inve->mate_id, 3); ?> </td>
+
+                    <td><?php $Etiquetas->ObterLeitura($inve->etiq_id, $inve->mate_id, 3); ?> </td>
+
+                    <td> <?php //Qtd Exec(EPS)       ?> </td>
+
+                    <td> <?php //Qtd AMED(EPS)       ?> </td>
+
+                    <td> <?php //Qtd EMPZ       ?> </td>
+
+                    <td><?php //EXEC+AMED+CONT FÍS        ?> </td>
+
+                    <td> <?php //Dif. Final Qtd       ?> </td>
+
+                    <td> <?php //Dif. Negativa       ?> </td>
+
+                    <td> <?php //Dif. Positiva       ?> </td>
+
+                    <td> <?php //Acurac. Física       ?> </td>
+
+                    <td> <?php //Acurac. Fin.       ?> </td>
+
+                    <td> <?= $Etiquetas->ObterLocalizacao($inve->etiq_id, $inve->mate_id); ?> </td>
 
                     <td> <?= $inve->leit_id_material ?> </td>
 
                     <td> <?= $inve->leit_livre1 ?></td>
 
                     <td> <?= $inve->leit_livre2 ?></td>
-                    
-                    <td> <?= $inve->leit_nu_leitura ?>
 
                     </tr>
                     <?php
                 }
-                error_reporting(E_ALL);
                 ?>
                 </tbody>
             </table>

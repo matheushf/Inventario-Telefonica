@@ -7,7 +7,7 @@
  */
 class PInventario extends Geleia {
 
-    function ListarInventario($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50', $sql = null) {
+    function ListarRelatorio($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50', $sql = null) {
         global $db;
 
         if ($OrderBy == null) {
@@ -40,7 +40,43 @@ class PInventario extends Geleia {
 
         $sql .= $Search . $OrderBy . $Paginacao;
 
-        echo $sql;
+//        echo $sql;
+
+        $inventario = $db->GetObjectList($sql);
+
+        return $inventario;
+    }
+
+    function ListarInventario($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50', $sql = null) {
+        global $db;
+
+        if ($OrderBy == null) {
+//            $OrderBy = 'ORDER BY e.etiq_cod_final AND l.leit_nu_leitura ASC ';
+        }
+
+        if ($Search != null) {
+            $Search = "AND ("
+                    . "m.mate_codigo LIKE '%" . $Search . "%'"
+//                    . "OR inve_data LIKE '%" . $Search . "%'"                    
+                    . "OR m.mate_nome LIKE '%" . $Search . "%'"
+                    . "OR d.depo_centro LIKE '%" . $Search . "%'"
+                    . "OR d.depo_empresa LIKE '%" . $Search . "%'"
+                    . ") ";
+        }
+
+        if ($sql == null) {
+
+            $sql = 'SELECT *                
+                FROM etiquetas e
+                INNER JOIN deposito d ON depo_id = e.etiq_depo_centro
+                INNER JOIN materiais m ON m.mate_id = e.etiq_mate_material
+                LEFT OUTER JOIN leitura l ON leit_etiq_id = e.etiq_id 
+                ';
+        }
+
+        $sql .= $Search . $OrderBy . $Paginacao;
+
+//        echo $sql;
 
         $inventario = $db->GetObjectList($sql);
 
@@ -80,16 +116,21 @@ class Inventario extends PInventario {
 
         $Cabecalho = ['Data', 'Cód Inventário', 'Cód Material', 'Centro', 'Descrição Material', 'Unidade de Medida', 'R$ Unitário', 'Leitura 1', 'Leitura 2', 'Leitura 3', 'Localização Interna', 'Material', 'Livre 1', 'Livre 2'];
 
-        $arquivo = fopen('lista.csv', 'w');
-        fputcsv($arquivo, $Cabecalho);
-        foreach ($InventarioLista as $linhas) {
-            $linhas = (array) $linhas;
+        $nome = date(d) . '.' . date(m) . '.' . date(o) . '.' . date(G) . '.' . date(i) . '.csv';
 
-            fputcsv($arquivo, $linhas);
+        if ($InventarioLista) {
+            $arquivo = fopen($nome, 'w');
+            fputcsv($arquivo, $Cabecalho);
+            foreach ($InventarioLista as $linhas) {
+                $linhas = (array) $linhas;
+                fputcsv($arquivo, $linhas);
+            }
+            fclose($arquivo);
+
+            return $nome;
+        } else {
+            return false;
         }
-        fclose($arquivo);
-
-        echo $sql;
     }
 
 }

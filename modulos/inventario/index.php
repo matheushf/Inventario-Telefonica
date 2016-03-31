@@ -8,17 +8,20 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
 //die();
 
 
-$arquivo = fopen('lista.csv', 'w');
-var_dump($arquivo);
-
-foreach ($InventarioLista as $linhas) {
-    $linhas = (array) $linhas;
-    fputcsv($arquivo, $linhas);
-}
-
-fclose($arquivo);
-
-die();
+//$arquivo = fopen('lista.csv', 'w');
+//
+//foreach ($InventarioLista as $linhas) {
+//    $linhas = (array) $linhas;
+//
+//    var_dump($linhas);
+//    echo '<br><br>';
+//
+//    fputcsv($arquivo, $linhas);
+//}
+//
+//fclose($arquivo);
+//
+//die();
 ?>
 
 <body>
@@ -58,7 +61,9 @@ die();
                 <th>Cód Inventário</th>
                 <th>Cód Material</th>
                 <th>Centro</th>
-                <th>Descrição Material</th>
+                <th>
+                    <a href="?ordem=<?= $ordem ?>&by=mate_nome">Descrição Material</a>
+                </th>
                 <th>Unidade de Medida</th>
                 <th>Qtd LVUT</th>
                 <th>Qtd Exec</th>
@@ -96,7 +101,7 @@ die();
                         <input type="checkbox" id="<?php echo $inve->etiq_id ?>" value="<?php echo $inve->etiq_id ?>">
                     </center>
                     </td>
-                    <td style="white-space: nowrap"></td>
+                    <td style="white-space: nowrap"> <?= $inve->leit_data ?></td>
 
                     <td><?= $inve->etiq_cod_final ?></td>
 
@@ -108,11 +113,11 @@ die();
 
                     <td><?= $inve->mate_unidade_medida ?></td>
 
-                    <td><?php //qtd lvut   ?></td>
+                    <td><?php //qtd lvut    ?></td>
 
-                    <td><?php // qtd amed   ?></td>
+                    <td><?php // qtd amed    ?></td>
 
-                    <td><?php // total sap   ?></td>
+                    <td><?php // total sap    ?></td>
 
                     <td><?php ?></td>
 
@@ -126,25 +131,25 @@ die();
 
                     <td><?= $Etiquetas->ObterLeitura($inve->etiq_id, $inve->mate_id, 3); ?> </td>
 
-                    <td><?php // leitura final   ?> </td>
+                    <td><?php $Etiquetas->ObterLeitura($inve->etiq_id, $inve->mate_id, 3);    ?> </td>
 
-                    <td> <?php //Qtd Exec(EPS)  ?> </td>
+                    <td> <?php //Qtd Exec(EPS)   ?> </td>
 
-                    <td> <?php //Qtd AMED(EPS)  ?> </td>
+                    <td> <?php //Qtd AMED(EPS)   ?> </td>
 
-                    <td> <?php //Qtd EMPZ  ?> </td>
+                    <td> <?php //Qtd EMPZ   ?> </td>
 
-                    <td><?php //EXEC+AMED+CONT FÍS   ?> </td>
+                    <td><?php //EXEC+AMED+CONT FÍS    ?> </td>
 
-                    <td> <?php //Dif. Final Qtd  ?> </td>
+                    <td> <?php //Dif. Final Qtd   ?> </td>
 
-                    <td> <?php //Dif. Negativa  ?> </td>
+                    <td> <?php //Dif. Negativa   ?> </td>
 
-                    <td> <?php //Dif. Positiva  ?> </td>
+                    <td> <?php //Dif. Positiva   ?> </td>
 
-                    <td> <?php //Acurac. Física  ?> </td>
+                    <td> <?php //Acurac. Física   ?> </td>
 
-                    <td> <?php //Acurac. Fin.  ?> </td>
+                    <td> <?php //Acurac. Fin.   ?> </td>
 
                     <td> <?= $Etiquetas->ObterLocalizacao($inve->etiq_id, $inve->mate_id); ?> </td>
 
@@ -163,17 +168,23 @@ die();
         </div>
 
         <script>
-//            $(document).ready(function() {
-//                $("#exportar-csv").on("click", function() {
-//                    $.ajax({
-//                        type: 'POST', 
-//                        url: 'acoes.php',
-//                        data: {
-//                            lista: 
-//                        }
-//                    })
-//                })
-//            })
+            $(document).ready(function () {
+                $("#exportar-csv").on("click", function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'acoes.php',
+                        data: {
+                            acao: 'exportar_csv',
+                            order_by: '<?= $OrderBy ?>',
+                            search: '<?= $Search ?>',
+                            paginacao: '<?= $Paginacao ?>'
+                        },
+                        success: function (data) {
+                            console.log(data);
+                        }
+                    })
+                })
+            })
         </script>
 
         <?php

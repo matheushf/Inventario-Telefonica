@@ -13,8 +13,12 @@ if (isset($_GET['acao'])) {
 switch ($acao) {
 
     case "exportar_csv": {
+            $OrderBy        = $_POST['order_by'];
+            $Search         = $_POST['search'];
+            $Paginacao      = $_POST['paginacao'];
+            
+            $Inventario->ExportarCsv($OrderBy, $Search, $Paginacao);
 
-
-        break;
-    }
+            break;
+        }
 }

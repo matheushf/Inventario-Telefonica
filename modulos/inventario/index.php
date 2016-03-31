@@ -35,79 +35,82 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
             <table class="table table-striped table-hover table-bordered ">
                 <thead>
                     <tr>
-                        <th style="width: 50px">
+<!--                <th style="width: 50px">
                 <center>
                     <input type="checkbox" id="check_all" value="">
                 </center>
-                </th>
-                <th>Data</th>
-                <th>Cód Inventário</th>
-                <th>Cód Material</th>
-                <th>Centro</th>
-                <th>
-                    <a href="?ordem=<?= $ordem ?>&by=mate_nome">Descrição Material</a>
-                </th>
-                <th>Unidade de Medida</th>
-                <th>R$ Unitário</th>
-                <th>R$ Total</th>
-                <th>Leitura </th>
-                <th>Qtd EMPZ</th>
-                <th>Localização Interna</th>
-                <th>Id Material</th>
-                <th>Livre 1</th>
-                <th>Livre 2</th>
-                <th> N. Leitura </th>
+                </th>-->
+                        <th>Data</th>
+                        <th> N. Leitura </th>
+                        <th>Cód Inventário</th>
+                        <th>Cód Material</th>
+                        <th>Centro</th>
+                        <th>
+                            <a href="?ordem=<?= $ordem ?>&by=mate_nome">Descrição Material</a>
+                        </th>
+                        <th>Unidade de Medida</th>
+                        <th>R$ Unitário</th>
+                        <th>R$ Total</th>
+                        <th>Leitura </th>
+                        <th>Qtd EMPZ</th>
+                        <th>Localização Interna</th>
+                        <th>Id Material</th>
+                        <th>Livre 1</th>
+                        <th>Livre 2</th>
 
-                </tr>
+                    </tr>
                 </thead>
                 <tbody>
                     <?php
-                    
                     foreach ($InventarioLista as $inve) {
                         ?>
                         <tr>
-                            <td>
-                    <center>
-                        <input type="checkbox" id="<?php echo $inve->etiq_id ?>" value="<?php echo $inve->etiq_id ?>">
-                    </center>
-                    </td>
-                    <td style="white-space: nowrap"> <?= $inve->leit_data ?></td>
+    <!--                    <td>
+                        <center>-->
+                            <!--<input type="checkbox" id="<?php //$inve->etiq_id  ?>"   value="<?php //echo $inve->etiq_id  ?>">-->
+                            <!--                        </center>
+                                                </td>-->
+                            <?php
+                            $Data = $inve->leit_data;
+                            $Data = explode(' ', $Data);
+                            $Data = Useful::DateFormatDefault($Data[0]);
+                            ?>
+                            <td style="white-space: nowrap"> <?= $Data ?></td>
 
-                    <td><?= $inve->etiq_cod_final ?></td>
+                            <td><?= $inve->leit_nu_leitura ?> </td>
 
-                    <td><?= $inve->mate_codigo ?></td>
+                            <td><?= $inve->etiq_cod_final ?></td>
 
-                    <td><?= $inve->depo_centro ?></td>
+                            <td><?= $inve->mate_codigo ?></td>
 
-                    <td><?= $inve->mate_nome ?></td>
+                            <td><?= $inve->depo_centro ?></td>
 
-                    <td><?= $inve->mate_unidade_medida ?></td>
+                            <td><?= $inve->mate_nome ?></td>
 
-                    <td><?= $inve->mate_valor_unitario ?> </td>
-                    
-                    <td> </td>
-                    
-                    <td><?= $inve->leit_quantidade_aferida ?> </td>
-                    
-                    <td> <?php // qtd empz ?> </td>
-                    
-                    <td> <?= $inve->leit_loc_material ?> </td>
+                            <td><?= $inve->mate_unidade_medida ?></td>
 
-                    
+                            <td><?= $inve->mate_valor_unitario ?> </td>
 
-                    <td> <?= $inve->leit_id_material ?> </td>
+                            <td> </td>
 
-                    <td> <?= $inve->leit_livre1 ?></td>
+                            <td><?= $inve->leit_quantidade_aferida ?> </td>
 
-                    <td> <?= $inve->leit_livre2 ?></td>
-                    
-                    <td> <?= $inve->leit_nu_leitura ?>
+                            <td><?php // qtd empz  ?> </td>
 
-                    </tr>
-                    <?php
-                }
-                error_reporting(E_ALL);
-                ?>
+                            <td><?= $inve->leit_loc_material ?> </td>
+
+
+
+                            <td> <?= $inve->leit_id_material ?> </td>
+
+                            <td> <?= $inve->leit_livre1 ?></td>
+
+                            <td> <?= $inve->leit_livre2 ?></td>
+
+                        </tr>
+                        <?php
+                    }
+                    ?>
                 </tbody>
             </table>
             <a href="" download id="download"><span style="display: none">download</span></a>

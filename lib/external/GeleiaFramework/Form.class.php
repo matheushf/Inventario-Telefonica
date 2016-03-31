@@ -132,7 +132,7 @@ class Form extends PForm {
         global $db;
 
         $Sql = $this->GenerateInsertSQL($modulo);
-//        var_dump($Sql);
+//        var_dump($Sql, $_POST);
 //        die();
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());

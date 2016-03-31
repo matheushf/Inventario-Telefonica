@@ -106,9 +106,13 @@ class PEtiquetas extends Geleia {
     function ObterLeitura($EtiqId, $MateId, $Leitura) {
         global $db;
 
-        $sql = "SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiqId . " AND leit_mate_id = " . $MateId . " AND leit_nu_leitura = " . $Leitura;
+        $sql = "SELECT leit_quantidade_aferida FROM leitura WHERE leit_etiq_id = " . $EtiqId . " AND leit_mate_id = " . $MateId . " AND leit_nu_leitura = " . $Leitura;
 
-        return $db->GetObject($sql);
+        if($leit = $db->GetObject($sql)) {
+            return $leit->leit_quantidade_aferida;
+        } else {
+            return null;
+        }
     }
 
     function ObterLocalizacao($EtiqId, $MateId) {

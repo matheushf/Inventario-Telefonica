@@ -36,6 +36,7 @@ class FuncoesPadroes extends Geleia {
                 }
         }
 
+        
         return parent::Save($modulo);
     }
 
@@ -52,7 +53,6 @@ class FuncoesPadroes extends Geleia {
     }
 
     function Delete($Id, $Modulo) {
-//        $this->SQL_Delete = "UPDATE " . $Modulo . " SET " . substr($Modulo, 0, 4) . "_excluido = 1 WHERE " . substr($Modulo, 0, 4) . "_id = " . (int) $Id;
 
         if ($Modulo == 'etiquetas') {
             global $db;

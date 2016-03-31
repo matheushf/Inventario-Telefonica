@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
 <script>
 
     jQuery(function ($) {
-        $("#celular").mask("(99) 9999-9999");
+        $("#celular").mask("(99) 99999-9999");
     });
 
     $(document).ready(function () {

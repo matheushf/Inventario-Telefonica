@@ -110,6 +110,3 @@ mensagem();
         })
     </script>
     
-<?php
-get_foot();
-?>

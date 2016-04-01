@@ -43,13 +43,15 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
                     <input type="checkbox" id="check_all" value="">
                 </center>
                 </th>-->
-                        <th>Data</th>
+                        <th>
+                            <a href="<?= GetQuery('?ordem='. $ordem . '&by=leit_data') ?>">Data</a>
+                        </th>
                         <th> N. Leitura </th>
                         <th>Cód Inventário</th>
                         <th>Cód Material</th>
                         <th>Centro</th>
                         <th>
-                            <a href="?ordem=<?= $ordem ?>&by=mate_nome">Descrição Material</a>
+                            <a href="<?= GetQuery('?ordem='. $ordem . '&by=mate_nome') ?>">Descrição Material</a>
                         </th>
                         <th>Unidade de Medida</th>
                         <th>R$ Unitário</th>
@@ -92,7 +94,7 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
 
                             <td><?= $inve->mate_unidade_medida ?></td>
 
-                            <td><?= $inve->mate_valor_unitario ?> </td>
+                            <td style="white-space: nowrap"> <?= sprintf('R$ %01.2f', $inve->mate_valor_unitario) ?> </td>
 
                             <td> </td>
 

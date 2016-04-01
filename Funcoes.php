@@ -79,6 +79,13 @@ function DeletarArquivos($diretorio) {
             else
                 unlink($arquivo);
         }
-
     }
+}
+
+function GetQuery($link) {
+    if ($_GET['busca']) {
+        $link = $link . '&busca=' . $_GET['busca'];
+    }
+
+    return $link;
 }

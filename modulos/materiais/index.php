@@ -50,10 +50,11 @@ $MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search, $Paginacao);
                 </th>
                 <th>
                     <?php ?>
-                    <a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a>
+                    <!--<a href="?by=mate_codigo&ordem=<?php // $ordem ?>">Material </a>-->
+                    <a href="<?= GetQuery('?by=mate_codigo&ordem=' . $ordem) ?>">Material </a>
                 </th>
                 <th>
-                    <a href="?ordem=<?= $ordem ?>&by=mate_nome">Texto Breve Material    </a>
+                    <a href="<?= GetQuery('?ordem='. $ordem . '&by=mate_nome') ?>">Texto Breve Material    </a>
                 </th>
                 <th>Unidade de Medida       </th>
                 <th>Valor Unitário          </th>
@@ -83,7 +84,7 @@ $MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search, $Paginacao);
                         <?php echo $mate->mate_unidade_medida ?>
                     </td>
                     <td>
-                        <?php echo $mate->mate_valor_unitario ?>
+                        <?= sprintf('R$ %01.2f', $mate->mate_valor_unitario) ?>
                     </td>
                     <td>
                         <?php echo $mate->mate_livre1 ?>

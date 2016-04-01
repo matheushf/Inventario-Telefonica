@@ -45,10 +45,10 @@ $UsuariosLista = $Usuario->ListarUsuarios($OrderBy, $Search, $Paginacao);
             <thead>
                 <tr>
                     <th></th>
-                    <th><a href="?ordem=<?= $ordem ?>&by=usua_nome">Nome</a></th>
-                    <th><a href="?ordem=<?= $ordem ?>&by=usua_email">Email</a></th>
+                    <th><a href="<?= GetQuery('?ordem='. $ordem . '&by=usua_nome') ?>">Nome</a></th>
+                    <th><a href="<?= GetQuery('?ordem='. $ordem . '&by=usua_email') ?>">Email</a></th>
                     <th>Celular</th>
-                    <th><a href="?ordem=<?= $ordem ?>&by=usua_tipo">Tipo</a></th>
+                    <th><a href="<?= GetQuery('?ordem='. $ordem . '&by=usua_tipo') ?>">Tipo</a></th>
                     <th>Status</th>
                 </tr>
             </thead>

@@ -56,11 +56,11 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
                 <th>Cód Leitura 1       </th>
                 <th>Cód Leitura 2       </th>
                 <th>Cód Leitura 3       </th>
-                <th><a href="?ordem=<?= $ordem ?>&by=mate_codigo">Material </a></th>
+                <th><a href="<?= GetQuery('?ordem='. $ordem . '&by=mate_codigo') ?>">Material </a></th>
                 <th >Texto Breve Material</th>
                 <th>Unidade de Medida   </th>
-                <th><a href="?ordem=<?= $ordem ?>&by=depo_empresa">EPS</a></th>
-                <th><a href="?ordem=<?= $ordem ?>&by=depo_centro">Centro  </a></th>
+                <th><a href="<?= GetQuery('?ordem='. $ordem . '&by=depo_empresa') ?>">EPS</a></th>
+                <a href="<?= GetQuery('?ordem='. $ordem . '&by=depo_centro') ?>">Centro  </a></th>
                 <th>Cidade              </th>
                 <th>Qtd Etiquetas       </th>
                 </tr>

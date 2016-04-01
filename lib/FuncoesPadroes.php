@@ -55,7 +55,7 @@ class FuncoesPadroes extends Geleia {
                     break;
                 }
         }
-        
+
         return parent::Update($modulo);
     }
 
@@ -69,6 +69,12 @@ class FuncoesPadroes extends Geleia {
                     return $Materiais->DeletarPorId($Id);
 
                     break;
+                }
+                
+            case 'deposito': {
+                    global $Deposito;
+
+                    return $Deposito->DeletarPorId($Id);
                 }
 
             case 'etiquetas': {

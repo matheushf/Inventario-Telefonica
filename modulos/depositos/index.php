@@ -5,7 +5,7 @@ get_head('Depósitos', 'grid');
 
 echo mensagem();
 
-$Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
+$DepositoLista = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
 ?>
 
 <body>
@@ -47,7 +47,9 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
 
         <div class="alert alert-info text-center"> Use os Filtros: EPS - Centro - Cidade</div>
 
-        <br><br>
+        <br>
+        <?=  count($DepositoLista) . ' resultados encontrados.'; ?>
+        <br> <br> <br> 
 
         <div  class="table-responsive">
             <table class="table table-striped table-hover table-bordered">
@@ -72,7 +74,7 @@ $Depositos = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($Depositos as $dep) {
+                    foreach ($DepositoLista as $dep) {
                         ?>
                         <tr>
                             <td>

@@ -128,3 +128,7 @@
                 if (isset($_SESSION['Mensagem']['tipo']) && $_SESSION['Mensagem']['tipo'] == 'error') {
                     mensagem();
                 }
+                
+                if (isset($_GET['busca'])) {
+                    
+                }

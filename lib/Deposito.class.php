@@ -61,6 +61,21 @@ class PDeposito extends Geleia {
         $this->SQL_GetById = "SELECT * FROM deposito WHERE depo_id=" . (int) $Id;
         return parent::GetById($IsArray);
     }
+    
+    function DeletarPorId($Id) {
+        global $db;
+        
+        $EtiquetaId = $db->GetObject('SELECT etiq_id FROM etiquetas WHERE etiq_depo_centro = ' . $Id);
+        $EtiquetaId = $EtiquetaId->etiq_id;
+        $db->ExecSQL('DELETE FROM leitura WHERE leit_etiq_id = ' . $EtiquetaId);
+        $db->ExecSQL('DELETE FROM etiquetas WHERE etiq_id = ' . $EtiquetaId);
+        
+        if ($db->ExecSQL('DELETE FROM deposito WHERE depo_id = ' . $Id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }    
 
     function ObterIdPorCentro($Centro) {
         global $db;

@@ -30,7 +30,10 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
 
         <div class="alert alert-info text-center"> Use os Filtros: Data - Centro - Material - EPS</div>
 
-        <br><br>
+        <br>
+        <?= count($InventarioLista) . ' resultados encontrados.'; ?>
+        <br> <br> <br>
+        
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered ">
                 <thead>
@@ -67,7 +70,7 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
                         <tr>
     <!--                    <td>
                         <center>-->
-                            <!--<input type="checkbox" id="<?php //$inve->etiq_id  ?>"   value="<?php //echo $inve->etiq_id  ?>">-->
+                            <!--<input type="checkbox" id="<?php //$inve->etiq_id   ?>"   value="<?php //echo $inve->etiq_id   ?>">-->
                             <!--                        </center>
                                                 </td>-->
                             <?php
@@ -95,7 +98,7 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
 
                             <td><?= $inve->leit_quantidade_aferida ?> </td>
 
-                            <td><?php // qtd empz  ?> </td>
+                            <td><?php // qtd empz   ?> </td>
 
                             <td><?= $inve->leit_loc_material ?> </td>
 

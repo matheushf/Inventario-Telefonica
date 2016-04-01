@@ -6,6 +6,7 @@ get_head('Materiais', 'grid');
 mensagem();
 
 $MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search, $Paginacao);
+
 ?>
 
 <body>
@@ -34,8 +35,10 @@ $MateriaisLista = $Materiais->ListarMateriais($OrderBy, $Search, $Paginacao);
 
         <div class="alert alert-info text-center"> Use os Filtros: Material - Texto Breve em Material </div>
 
-        <br><br>
-
+        <br>
+        <?=  count($MateriaisLista) . ' resultados encontrados.'; ?>
+        <br> <br> <br>
+        
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered">
                 <thead>

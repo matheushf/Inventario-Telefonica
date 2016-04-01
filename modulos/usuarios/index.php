@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
-if(!$Usuario->isAdmin()) {
+if (!$Usuario->isAdmin()) {
     header('Location: /modulos/materiais/');
 }
 
@@ -37,7 +37,9 @@ $UsuariosLista = $Usuario->ListarUsuarios($OrderBy, $Search, $Paginacao);
 
         <div class="alert alert-info text-center"> Use os Filtros: Nome - Email - Tipo</div>
 
-        <br><br>
+        <br>
+        <?= count($UsuariosLista) . ' resultados encontrados.'; ?>
+        <br> <br> <br>
 
         <table class="table table-striped table-hover table-bordered">
             <thead>
@@ -81,5 +83,6 @@ $UsuariosLista = $Usuario->ListarUsuarios($OrderBy, $Search, $Paginacao);
             ?>
             </tbody>
         </table>
-<?php
-get_foot('grid');
+        <?php
+        get_foot('grid');
+        

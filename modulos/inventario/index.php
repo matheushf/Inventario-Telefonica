@@ -124,6 +124,8 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
         <script>
             $(document).ready(function () {
                 $("#exportar-csv").on("click", function () {
+                    $(this).after('<br><p id="loader"><i class="fa fa-refresh fa-spin"></i> Exportando CSV...</p>');
+                    
                     $.ajax({
                         type: 'POST',
                         url: 'acoes.php',
@@ -140,6 +142,7 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
                                 $("#download").attr("href", data);
                                 $("#download span").trigger('click');
                                 console.log(data);
+                                $("#loader").remove();
                             } else {
                                 var mensagem = '<div class="alert alert-danger"> Ocorreu um erro ao exportar. </div>';
                                 $("#mensagens").html(mensagem);

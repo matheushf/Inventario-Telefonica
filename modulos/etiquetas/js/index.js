@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#gerar-qr").on("click", function () {
-
+        $(this).after('<br><p id="loader"><i class="fa fa-refresh fa-spin"></i> Gerando PDF...</p>');
 //                    $.ajax({
 //                        type: 'POST',
 //                        url: 'acoes.php',
@@ -77,10 +77,11 @@ $(document).ready(function () {
             },
             success: function (data) {
                 nome_pdf = data;
-                
                 $("#download").attr("href", data);
                 $("#download span").trigger('click');
                 console.log(data);
+                
+                $("#loader").remove();
             }
         })
 

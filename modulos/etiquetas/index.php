@@ -60,7 +60,7 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
                 <th >Texto Breve Material</th>
                 <th>Unidade de Medida   </th>
                 <th><a href="<?= GetQuery('?ordem='. $ordem . '&by=depo_empresa') ?>">EPS</a></th>
-                <a href="<?= GetQuery('?ordem='. $ordem . '&by=depo_centro') ?>">Centro  </a></th>
+                <th><a href="<?= GetQuery('?ordem='. $ordem . '&by=depo_centro') ?>">Centro  </a></th>
                 <th>Cidade              </th>
                 <th>Qtd Etiquetas       </th>
                 </tr>

@@ -151,8 +151,9 @@ class Form extends PForm {
         if ($db->ExecSQL($Sql)) {
             $this->setId($db->GetLastId());
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     function GenerateUpdateSQL($modulo = null) {

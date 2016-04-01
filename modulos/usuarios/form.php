@@ -22,12 +22,12 @@ if (isset($_GET['id'])) {
             <?php
             echo $Usuario->create('usua_id', 'id');
             echo $Usuario->create('usua_nome', 'Nome');
-            if ($_GET['operacao'] == 'atualizar') {
-                echo $Usuario->create('usua_senha', 'Senha antiga');
-                ?>
-
-                <label for="confirmar_senha"> Confirmar senha </label>
-                <input type="password" class="form-control" id="confirmar_senha" required="true">
+            if ($_GET['operacao'] == 'atualizar' || $_GET['acao'] == 'atualizar') { ?>
+            
+                <label for="confirmar_senha"> Senha antiga </label>
+                <input type="password" name="senha_antiga" class="form-control" id="senha_antiga" required="true">
+                <label for="senha_nova"> Senha nova </label>
+                <input type="password" name="senha_nova" class="form-control" id="senha_nova" required="true">
                 <br>
                 <?php
             } else {
@@ -61,22 +61,8 @@ if (isset($_GET['id'])) {
     });
 
     $(document).ready(function () {
-        
-        <?php if ($_GET['atualizar']) { ?>
-                
-        pass = $("#senha");
-        pass.val(null);
 
-        $("#btn-salvar").on("click", function (event) {
 
-            if (pass.val() != $("#confirmar_senha").val()) {
-                alert("As senhas não conferem.");
-                event.preventDefault();
-                return;
-            }
-        })
-        
-        <?php } ?>
     })
 
 </script>

@@ -101,6 +101,19 @@ abstract class PUsuario extends Geleia {
 
         return $db->GetObject($Sql);
     }
+    
+    function ConfirmarSenha($Id, $Senha) {
+        global $db;
+        
+        $Senha_antiga = $db->GetObject('SELECT usua_senha FROM usuario WHERE usua_id = ' . $Id);
+        $Senha_antiga = $Senha_antiga->usua_senha;
+        
+        if ($Senha_antiga == $Senha) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     function UpdatePassword($Id, $NewPassword) {
         global $db;

@@ -20,7 +20,12 @@ switch ($acao) {
         }
 
     case 'atualizar': {
-            if ($FuncoesPadroes->Update($_GET['modulo'])) {
+            $resultado = $FuncoesPadroes->Update($_GET['modulo']);
+
+            if ($resultado === 'senha_diferente') {
+                $_SESSION['Mensagem']['tipo'] = "error";
+                $_SESSION['Mensagem']['texto'] = "A senha antiga não confere.";
+            } elseif ($resultado == true) {
                 $_SESSION['Mensagem']['tipo'] = "sucesso";
                 $_SESSION['Mensagem']['texto'] = ucfirst($_GET['modulo']) . " atualizado com sucesso.";
                 header('Location: index.php');
@@ -33,33 +38,32 @@ switch ($acao) {
         }
 
     case 'excluir': {
-        $Id = $_POST['id'];
-        $Modulo = $_POST['modulo'];
+            $Id = $_POST['id'];
+            $Modulo = $_POST['modulo'];
 
-        $res = $FuncoesPadroes->Delete($Id, $Modulo);
+            $res = $FuncoesPadroes->Delete($Id, $Modulo);
 //        var_dump($res);
-        
-        if ($res) {
-            echo "OK";
-        } else {
-            echo "ERRO";
+
+            if ($res) {
+                echo "OK";
+            } else {
+                echo "ERRO";
+            }
+
+            break;
         }
 
-        break;
-    }
-    
     case 'login': {
-        $Email = $_POST['email'];
-        $Senha = $_POST['senha'];
-        
-        if($Usuario->Login($Email, $Senha)) {
-            header('Location: /modulos/materiais/');
-            
-        } else {
-            $_SESSION['Mensagem']['tipo'] = 'error';
-            $_SESSION['Mensagem']['texto'] = 'Usuário ou senha inválidos.';
-            
-            header('Location: /index.php');
+            $Email = $_POST['email'];
+            $Senha = $_POST['senha'];
+
+            if ($Usuario->Login($Email, $Senha)) {
+                header('Location: /modulos/materiais/');
+            } else {
+                $_SESSION['Mensagem']['tipo'] = 'error';
+                $_SESSION['Mensagem']['texto'] = 'Usuário ou senha inválidos.';
+
+                header('Location: /index.php');
+            }
         }
-    }
 }

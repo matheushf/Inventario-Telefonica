@@ -39,14 +39,23 @@ class FuncoesPadroes extends Geleia {
     }
 
     public function Update($modulo) {
-
         switch ($modulo) {
             case 'usuario': {
-                    $_POST['senha'] = sha1(trim($_POST['senha']));
+                    global $Usuario;
+
+                    $Senha_antiga = sha1(trim($_POST['senha_antiga']));
+                    $Id = $_POST['id'];
+
+                    if ($Usuario->ConfirmarSenha($Id, $Senha_antiga)) {
+                        $_POST['senha'] = sha1(trim($_POST['senha_nova']));
+                    } else {
+                        return 'senha_diferente';
+                    }
+
                     break;
                 }
         }
-
+        
         return parent::Update($modulo);
     }
 
@@ -55,10 +64,10 @@ class FuncoesPadroes extends Geleia {
 
         switch ($Modulo) {
             case 'materiais': {
-                global $Materiais;
-                
-                return $Materiais->DeletarPorId($Id);
-                    
+                    global $Materiais;
+
+                    return $Materiais->DeletarPorId($Id);
+
                     break;
                 }
 
@@ -69,7 +78,6 @@ class FuncoesPadroes extends Geleia {
                 }
         }
 
-        echo 'masoqu';
         $this->SQL_Delete = "DELETE FROM " . $Modulo . " WHERE " . substr($Modulo, 0, 4) . "_id = " . (int) $Id;
 
         return parent::Delete();

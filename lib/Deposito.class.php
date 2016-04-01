@@ -41,7 +41,7 @@ class PDeposito extends Geleia {
         }
 
         if ($Search != null) {
-            $Search = "AND "
+            $Search = "WHERE "
                     . "(depo_empresa LIKE '%" . $Search . "%'"
                     . "OR depo_centro LIKE '%" . $Search . "%'"
                     . "OR depo_cidade LIKE '%" . $Search . "%'"

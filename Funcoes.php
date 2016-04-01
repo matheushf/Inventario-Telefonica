@@ -79,9 +79,6 @@ function DeletarArquivos($diretorio) {
             else
                 unlink($arquivo);
         }
-        
-//        echo $arquivo;
-//        echo date("F d Y H:i:s.", filemtime($arquivo));
-//        echo '<br>';
+
     }
 }

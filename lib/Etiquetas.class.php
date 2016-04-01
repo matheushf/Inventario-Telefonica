@@ -45,7 +45,7 @@ class PEtiquetas extends Geleia {
         }        
 
         if ($Search != null) {
-            $Search = " AND ("
+            $Search = " WHERE ("
                     . "depo_empresa LIKE '%" . $Search . "%'"
                     . "OR mate_codigo LIKE '%" . $Search . "%'"
                     . "OR mate_nome LIKE '%" . $Search . "%'"

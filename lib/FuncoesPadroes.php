@@ -1,7 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/Materiais.class.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/Deposito.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Global.php';
 
 class FuncoesPadroes extends Geleia {
 
@@ -16,8 +15,7 @@ class FuncoesPadroes extends Geleia {
                 }
 
             case 'etiquetas': {
-                    $Materiais = new Materiais();
-                    $Deposito = new Deposito();
+                    global $Materiais, $Deposito;
 
                     $MaterialCodigo = $Materiais->GetById($_POST['mate_material']);
                     $MaterialCodigo = $MaterialCodigo->mate_codigo;
@@ -36,7 +34,7 @@ class FuncoesPadroes extends Geleia {
                 }
         }
 
-        
+
         return parent::Save($modulo);
     }
 
@@ -48,17 +46,30 @@ class FuncoesPadroes extends Geleia {
                     break;
                 }
         }
-        
+
         return parent::Update($modulo);
     }
 
     function Delete($Id, $Modulo) {
+        global $db;
 
-        if ($Modulo == 'etiquetas') {
-            global $db;
-            $db->ExecSQL('DELETE FROM leitura WHERE leit_etiq_id = ' . $Id);
+        switch ($Modulo) {
+            case 'materiais': {
+                global $Materiais;
+                
+                return $Materiais->DeletarPorId($Id);
+                    
+                    break;
+                }
+
+            case 'etiquetas': {
+                    $db->ExecSQL('DELETE FROM leitura WHERE leit_etiq_id = ' . $Id);
+
+                    break;
+                }
         }
 
+        echo 'masoqu';
         $this->SQL_Delete = "DELETE FROM " . $Modulo . " WHERE " . substr($Modulo, 0, 4) . "_id = " . (int) $Id;
 
         return parent::Delete();

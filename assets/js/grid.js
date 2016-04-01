@@ -27,7 +27,7 @@ $(document).ready(function () {
             return;
         }
 
-        $("input:checked").each(function () {
+        $("input:checked").not("#check_all").each(function () {
             var id = $(this).val();
 
             $.ajax({
@@ -39,6 +39,7 @@ $(document).ready(function () {
                     modulo: modulo
                 },
                 success: function (data) {
+//                    alert(data);
                     if (data == "OK") {
                         $("input:checked").parents("tr").remove();
                         var mensagem = '<div class="alert alert-success"> Registro excluído com sucesso. </div>';

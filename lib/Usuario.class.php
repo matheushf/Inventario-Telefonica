@@ -34,7 +34,7 @@ abstract class PUsuario extends Geleia {
         global $db;
 
         if ($Search != null) {
-            $Search = " AND "
+            $Search = " WHERE "
                     . "(usua_nome LIKE '%" . $Search . "%'"
                     . "OR usua_email LIKE '%" . $Search . "%'"
                     . "OR usua_tipo LIKE '%" . $Search . "%'"

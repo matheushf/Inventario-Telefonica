@@ -30,15 +30,19 @@ abstract class PUsuario extends Geleia {
         return parent::GetById($IsArray);
     }
 
-    function ListarUsuarios($OrderBy = 'ORDER BY usua_id ASC', $Search = null, $Paginacao = 'LIMIT 50') {
+    function ListarUsuarios($OrderBy = 'ORDER BY usua_id ASC', $Search = null, $Paginacao = null) {
         global $db;
 
         if ($Search != null) {
-            $Search = "AND "
-                    . "(usua_nome LIKE '%"      . $Search . "%'"
-                    . "OR usua_email LIKE '%"   . $Search . "%'"
-                    . "OR usua_tipo LIKE '%"    . $Search . "%'"
+            $Search = " AND "
+                    . "(usua_nome LIKE '%" . $Search . "%'"
+                    . "OR usua_email LIKE '%" . $Search . "%'"
+                    . "OR usua_tipo LIKE '%" . $Search . "%'"
                     . ") ";
+        }
+
+        if ($Paginacao == null) {
+            $Paginacao = ' LIMIT 50 ';
         }
 
         $sql = 'SELECT * FROM usuario ' . $Search . $OrderBy . $Paginacao;

@@ -33,15 +33,19 @@ class PEtiquetas extends Geleia {
         $this->SQList['select.material']['key'] = "mate_id";
     }
 
-    function ListarEtiquetas($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50') {
+    function ListarEtiquetas($OrderBy = null, $Search = null, $Paginacao = null) {
         global $db;
 
         if ($OrderBy == null) {
-            $OrderBy = 'ORDER BY etiq_id ASC';
+            $OrderBy = ' ORDER BY etiq_id ASC ';
         }
+        
+        if ($Paginacao == null) {
+            $Paginacao = ' LIMIT 50 ';
+        }        
 
         if ($Search != null) {
-            $Search = "AND ("
+            $Search = " AND ("
                     . "depo_empresa LIKE '%" . $Search . "%'"
                     . "OR mate_codigo LIKE '%" . $Search . "%'"
                     . "OR mate_nome LIKE '%" . $Search . "%'"

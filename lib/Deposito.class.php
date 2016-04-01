@@ -29,11 +29,15 @@ class PDeposito extends Geleia {
         $this->LiteralList['status'] = 'Ativo#Inativo';
     }
 
-    function ListarDeposito($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50') {
+    function ListarDeposito($OrderBy = null, $Search = null, $Paginacao = null) {
         global $db;
-        
+
         if ($OrderBy == null) {
-            $OrderBy = 'ORDER BY depo_empresa ASC';
+            $OrderBy = ' ORDER BY depo_empresa ASC ';
+        }
+
+        if ($Paginacao == null) {
+            $Paginacao = ' LIMIT 50 ';
         }
 
         if ($Search != null) {

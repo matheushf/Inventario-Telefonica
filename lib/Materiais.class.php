@@ -8,11 +8,15 @@
 
 class PMateriais extends Geleia {
 
-    function ListarMateriais($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50') {
+    function ListarMateriais($OrderBy = null, $Search = null, $Paginacao = null) {
         global $db;
+        
+        if ($Paginacao == null) {
+            $Paginacao = ' LIMIT 50';
+        }
 
         if($OrderBy == null) {
-            $OrderBy = 'ORDER BY mate_nome ASC';
+            $OrderBy = 'ORDER BY mate_nome ASC ';
         }
         
         if ($Search != null) {
@@ -23,7 +27,7 @@ class PMateriais extends Geleia {
         }
 
         $sql = 'SELECT * FROM materiais ' . $Search . $OrderBy . $Paginacao;
-
+        
         $mate = $db->GetObjectList($sql);
 
         return $mate;

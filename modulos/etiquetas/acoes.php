@@ -121,5 +121,15 @@ switch ($acao) {
             } else {
                 echo 'erro';
             }
+            break;
         }
+        
+    case "consultar_localizacao": {
+        $localizacao = $_POST['local'];
+        
+        $Identificacao = $Etiquetas->ConsultarPorLocalizacao($localizacao);
+        echo $Identificacao->leit_identificacao_material;
+        
+        break;
+    }
 }

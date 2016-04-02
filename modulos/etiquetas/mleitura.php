@@ -1,10 +1,17 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
-$EtiquetaId   = $_GET['id'];
+$Identificacao = $_GET['ident'];
+$LeituraInfo = $Etiquetas->ConsultarPorIdentificacao($Identificacao);
+
+
+
+
+$EtiquetaId = $_GET['id'];
 $EtiquetaInfo = $Etiquetas->getById($EtiquetaId);
 $NLeituraEtiq = $Etiquetas->VerificarLeituraAberta($EtiquetaInfo->etiq_id);
 $NLeituraDepo = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);
+$bloquear = false;
 
 if ($NLeituraEtiq == 4) {
     $bloquear = true;
@@ -14,7 +21,12 @@ if ($NLeituraEtiq == 4) {
     $mensagem = 'A leitura ainda não foi liberada pelo depósito';
 }
 
+
+$localizacao = $Etiquetas->ListarLocalizacao($_GET['id']);
+
 mensagem();
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +48,10 @@ mensagem();
         <script src="/assets/js/bootstrap/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
+        <style>
+
+        </style>
+
     </head>
 
     <body style="background-color: #f3f3f4">
@@ -48,9 +64,25 @@ mensagem();
                         <h3><?= $mensagem ?> </h3>
                     </center>
 
-                    <?php
-                } else {
-                    ?>    
+                <?php } else if ($localizacao) { ?>
+
+                    <input type="hidden" id="id" value="<?= $_GET['id'] ?>">
+                    <div class="row">
+                        <div class="col-lg-4"> </div>
+                        <center>
+                            <div class="col-lg-4" style="margin-top: 200px">
+                                <p>Selecione a localização: </p>
+                                <br>
+                                <?= $Etiquetas->SelectLocalizacao($localizacao) ?>
+                                <br> <br>
+                                <a type="submit" id="acessar" class="btn btn-info">Acessar</a>
+                                <br>ou<br>
+                                <a type="submit" id="nova" class="btn btn-primary">Criar nova</a>
+                            </div>
+                        </center>
+                    </div>                
+
+                <?php } else { ?>
                     <center>
                         <h2>Contagem <?= $NLeituraEtiq ?> </h2>
                     </center>
@@ -100,6 +132,33 @@ mensagem();
     </body>
     <script>
         $(document).ready(function () {
+            id = $("#id").val();
+
+            $("a").attr("style", "width: 150px");
+
+            $("#acessar").on("click", function (event) {
+                $(this).after('<br><p id="loader"><i class="fa fa-refresh fa-spin"></i> Processando...</p>');
+                $.ajax({
+                    type: 'POST',
+                    url: 'acoes.php',
+                    data: {
+                        acao: 'consultar_localizacao',
+                        local: $("select").val()
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        
+                        if (data == 'erro') {
+                            alert("Ocorreu um erro, tente novamente.");
+                        } else {
+//                            window.location.assign('?ident=' + data);
+                        }
+                        $("#loader").remove();
+                    }
+                })
+
+            })
+
             $("#confirmar").on("click", function (event) {
                 if ($("#quant_aferida").val() != $("#conf_quant").val()) {
                     alert("A quantidade não confere.");
@@ -109,4 +168,3 @@ mensagem();
             })
         })
     </script>
-    

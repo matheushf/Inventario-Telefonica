@@ -39,10 +39,10 @@ class PEtiquetas extends Geleia {
         if ($OrderBy == null) {
             $OrderBy = ' ORDER BY etiq_id ASC ';
         }
-        
+
         if ($Paginacao == null) {
             $Paginacao = ' LIMIT 50 ';
-        }        
+        }
 
         if ($Search != null) {
             $Search = " WHERE ("
@@ -74,7 +74,7 @@ class PEtiquetas extends Geleia {
         return parent::GetById($IsArray);
     }
 
-    function VerificarLeituraAberta($etiq_id) {
+    function VerificarNumeroLeitura($Identificacao) {
         global $db;
 
         $sql = 'SELECT etiq_leitura FROM etiquetas WHERE etiq_id = ' . $etiq_id;
@@ -91,16 +91,32 @@ class PEtiquetas extends Geleia {
     function SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura) {
         global $db;
 
+        // Gerar Código de leitura baseado na leitura aberta
         $leitura = $this->VerificarLeituraAberta($EtiquetaId);
         $Cod_leitura = $leitura . '-' . $Cod_leitura;
 
-        $sql = "INSERT INTO leitura (leit_quantidade_aferida, leit_id_material, leit_loc_material, leit_etiq_id, leit_mate_id, leit_livre1, leit_livre2, leit_cod_leitura, leit_nu_leitura) VALUES ('$QuantidadeAferida', '$IdMaterial', '$LocMaterial', '$EtiquetaId', '$MateId', '$Livre1', '$Livre2', '$Cod_leitura', '$leitura')";
-        
+        // Localizar em qual número de etiqueta está a leitura e montar a identificação/material
+        $sql = "SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiquetaId . " ORDER BY leit_id DESC LIMIT 1";
+
+        $NumEtiqueta = $db->GetObject($sql);
+        if ($NumEtiqueta) {
+            $NumEtiqueta = $NumEtiqueta->leit_num_etiq + 1;
+        } else {
+            $NumEtiqueta = 1;
+        }
+
+        $Leitura_ident_mate = $Cod_leitura . '/' . $NumEtiqueta;
+
+        // Inserir Leitura
+        $sql = "INSERT INTO leitura (leit_quantidade_aferida, leit_identificacao_material, leit_num_etiq, leit_id_material, leit_loc_material, leit_etiq_id, leit_mate_id, leit_livre1, leit_livre2, leit_cod_leitura, leit_nu_leitura) VALUES ('$QuantidadeAferida', '$Leitura_ident_mate', '$NumEtiqueta', '$IdMaterial', '$LocMaterial', '$EtiquetaId', '$MateId', '$Livre1', '$Livre2', '$Cod_leitura', '$leitura')";
+
 //        echo $sql;
 //        die();
 
         if ($db->ExecSQL($sql)) {
             $sql = "UPDATE etiquetas SET etiq_cod_leitura" . $leitura . " = '" . $Cod_leitura . "' , etiq_leitura = " . ($leitura + 1) . " WHERE etiq_id = " . $EtiquetaId;
+
+
 
             $db->ExecSQL($sql);
 
@@ -110,12 +126,54 @@ class PEtiquetas extends Geleia {
         }
     }
 
+    function ConsultarPorLocalizacao($Localizacao) {
+        global $db;
+
+        $sql = "SELECT * FROM leitura WHERE leit_loc_material = '" . $Localizacao . "'";
+        $Resultado = $db->GetObject($sql);
+
+        return $Resultado;
+    }
+
+    function ConsultarPorIdentificacao($Identificacao) {
+        global $db;
+
+        $sql = "SELECT * FROM leitura WHERE leit_identificacao_material = '" . $Identificacao . "'";
+        $Resultado = $db->GetObject($sql);
+
+        return $Resultado;
+    }
+
+    function ListarLocalizacao($EtiquetaId) {
+        global $db;
+
+        $sql = "SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiquetaId;
+
+        return $db->GetObjectList($sql);
+    }
+
+    function SelectLocalizacao($Objeto) {
+
+        $html = "<select id='localizacao' class='form-control'>
+                    <option value=''>Escolha uma localização..</option>
+                ";
+
+        foreach ($Objeto as $valor) {
+            $valor = $valor->leit_loc_material;
+            $html .= "<option value='" . $valor . "'> " . $valor . " </option>";
+        }
+
+        $html .= "</select>";
+
+        return $html;
+    }
+
     function ObterLeitura($EtiqId, $MateId, $Leitura) {
         global $db;
 
         $sql = "SELECT leit_quantidade_aferida FROM leitura WHERE leit_etiq_id = " . $EtiqId . " AND leit_mate_id = " . $MateId . " AND leit_nu_leitura = " . $Leitura;
 
-        if($leit = $db->GetObject($sql)) {
+        if ($leit = $db->GetObject($sql)) {
             return $leit->leit_quantidade_aferida;
         } else {
             return null;
@@ -260,7 +318,7 @@ class Etiquetas extends PEtiquetas {
         $pdf->Output('F', $nome);
 
         echo $nome;
-        
+
         return $nome;
     }
 
@@ -300,7 +358,7 @@ class Etiquetas extends PEtiquetas {
 
         $folder = md5(time());
         mkdir($Diretorio . 'Temp/' . $folder);
-        
+
         return $folder;
     }
 

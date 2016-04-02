@@ -7,10 +7,6 @@ $_SESSION['imagens'] = NULL;
 
 echo mensagem();
 
-DeletarArquivos('Temp/*');
-
-//echo date("F d Y H:i:s.", filectime('Temp/'));
-
 $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
 ?>
 

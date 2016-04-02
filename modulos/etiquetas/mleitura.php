@@ -1,32 +1,37 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
-$Identificacao = $_GET['ident'];
-$LeituraInfo = $Etiquetas->ConsultarPorIdentificacao($Identificacao);
-
-
-
-
-$EtiquetaId = $_GET['id'];
-$EtiquetaInfo = $Etiquetas->getById($EtiquetaId);
-$NLeituraEtiq = $Etiquetas->VerificarLeituraAberta($EtiquetaInfo->etiq_id);
-$NLeituraDepo = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);
 $bloquear = false;
 
-if ($NLeituraEtiq == 4) {
-    $bloquear = true;
-    $mensagem = 'A leitura atingiu seu limite.';
-} elseif ($NLeituraDepo < $NLeituraEtiq) {
-    $bloquear = true;
-    $mensagem = 'A leitura ainda não foi liberada pelo depósito';
-}
+error_reporting(E_ALL);
+//ini_set("display_errors", 1);
 
+if (isset($_GET['ident'])) {
+    $Identificacao  = $_GET['ident'];
+    $LeituraInfo    = $Etiquetas->ConsultarPorIdentificacao($Identificacao);
+    $EtiquetaInfo   = $Etiquetas->GetById($LeituraInfo->leit_etiq_id);
+    $NLeitura       = $Etiquetas->VerificarNumeroLeitura($Identificacao);
+    $NLeituraDepo   = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);   
+    
+    echo $NLeitura;
+
+    if ($NLeitura == 4) {
+        $bloquear = true;
+        $mensagem = 'A leitura atingiu seu limite.';
+    } elseif ($NLeituraDepo < $NLeitura) {
+        $bloquear = true;
+        $mensagem = 'A leitura ainda não foi liberada pelo depósito';
+    }
+} 
+elseif ($_GET['id']) {
+    $EtiquetaInfo   = $Etiquetas->GetById($_GET['id']);
+    
+}
 
 $localizacao = $Etiquetas->ListarLocalizacao($_GET['id']);
 
 mensagem();
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +71,7 @@ ini_set("display_errors", 1);
 
                 <?php } else if ($localizacao) { ?>
 
-                    <input type="hidden" id="id" value="<?= $_GET['id'] ?>">
+                    <input type="hidden" id="id" value="<?= $_GET['ident'] ?>">
                     <div class="row">
                         <div class="col-lg-4"> </div>
                         <center>
@@ -84,7 +89,7 @@ ini_set("display_errors", 1);
 
                 <?php } else { ?>
                     <center>
-                        <h2>Contagem <?= $NLeituraEtiq ?> </h2>
+                        <h2>Contagem <?= $NLeitura + 1 ?> </h2>
                     </center>
 
                     <h3><b>Centro:</b> <span style="color: blueviolet"><?php echo $EtiquetaInfo->depo_centro ?></span> </h3>
@@ -107,7 +112,7 @@ ini_set("display_errors", 1);
                         </div>
                         <div class="form-group">
                             <label for="loc_mate">Loc. Material: </label>
-                            <input type="text" class="form-control"  name="loc_mate" id="loc_mate" required="true">
+                <input type="text" class="form-control"  name="loc_mate" id="loc_mate" required="true" value="<?php if(isset($_GET['localizacao'])) { echo $_GET['localizacao']; } ?>">
                         </div>
                         <div class="form-group">
                             <label for="livre1">Livre 1: </label>
@@ -118,7 +123,8 @@ ini_set("display_errors", 1);
                             <input type="text" class="form-control"  name="livre2" id="livre2" >
                         </div>
 
-                        <input type="hidden" name="etiq_id" value="<?= $EtiquetaInfo->etiq_id ?>">
+                        <input type="hidden" name="identificacao" value="<?= $_GET['ident'] ?>">
+                        <input type="hidden" name="etiq_id" value="<?php echo ($id = $LeituraInfo->leit_etiq_id) ? $id : $_GET['id']; ?>">
                         <input type="hidden" name="mate_id" value="<?= $EtiquetaInfo->mate_id ?>">
                         <input type="hidden" name="etiq_cod_final" value="<?= $EtiquetaInfo->etiq_cod_final ?>">
 
@@ -147,11 +153,11 @@ ini_set("display_errors", 1);
                     },
                     success: function (data) {
                         console.log(data);
-                        
+
                         if (data == 'erro') {
                             alert("Ocorreu um erro, tente novamente.");
                         } else {
-//                            window.location.assign('?ident=' + data);
+                            window.location.assign('?ident=' + data + '&localizacao=' + $("#localizacao").val());
                         }
                         $("#loader").remove();
                     }

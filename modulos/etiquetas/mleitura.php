@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 $bloquear = false;
 
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 //ini_set("display_errors", 1);
 
 if (isset($_GET['ident'])) {
@@ -11,10 +11,8 @@ if (isset($_GET['ident'])) {
     $LeituraInfo    = $Etiquetas->ConsultarPorIdentificacao($Identificacao);
     $EtiquetaInfo   = $Etiquetas->GetById($LeituraInfo->leit_etiq_id);
     $NLeitura       = $Etiquetas->VerificarNumeroLeitura($Identificacao);
-    $NLeituraDepo   = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);   
+    $NLeituraDepo   = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);
     
-    echo $NLeitura;
-
     if ($NLeitura == 4) {
         $bloquear = true;
         $mensagem = 'A leitura atingiu seu limite.';
@@ -24,8 +22,20 @@ if (isset($_GET['ident'])) {
     }
 } 
 elseif ($_GET['id']) {
-    $EtiquetaInfo   = $Etiquetas->GetById($_GET['id']);
+    $EtiqId = $_GET['id'];
+    $EtiquetaInfo   = $Etiquetas->GetById($EtiqId);
+    $QuantidadeLeitura = $Etiquetas->QuantidadeLeitura($EtiqId);
+    $QuantidadeEtiqueta = $EtiquetaInfo->etiq_quantidade * 3;
     
+    if ($QuantidadeLeitura >= $QuantidadeEtiqueta) {
+        $bloquear = true;
+        $mensagem = "A quantidade de leituras para essa etiqueta esgotou.";
+    }
+    
+}
+
+if (isset($_GET['nova'])) {
+    $NLeitura = 1;
 }
 
 $localizacao = $Etiquetas->ListarLocalizacao($_GET['id']);
@@ -60,6 +70,7 @@ mensagem();
     </head>
 
     <body style="background-color: #f3f3f4">
+        <input type="hidden" id="id" value="<?php echo ($id = $LeituraInfo->leit_etiq_id) ? $id : $_GET['id']; ?>">
         <div id="page-wrapper">
             <div class="container-fluid">
 
@@ -69,9 +80,9 @@ mensagem();
                         <h3><?= $mensagem ?> </h3>
                     </center>
 
-                <?php } else if ($localizacao) { ?>
+                <?php } else if ($localizacao && !isset($_GET['nova'])) { ?>
 
-                    <input type="hidden" id="id" value="<?= $_GET['ident'] ?>">
+                    <input type="hidden" id="ident" value="<?= $_GET['ident'] ?>">
                     <div class="row">
                         <div class="col-lg-4"> </div>
                         <center>
@@ -82,14 +93,14 @@ mensagem();
                                 <br> <br>
                                 <a type="submit" id="acessar" class="btn btn-info">Acessar</a>
                                 <br>ou<br>
-                                <a type="submit" id="nova" class="btn btn-primary">Criar nova</a>
+                                <a type="submit" id="nova" class="btn btn-primary">Nova Localização</a>
                             </div>
                         </center>
                     </div>                
 
                 <?php } else { ?>
                     <center>
-                        <h2>Contagem <?= $NLeitura + 1 ?> </h2>
+                        <h2>Contagem <?= $NLeitura ?> </h2>
                     </center>
 
                     <h3><b>Centro:</b> <span style="color: blueviolet"><?php echo $EtiquetaInfo->depo_centro ?></span> </h3>
@@ -122,11 +133,15 @@ mensagem();
                             <label for="livre2">Livre 2: </label>
                             <input type="text" class="form-control"  name="livre2" id="livre2" >
                         </div>
-
+                        
+                        <?php if ($_GET['nova']) { ?>
+                        <input type="hidden" name="nova" value="true">
+                        <?php } ?>
                         <input type="hidden" name="identificacao" value="<?= $_GET['ident'] ?>">
-                        <input type="hidden" name="etiq_id" value="<?php echo ($id = $LeituraInfo->leit_etiq_id) ? $id : $_GET['id']; ?>">
+                        <input type="hidden" name="etiq_id" value="<?php echo ($id = $LeituraInfo->leit_etiq_id) ? $id : $_GET['id']; ?>" id="etiq_id">
                         <input type="hidden" name="mate_id" value="<?= $EtiquetaInfo->mate_id ?>">
                         <input type="hidden" name="etiq_cod_final" value="<?= $EtiquetaInfo->etiq_cod_final ?>">
+                        <!--<input type="hidden" name="num_leitura" value=""-->
 
                         <center>
                             <input type="submit" class="btn btn-primary" id="confirmar" value="Confirmar Material" style="margin: 30px">
@@ -140,7 +155,7 @@ mensagem();
         $(document).ready(function () {
             id = $("#id").val();
 
-            $("a").attr("style", "width: 150px");
+            $("a").attr("style", "width: 150px");            
 
             $("#acessar").on("click", function (event) {
                 $(this).after('<br><p id="loader"><i class="fa fa-refresh fa-spin"></i> Processando...</p>');
@@ -163,6 +178,10 @@ mensagem();
                     }
                 })
 
+            })
+//            alert(id);
+            $("#nova").on("click", function() {
+                window.location.assign('?id=' + id + '&nova=1');
             })
 
             $("#confirmar").on("click", function (event) {

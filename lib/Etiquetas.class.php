@@ -82,40 +82,62 @@ class PEtiquetas extends Geleia {
         $leitura = $db->GetObject($sql);
 
         if ($leitura) {
-            return $leitura->leit_nu_leitura;
+            return $leitura->leit_nu_leitura + 1;
         } else {
             return 1;
         }
     }
 
-    function SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $Identificacao) {
+    function SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $Identificacao, $Nova) {
         global $db;
 
-        // Localizar em qual número de etiqueta está a leitura e montar a identificação/material        
-        $sql = "SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiquetaId . " ORDER BY leit_id DESC LIMIT 1";
+        if ($Nova) {
+            // Localizar em qual número de etiqueta está a leitura e montar a identificação/material        
+            $sql = "SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiquetaId . " ORDER BY leit_num_etiq DESC LIMIT 1";
 //        echo $sql; die();
-        $NumEtiqueta = $db->GetObject($sql);
+            $NumEtiqueta = $db->GetObject($sql);
 //        var_dump($NumEtiqueta); die();
-        if ($NumEtiqueta) {
-            $NumEtiqueta = $NumEtiqueta->leit_num_etiq;
+            if ($NumEtiqueta) {
+                $NumEtiqueta = $NumEtiqueta->leit_num_etiq;
+            } else {
+                $NumEtiqueta = 1;
+            }
+            $NumEtiqueta++;
         } else {
-            $NumEtiqueta = 1;
+            $NumEtiqueta = $this->ConsultarPorIdentificacao($Identificacao);
+            $NumEtiqueta = $NumEtiqueta->leit_num_etiq;
         }
-        
+
         $Leitura_ident_mate = $Cod_leitura . '/' . $NumEtiqueta;
 
         // Gerar Código de leitura baseado na leitura aberta
-        $leitura = $this->VerificarNumeroLeitura($Identificacao) + 1;
+        if ($Nova) {
+            $leitura = 1;
+        } else {
+            $leitura = $this->VerificarNumeroLeitura($Identificacao);
+        }
         $Cod_leitura = $leitura . '-' . $Cod_leitura;
 
+//        var_dump($Cod_leitura, $Leitura_ident_mate, $leitura); die();
         // Inserir Leitura
         $sql = "INSERT INTO leitura (leit_quantidade_aferida, leit_identificacao_material, leit_num_etiq, leit_id_material, leit_loc_material, leit_etiq_id, leit_mate_id, leit_livre1, leit_livre2, leit_cod_leitura, leit_nu_leitura) VALUES ('$QuantidadeAferida', '$Leitura_ident_mate', '$NumEtiqueta', '$IdMaterial', '$LocMaterial', '$EtiquetaId', '$MateId', '$Livre1', '$Livre2', '$Cod_leitura', '$leitura')";
+
+//        echo $sql; die();
 
         if ($db->ExecSQL($sql)) {
             return true;
         } else {
             return false;
         }
+    }
+
+    function QuantidadeLeitura($EtiquetaId) {
+        global $db;
+
+        $sql = "SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiquetaId;
+        $QuantidadeLeitura = $db->GetObjectList($sql);
+
+        return count($QuantidadeLeitura);
     }
 
     function ConsultarPorLocalizacao($Localizacao) {
@@ -140,7 +162,7 @@ class PEtiquetas extends Geleia {
         global $db;
 
         $sql = "SELECT DISTINCT leit_loc_material FROM leitura WHERE leit_etiq_id = " . $EtiquetaId;
-        
+
         return $db->GetObjectList($sql);
     }
 

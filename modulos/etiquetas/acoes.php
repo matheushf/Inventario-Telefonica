@@ -35,8 +35,8 @@ switch ($acao) {
             $Folder = $_POST['folder'];
 
             $Etiquetas->GerarQrCode($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder);
-            
-            
+
+
 
             break;
         }
@@ -93,7 +93,13 @@ switch ($acao) {
             $Cod_leitura = $_POST['etiq_cod_final'];
             $Identificacao = $_POST['identificacao'];
 
-            $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $Identificacao);
+            if (isset($_POST['nova'])) {
+                $Nova = true;
+            } else {
+                $Nova = false;
+            }
+
+            $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $Identificacao, $Nova);
 
             if ($res) {
                 $_SESSION['Mensagem']['tipo'] = "sucesso";
@@ -124,13 +130,13 @@ switch ($acao) {
             }
             break;
         }
-        
+
     case "consultar_localizacao": {
-        $localizacao = $_POST['local'];
-        
-        $Identificacao = $Etiquetas->ConsultarPorLocalizacao($localizacao);
-        echo $Identificacao->leit_identificacao_material;
-        
-        break;
-    }
+            $localizacao = $_POST['local'];
+
+            $Identificacao = $Etiquetas->ConsultarPorLocalizacao($localizacao);
+            echo $Identificacao->leit_identificacao_material;
+
+            break;
+        }
 }

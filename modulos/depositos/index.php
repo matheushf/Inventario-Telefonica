@@ -66,7 +66,7 @@ $DepositoLista = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
                 <th><a href="<?= GetQuery('?ordem='. $ordem . '&by=depo_centro') ?>">Centro  </a></th>
                 <th><a href="<?= GetQuery('?ordem='. $ordem . '&by=depo_cidade') ?>">Cidade  </a></th>
                 <th>Status  </th>
-                <th>Livre 1 </th>
+                <th>Segmento </th>
                 <th>Livre 2 </th>
                 <th>Livre 3 </th>
                 <th>Leitura </th>

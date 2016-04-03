@@ -49,7 +49,11 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
                         <th> N. Leitura </th>
                         <th>Cód Inventário</th>
                         <th>Cód Material</th>
-                        <th>Centro</th>
+                        <th>
+                            <a href="<?= GetQuery('?ordem='. $ordem . '&by=depo_centro') ?>">
+                                Centro
+                            </a>
+                        </th>
                         <th>
                             <a href="<?= GetQuery('?ordem='. $ordem . '&by=mate_nome') ?>">Descrição Material</a>
                         </th>
@@ -70,11 +74,6 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
                     foreach ($InventarioLista as $inve) {
                         ?>
                         <tr>
-    <!--                    <td>
-                        <center>-->
-                            <!--<input type="checkbox" id="<?php //$inve->etiq_id   ?>"   value="<?php //echo $inve->etiq_id   ?>">-->
-                            <!--                        </center>
-                                                </td>-->
                             <?php
                             $Data = $inve->leit_data;
                             $Data = explode(' ', $Data);
@@ -84,7 +83,7 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
 
                             <td><?= $inve->leit_nu_leitura ?> </td>
 
-                            <td><?= $inve->etiq_cod_final ?></td>
+                            <td><?= $inve->leit_identificacao_material ?></td>
 
                             <td><?= $inve->mate_codigo ?></td>
 

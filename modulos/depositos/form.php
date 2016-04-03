@@ -33,7 +33,7 @@ if ($_GET['id']) {
             echo $Deposito->Create('depo_cidade', 'Cidade');
             echo $Deposito->Create('depo_cep', 'CEP');
             echo $Deposito->Create('depo_status', 'Status');
-            echo $Deposito->Create('depo_livre1', 'Livre 1');
+            echo $Deposito->Create('depo_livre1', 'Segmento');
             echo $Deposito->Create('depo_livre1', 'Livre 2');
             echo $Deposito->Create('depo_livre1', 'Livre 3');
             echo $Deposito->Create('depo_observacao', 'Observação');

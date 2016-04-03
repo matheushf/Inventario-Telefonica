@@ -51,7 +51,7 @@ class PInventario extends Geleia {
         global $db;
 
         if ($OrderBy == null) {
-//            $OrderBy = 'ORDER BY e.etiq_cod_final AND l.leit_nu_leitura ASC ';
+            $OrderBy = 'ORDER BY l.leit_data ASC ';
         }
 
         if ($Search != null) {

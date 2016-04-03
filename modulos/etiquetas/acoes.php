@@ -133,8 +133,9 @@ switch ($acao) {
 
     case "consultar_localizacao": {
             $localizacao = $_POST['local'];
+            $EtiquetaId  = $_POST['etiqId'];
 
-            $Identificacao = $Etiquetas->ConsultarPorLocalizacao($localizacao);
+            $Identificacao = $Etiquetas->ConsultarPorLocalizacao($localizacao, $EtiquetaId);
             echo $Identificacao->leit_identificacao_material;
 
             break;

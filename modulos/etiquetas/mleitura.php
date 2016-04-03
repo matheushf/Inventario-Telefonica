@@ -9,7 +9,7 @@ if (isset($_GET['ident'])) {
     $EtiquetaInfo = $Etiquetas->GetById($LeituraInfo->leit_etiq_id);
     $NLeitura = $Etiquetas->VerificarNumeroLeitura($Identificacao);
     $NLeituraDepo = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);
-
+    var_dump($NLeitura);
     if ($NLeitura == 4) {
         $bloquear = true;
         $mensagem = 'A leitura atingiu seu limite.';
@@ -23,7 +23,7 @@ if (isset($_GET['ident'])) {
     $QuantidadeLeitura = $Etiquetas->QuantidadeLeitura($EtiqId);
     $NumeroEtiqueta = $Etiquetas->VerificarNumeroEtiqueta($EtiqId);
     
-    if ($QuantidadeLeitura >= ($EtiquetaInfo->etiq_quantidade * 3)) {
+    if ($QuantidadeLeitura >= ($EtiquetaInfo->etiq_quantidade * 3) && $EtiquetaInfo->etiq_quantidade !== 1) {
         $bloquear = true;
         $mensagem = "A quantidade de leituras para essa etiqueta esgotou.";
     } else if ($NumeroEtiqueta >= $EtiquetaInfo->etiq_quantidade) {

@@ -143,6 +143,7 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
                                 console.log(data);
                                 $("#loader").remove();
                             } else {
+                                console.log(data);
                                 var mensagem = '<div class="alert alert-danger"> Ocorreu um erro ao exportar. </div>';
                                 $("#mensagens").html(mensagem);
                             }

@@ -18,7 +18,8 @@ $(document).ready(function () {
             dataType: 'text',
             data: {
                 acao: 'consultar_localizacao',
-                local: $("select").val()
+                local: $("select").val(),
+                etiqId: id
             },
             success: function (data) {
                 console.log(data);
@@ -26,8 +27,6 @@ $(document).ready(function () {
                 if (data == 'erro') {
                     alert("Ocorreu um erro, tente novamente.");
                 } else {
-                    alert(data);
-//                    return;
                     window.location.assign('?ident=' + data + '&localizacao=' + localizacao);
                 }
                 $("#loader").remove();

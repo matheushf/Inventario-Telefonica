@@ -155,10 +155,11 @@ class PEtiquetas extends Geleia {
         return count($QuantidadeLeitura);
     }
 
-    function ConsultarPorLocalizacao($Localizacao) {
+    function ConsultarPorLocalizacao($Localizacao, $EtiquetaId) {
         global $db;
 
-        $sql = "SELECT * FROM leitura WHERE leit_loc_material = '" . $Localizacao . "'";
+        $sql = "SELECT * FROM leitura WHERE leit_loc_material = '" . $Localizacao . "' AND leit_etiq_id = " . $EtiquetaId;
+        
         $Resultado = $db->GetObject($sql);
 
         return $Resultado;

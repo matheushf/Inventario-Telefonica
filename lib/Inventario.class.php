@@ -89,32 +89,44 @@ class Inventario extends PInventario {
 
     function ExportarCsv($OrderBy, $Search, $Paginacao) {
 
-        $sql = '
-        SELECT l.leit_data, 
-            e.etiq_cod_final, 
-            m.mate_codigo, 
-            d.depo_centro, 
-            m.mate_nome, 
-            m.mate_unidade_medida, 
-            m.mate_valor_unitario, 
-            (SELECT l.leit_quantidade_aferida FROM leitura l WHERE l.leit_nu_leitura = 1 AND l.leit_etiq_id = e.etiq_id) as leitura1,
-            (SELECT l.leit_quantidade_aferida FROM leitura l WHERE l.leit_nu_leitura = 2 AND l.leit_etiq_id = e.etiq_id) as leitura2,
-            (SELECT l.leit_quantidade_aferida FROM leitura l WHERE l.leit_nu_leitura = 3 AND l.leit_etiq_id = e.etiq_id) as leitura3,
-            l.leit_loc_material, 
-            l.leit_id_material, 
-            l.leit_livre1, 
-            l.leit_livre2 
-            
-        FROM etiquetas e
-        INNER JOIN deposito d ON depo_id = e.etiq_depo_centro
-        INNER JOIN materiais m ON m.mate_id = e.etiq_mate_material
-        LEFT OUTER JOIN leitura l ON leit_etiq_id = e.etiq_id
-        GROUP BY e.etiq_id 
-        ';
+        /* $sql = '
+          SELECT l.leit_data,
+          e.etiq_cod_final,
+          m.mate_codigo,
+          d.depo_centro,
+          m.mate_nome,
+          m.mate_unidade_medida,
+          m.mate_valor_unitario,
+          (SELECT l.leit_quantidade_aferida FROM leitura l WHERE l.leit_nu_leitura = 1 AND l.leit_etiq_id = e.etiq_id) as leitura1,
+          (SELECT l.leit_quantidade_aferida FROM leitura l WHERE l.leit_nu_leitura = 2 AND l.leit_etiq_id = e.etiq_id) as leitura2,
+          (SELECT l.leit_quantidade_aferida FROM leitura l WHERE l.leit_nu_leitura = 3 AND l.leit_etiq_id = e.etiq_id) as leitura3,
+          l.leit_loc_material,
+          l.leit_id_material,
+          l.leit_livre1,
+          l.leit_livre2
+
+          FROM etiquetas e
+          INNER JOIN deposito d ON depo_id = e.etiq_depo_centro
+          INNER JOIN materiais m ON m.mate_id = e.etiq_mate_material
+          LEFT OUTER JOIN leitura l ON leit_etiq_id = e.etiq_id
+          GROUP BY e.etiq_id
+          ';
+
+         */
+
+        $sql = 'SELECT l.leit_data, l.leit_nu_leitura, l.leit_identificacao_material, m.mate_codigo, d.depo_centro, m.mate_nome, m.mate_unidade_medida, m.mate_valor_unitario, l.leit_quantidade_aferida, l.leit_loc_material, l.leit_id_material, l.leit_livre1, l.leit_livre2
+                FROM etiquetas e
+                INNER JOIN deposito d ON depo_id = e.etiq_depo_centro
+                INNER JOIN materiais m ON m.mate_id = e.etiq_mate_material
+                LEFT OUTER JOIN leitura l ON leit_etiq_id = e.etiq_id 
+                ';        
+
+        $sql .= $Search . $OrderBy . $Paginacao;
+
 
         $InventarioLista = $this->ListarInventario($OrderBy, $Search, $Paginacao, $sql);
 
-        $Cabecalho = ['Data', 'Cód Inventário', 'Cód Material', 'Centro', 'Descrição Material', 'Unidade de Medida', 'R$ Unitário', 'Leitura 1', 'Leitura 2', 'Leitura 3', 'Localização Interna', 'Material', 'Livre 1', 'Livre 2'];
+        $Cabecalho = ['Data', 'N. Leitura', 'Cód Inventário', 'Cód Material', 'Centro', 'Descrição Material', 'Unidade de Medida', 'R$ Unitário', 'R$ Total', 'Leitura', 'Qtd EMPZ', 'Localização Interna', 'Id Material', 'Livre 1', 'Livre 2'];
 
         $nome = date(d) . '.' . date(m) . '.' . date(o) . '.' . date(G) . '.' . date(i) . '.csv';
 

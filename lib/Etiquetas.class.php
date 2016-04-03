@@ -139,7 +139,7 @@ class PEtiquetas extends Geleia {
         if ($db->ExecSQL($sql)) {
             $sql = "UPDATE leitura SET leit_nu_leit_grupo = " . $leitura . " WHERE leit_identificacao_material = '" . $Leitura_ident_mate . "'";
             $db->ExecSQL($sql);
-            
+
             return true;
         } else {
             return false;
@@ -176,9 +176,23 @@ class PEtiquetas extends Geleia {
     function ListarLocalizacao($EtiquetaId) {
         global $db;
 
-        $sql = "SELECT * FROM (SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiquetaId . " ORDER BY leit_nu_leitura DESC) AS tmp_table WHERE leit_nu_leit_grupo != 3 GROUP BY leit_identificacao_material";
+        $sql = "SELECT * FROM (SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiquetaId . " AND leit_nu_leit_grupo != 3 ORDER BY leit_nu_leitura DESC) AS tmp_table  GROUP BY leit_identificacao_material";
+//        echo $sql;     
 
-        return $db->GetObjectList($sql);
+        $resultado = $db->GetObjectList($sql);
+
+        if ($resultado) {
+            return $resultado;
+        } else {
+            $sql = "SELECT * FROM leitura WHERE leit_etiq_id = " . $EtiquetaId;
+            $resultado = $db->GetObjectList($sql);
+
+            if ($resultado) {
+                return 'nova_localizacao';
+            } else {
+                return false;
+            }
+        }
     }
 
     function SelectLocalizacao($Objeto) {

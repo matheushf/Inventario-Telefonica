@@ -4,10 +4,18 @@ $(document).ready(function () {
     $("a").attr("style", "width: 150px");
 
     $("#acessar").on("click", function (event) {
+        var localizacao = $("#localizacao").val();
+        
+        if (localizacao == '' || localizacao == null) {
+            alert("Escolha a localizacção.");
+            return;
+        }
+        
         $(this).after('<br><p id="loader"><i class="fa fa-refresh fa-spin"></i> Processando...</p>');
         $.ajax({
             type: 'POST',
             url: 'acoes.php',
+            dataType: 'text',
             data: {
                 acao: 'consultar_localizacao',
                 local: $("select").val()
@@ -18,7 +26,9 @@ $(document).ready(function () {
                 if (data == 'erro') {
                     alert("Ocorreu um erro, tente novamente.");
                 } else {
-                    window.location.assign('?ident=' + data + '&localizacao=' + $("#localizacao").val());
+                    alert(data);
+//                    return;
+                    window.location.assign('?ident=' + data + '&localizacao=' + localizacao);
                 }
                 $("#loader").remove();
             }

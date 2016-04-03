@@ -54,7 +54,7 @@ if ($_GET['busca']) {
 }
 
 // Verificar se está logado
-if (!EstaLogado() && !preg_match('/mleitura/', $_SERVER['SCRIPT_FILENAME']) && $_GET['acao'] != 'salvar_leitura') {
+if (!EstaLogado() && !preg_match('/mleitura/', $_SERVER['SCRIPT_FILENAME']) && !preg_match('/acoes/', $_SERVER['SCRIPT_FILENAME'])) {
     header ('Location: /index.php');
 }
 

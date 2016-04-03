@@ -10,7 +10,7 @@
 <form action="acoes.php?acao=salvar_leitura" method="POST" role="form">
     <div class="form-group">
         <label for="quant_aferida">Quantidade Aferida: </label>
-        <input type="text" class="form-control"  name="quant_aferida" id="quant_aferida" required="true">
+        <input type="text" class="form-control"  name="quant_aferida" id="quant_aferida" required="true" autofocus="true">
     </div>
     <div class="form-group">
         <label for="conf_quant">Confirmar Quantidade: </label>

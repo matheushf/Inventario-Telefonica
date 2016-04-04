@@ -9,7 +9,7 @@ if (isset($_GET['ident'])) {
     $EtiquetaInfo = $Etiquetas->GetById($LeituraInfo->leit_etiq_id);
     $NLeitura = $Etiquetas->VerificarNumeroLeitura($Identificacao);
     $NLeituraDepo = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);
-    var_dump($NLeitura);
+    
     if ($NLeitura == 4) {
         $bloquear = true;
         $mensagem = 'A leitura atingiu seu limite.';

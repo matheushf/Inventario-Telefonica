@@ -119,12 +119,16 @@ class Inventario extends PInventario {
                 INNER JOIN deposito d ON depo_id = e.etiq_depo_centro
                 INNER JOIN materiais m ON m.mate_id = e.etiq_mate_material
                 LEFT OUTER JOIN leitura l ON leit_etiq_id = e.etiq_id 
-                ';        
+                ';   
+        
 
-        $sql .= $Search . $OrderBy . $Paginacao;
+//        $sql .= $Search . $OrderBy . $Paginacao;
 
+//        echo $sql;
 
         $InventarioLista = $this->ListarInventario($OrderBy, $Search, $Paginacao, $sql);
+        
+//        _debug($InventarioLista);
 
         $Cabecalho = ['Data', 'N. Leitura', 'Cód Inventário', 'Cód Material', 'Centro', 'Descrição Material', 'Unidade de Medida', 'R$ Unitário', 'Leitura', 'Localização Interna', 'Id Material', 'Livre 1', 'Livre 2'];
 

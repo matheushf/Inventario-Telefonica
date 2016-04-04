@@ -9,6 +9,8 @@ $DepositoLista = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
 ?>
 
 <body>
+    <script src="js/index.js"></script>
+    
     <input type="hidden" id="modulo" name="modulo" value="deposito">
     <fieldset class="scheduler-border" style="margin-top: 20px">
         <legend class=""> Depósitos  </legend>
@@ -105,7 +107,7 @@ $DepositoLista = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
                     </td>
                     <td id="depo_leitura<?php echo $dep->depo_id ?>">
                         <?php echo $dep->depo_leitura ?>
-                    </td>                
+                    </td>
                     </tr>
                     <?php
                 }
@@ -114,29 +116,5 @@ $DepositoLista = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
             </table>
         </div>
 
-        <script>
-            $("#leitura").change(function () {
-                var leitura_valor = $(this).val();
-                var id = $("input:checked").val();
-                if (confirm("Deseja alterar a leitura?")) {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'acoes.php',
-                        data: {
-                            acao: 'alterar_leitura',
-                            id: id,
-                            leitura: leitura_valor
-                        },
-                        success: function (data) {
-                            if (data == 'OK') {
-                                $("td#depo_leitura" + id).html(leitura_valor);
-                            }
-                        }
-                    })
-                }
-            })
-        </script>
-
         <?php
-        get_foot('grid');
-        
+        get_foot('grid');        

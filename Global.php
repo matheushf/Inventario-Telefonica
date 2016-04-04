@@ -61,10 +61,10 @@ if (!EstaLogado() && !preg_match('/mleitura/', $_SERVER['SCRIPT_FILENAME']) && !
 // Paginação
 if ($_GET['page'] && $_GET['page'] != 1) {
     $Pagina = $_GET['page'];
-    $limit = 50;
+    $limit = 100;
     $ofset = ($limit * $Pagina) - $limit;
-    $Paginacao = 'LIMIT ' . $limit . ' OFFSET ' . $ofset;     
+    $Paginacao = 'LIMIT ' . $limit . ' OFFSET ' . $ofset;
 } else {
     $Pagina = 1;
-    $Paginacao = null;
+    $Paginacao = ' LIMIT 100 ';
 }

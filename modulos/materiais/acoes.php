@@ -11,7 +11,6 @@ if (isset($_GET['acao'])) {
 switch ($acao) {
 
     case "importar": {
-            error_reporting();
             $nome = md5($_FILES['arquivo_csv']['name'] . time()) . '.csv';
             $destino = $_SERVER['DOCUMENT_ROOT'] . '/Temp/' . $_FILES['arquivo_csv']['name'];
 

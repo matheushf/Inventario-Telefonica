@@ -32,16 +32,10 @@ mensagem();
         <form action="acoes.php?acao=importar" method="POST" enctype="multipart/form-data">
             <input type="file" name="arquivo_csv" id="arquivo_csv">
 
-            <input type="submit" class="btn btn-primary" value="Importar" style="margin-top: 50px">
+            <input type="submit" class="btn btn-primary" value="Importar" style="margin-top: 50px" id="importar">
         </form>
 
     </fieldset>
 </body>
 
-<script>
-    $(document).ready(function () {
-    $("select").change(function() {
-    })
-
-
-</script>
+<script src="/assets/js/importar.js"> </script>

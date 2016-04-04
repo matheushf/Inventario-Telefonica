@@ -126,7 +126,7 @@ class Inventario extends PInventario {
 
         $InventarioLista = $this->ListarInventario($OrderBy, $Search, $Paginacao, $sql);
 
-        $Cabecalho = ['Data', 'N. Leitura', 'Cód Inventário', 'Cód Material', 'Centro', 'Descrição Material', 'Unidade de Medida', 'R$ Unitário', 'R$ Total', 'Leitura', 'Qtd EMPZ', 'Localização Interna', 'Id Material', 'Livre 1', 'Livre 2'];
+        $Cabecalho = ['Data', 'N. Leitura', 'Cód Inventário', 'Cód Material', 'Centro', 'Descrição Material', 'Unidade de Medida', 'R$ Unitário', 'Leitura', 'Localização Interna', 'Id Material', 'Livre 1', 'Livre 2'];
 
         $nome = date(d) . '.' . date(m) . '.' . date(o) . '.' . date(G) . '.' . date(i) . '.csv';
 

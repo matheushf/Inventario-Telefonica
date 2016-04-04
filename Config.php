@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+ini_set('max_execution_time', 600);
 set_include_path($_SERVER['DOCUMENT_ROOT'] . 'lib/' . ':' .  $_SERVER['DOCUMENT_ROOT'] . 'lib/external/GeleiaFramework/');
 
 // Variaveis globais de sistema

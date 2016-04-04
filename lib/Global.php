@@ -5,19 +5,19 @@ $doc_root = $_SERVER['DOCUMENT_ROOT'] . '/';
 ini_set("include_path", ini_get("include_path") . PATH_SEPARATOR . $doc_root . "/lib/" . PATH_SEPARATOR . $doc_root . "/lib/external/");
 
 // Requires relacionadas a Lib
-require_once 'lib/external/GeleiaFramework/UserControl.class.php';
-require_once 'lib/external/GeleiaFramework/Form.class.php';
-require_once 'lib/external/GeleiaFramework/FormMobile.class.php';
-require_once 'lib/external/Zend/Mail/Transport/Smtp.php';
-require_once 'lib/Geleia.class.php';
-require_once 'lib/GeleiaMobile.class.php';
-require_once 'lib/Usuario.class.php';
-require_once 'lib/Deposito.class.php';
-require_once 'lib/Etiquetas.class.php';
-require_once 'lib/Inventario.class.php';
-require_once 'lib/Materiais.class.php';
-require_once 'lib/FuncoesPadroes.php';
-require_once 'lib/MetodosUtil.php';
+require_once 'external/GeleiaFramework/UserControl.class.php';
+require_once 'external/GeleiaFramework/Form.class.php';
+require_once 'external/GeleiaFramework/FormMobile.class.php';
+require_once 'external/Zend/Mail/Transport/Smtp.php';
+require_once 'Geleia.class.php';
+require_once 'GeleiaMobile.class.php';
+require_once 'Usuario.class.php';
+require_once 'Deposito.class.php';
+require_once 'Etiquetas.class.php';
+require_once 'Inventario.class.php';
+require_once 'Materiais.class.php';
+require_once 'FuncoesPadroes.php';
+require_once 'MetodosUtil.php';
 //if (!class_exists("Zend_Validate")) { require '/Zend/Validate.php'; }
 //if (!class_exists("Zend_Mail")) { require '/Zend/Mail.php'; }
 

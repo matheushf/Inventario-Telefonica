@@ -5,9 +5,9 @@
 <?php if ($tipo == 'grid') { ?>
     <!-- Fim da Grid -->
     <p>
-        <a href="?page=<?= $Pagina - 1 ?>">Página Anterior</a>
+        <a href="?page=<?php echo ($Pagina - 1) . GetQuery(null) ?>">Página Anterior</a>
         - <?php echo $Pagina ?> - 
-        <a href="?page=<?= $Pagina + 1 ?>">Próxima Página</a>
+        <a href="?page=<?php echo ($Pagina + 1) . GetQuery(null) ?>">Próxima Página</a>
     </p>
 <?php } ?>
 

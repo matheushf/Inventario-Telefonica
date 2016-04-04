@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'Funcoes.php';
+require_once 'lib/Funcoes.php';
 
 if (EstaLogado()) {
     header('Location: /modulos/materiais/');

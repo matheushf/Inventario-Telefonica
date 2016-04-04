@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Global.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/Global.php';
 
 class FuncoesPadroes extends Geleia {
 

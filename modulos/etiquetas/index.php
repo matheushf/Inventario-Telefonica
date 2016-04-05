@@ -38,7 +38,10 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
 
         <div class="alert alert-info text-center"> Use os Filtros: EPS - Material - Centro</div>
 
-        <br><br>
+        <br>
+        <?=  count($EtiquetasLista) . ' resultados encontrados.'; ?>
+        <br> <br> <br>
+        
         <div  class="table-responsive">
             <table class="table table-striped table-hover table-bordered">
                 <thead>

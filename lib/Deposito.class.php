@@ -80,7 +80,7 @@ class PDeposito extends Geleia {
     function ObterIdPorCentro($Centro) {
         global $db;
 
-        $sql = "SELECT * FROM deposito WHERE depo_centro = " . $Centro;
+        $sql = "SELECT * FROM deposito WHERE depo_centro = '" . $Centro . "'";
 
         $Id = $db->GetObject($sql);
         $Id = $Id->depo_id;

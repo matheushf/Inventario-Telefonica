@@ -59,7 +59,7 @@ class PMateriais extends Geleia {
     function ObterIdPorCodigo($Codigo) {
         global $db;
 
-        $sql = "SELECT * FROM materiais WHERE mate_codigo = " . $Codigo;
+        $sql = "SELECT * FROM materiais WHERE mate_codigo = '" . $Codigo . "'";
 
         $Id = $db->GetObject($sql);
         $Id = $Id->mate_id;

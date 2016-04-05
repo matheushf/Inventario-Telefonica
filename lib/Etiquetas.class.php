@@ -159,7 +159,7 @@ class PEtiquetas extends Geleia {
         global $db;
 
         $sql = "SELECT * FROM leitura WHERE leit_loc_material = '" . $Localizacao . "' AND leit_etiq_id = " . $EtiquetaId;
-        
+
         $Resultado = $db->GetObject($sql);
 
         return $Resultado;
@@ -368,7 +368,7 @@ class Etiquetas extends PEtiquetas {
 
     function ImportarEtiquetas($ArquivoNome) {
         global $db, $Materiais, $Deposito;
-        
+
         $insert = "INSERT INTO etiquetas (etiq_depo_centro, etiq_mate_material, etiq_quantidade, etiq_cod_final) VALUES (";
 
 //        $handle = fopen(DOCUMENT_ROOT . '/csv/' . $ArquivoNome, "r");
@@ -383,10 +383,11 @@ class Etiquetas extends PEtiquetas {
 
                 $Cod_final = $data[1] . '-' . $data[0];
 
-                $sql = $insert .  " '" . $Depo_id . "', '" . $Mate_id . "', '" . $data[2] . "', '" . $Cod_final . "')";
+                $sql = $insert . " '" . $Depo_id . "', '" . $Mate_id . "', '" . $data[2] . "', '" . $Cod_final . "')";
 
                 $db->ExecSQL($sql);
             }
+
             fclose($handle);
 
             unlink($ArquivoNome);

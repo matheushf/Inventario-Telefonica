@@ -40,8 +40,6 @@ class PInventario extends Geleia {
 
         $sql .= $Search . $OrderBy . $Paginacao;
 
-//        echo $sql;
-
         $inventario = $db->GetObjectList($sql);
 
         return $inventario;
@@ -51,16 +49,16 @@ class PInventario extends Geleia {
         global $db;
 
         if ($OrderBy == null) {
-            $OrderBy = 'ORDER BY l.leit_data ASC ';
+            $OrderBy = ' ORDER BY l.leit_data ASC ';
         }
 
         if ($Search != null) {
-            $Search = "AND ("
-                    . "m.mate_codigo LIKE '%" . $Search . "%'"
-//                    . "OR inve_data LIKE '%" . $Search . "%'"                    
-                    . "OR m.mate_nome LIKE '%" . $Search . "%'"
-                    . "OR d.depo_centro LIKE '%" . $Search . "%'"
-                    . "OR d.depo_empresa LIKE '%" . $Search . "%'"
+            $Search = " WHERE ("
+                    . " m.mate_codigo LIKE '%" . $Search . "%' "
+//                    . " OR inve_data LIKE '%" . $Search . "%' "                    
+                    . " OR m.mate_nome LIKE '%" . $Search . "%' "
+                    . " OR d.depo_centro LIKE '%" . $Search . "%' "
+                    . " OR d.depo_empresa LIKE '%" . $Search . "%' "
                     . ") ";
         }
 

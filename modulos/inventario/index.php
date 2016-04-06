@@ -130,7 +130,6 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, $Paginacao);
                             acao: 'exportar_csv',
                             order_by: '<?= $OrderBy ?>',
                             search: '<?= $Search ?>',
-                            paginacao: '<?= $Paginacao ?>'
                         },
                         success: function (data) {
                             if (data != 'erro') {

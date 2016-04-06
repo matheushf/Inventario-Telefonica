@@ -15,9 +15,8 @@ switch ($acao) {
     case "exportar_csv": {
             $OrderBy        = $_POST['order_by'];
             $Search         = $_POST['search'];
-            $Paginacao      = $_POST['paginacao'];
             
-            if($nome = $Inventario->ExportarCsv($OrderBy, $Search, $Paginacao)) {
+            if($nome = $Inventario->ExportarCsv($OrderBy, $Search)) {
                 echo $nome;
             } else {
                 echo 'erro';

@@ -3,26 +3,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
 $bloquear = false;
 
-if (isset($_GET['ident'])) {
-    $Identificacao = $_GET['ident'];
-    $LeituraInfo = $Etiquetas->ConsultarPorIdentificacao($Identificacao);
-    $EtiquetaInfo = $Etiquetas->GetById($LeituraInfo->leit_etiq_id);
-    $NLeitura = $Etiquetas->VerificarNumeroLeitura($Identificacao);
-    $NLeituraDepo = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);
-    
-    if ($NLeitura == 4) {
-        $bloquear = true;
-        $mensagem = 'A leitura atingiu seu limite.';
-    } elseif ($NLeituraDepo < $NLeitura) {
-        $bloquear = true;
-        $mensagem = 'A leitura ainda não foi liberada pelo depósito';
-    }
-} elseif ($_GET['id']) {
+if (isset($_GET['id'])) {
     $EtiqId = $_GET['id'];
     $EtiquetaInfo = $Etiquetas->GetById($EtiqId);
     $QuantidadeLeitura = $Etiquetas->QuantidadeLeitura($EtiqId);
     $NumeroEtiqueta = $Etiquetas->VerificarNumeroEtiqueta($EtiqId);
-    
+
     if ($QuantidadeLeitura >= ($EtiquetaInfo->etiq_quantidade * 3) && $EtiquetaInfo->etiq_quantidade !== 1) {
         $bloquear = true;
         $mensagem = "A quantidade de leituras para essa etiqueta esgotou.";
@@ -30,6 +16,20 @@ if (isset($_GET['ident'])) {
         $NovaLocalizacao = false;
     } else {
         $NovaLocalizacao = true;
+    }
+} elseif (isset($_GET['ident'])) {
+    $Identificacao = $_GET['ident'];
+    $LeituraInfo = $Etiquetas->ConsultarPorIdentificacao($Identificacao);
+    $EtiquetaInfo = $Etiquetas->GetById($LeituraInfo->leit_etiq_id);
+    $NLeitura = $Etiquetas->VerificarNumeroLeitura($Identificacao);
+    $NLeituraDepo = $Deposito->VerificarLeituraDeposito($EtiquetaInfo->etiq_depo_centro);
+
+    if ($NLeitura > 3) {
+        $bloquear = true;
+        $mensagem = 'A leitura atingiu seu limite.';
+    } elseif ($NLeituraDepo < $NLeitura) {
+        $bloquear = true;
+        $mensagem = 'A leitura ainda não foi liberada pelo depósito';
     }
 }
 
@@ -40,7 +40,6 @@ if ($NLeitura == null) {
 
 $localizacao = $Etiquetas->ListarLocalizacao($_GET['id']);
 
-mensagem();
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +59,7 @@ mensagem();
         <!-- Mainly scripts -->
         <script src="/assets/js/jquery-1.11.3.min.js"></script>
         <script src="/assets/js/bootstrap/js/bootstrap.min.js"></script>
-        
+
         <script src="js/leitura.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 

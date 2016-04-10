@@ -12,19 +12,6 @@ if (isset($_GET['acao'])) {
 
 switch ($acao) {
 
-    case "diretorio_image": {
-            $_SESSION['imagens'] = NULL;
-            unset($_SESSION['imagens']);
-
-            $folder = md5(time());
-            if (mkdir('Temp/' . $folder)) {
-                echo $folder;
-            } else {
-                echo 'erro';
-            }
-            break;
-        }
-
     case "gerar_qr": {
             $IdEtiqueta = $_POST['id'];
             $CodigoMaterial = $_POST['cod_mate'];
@@ -39,47 +26,6 @@ switch ($acao) {
 
 
             break;
-        }
-
-
-
-
-    case "gerar_imagem_etiqueta": {
-            $IdEtiqueta = $_POST['id'];
-            $CodigoMaterial = $_POST['cod_mate'];
-            $NomeMaterial = $_POST['nome_mate'];
-            $UnidadeMedida = $_POST['unidade_medida'];
-            $Centro = $_POST['centro'];
-            $QtdEtiquetas = $_POST['qtde_etq'];
-            $Folder = $_POST['folder'];
-
-            $res = $Etiquetas->CriarImagemEtiqueta($IdEtiqueta, $QtdEtiquetas, $CodigoMaterial, $NomeMaterial, $Centro, $UnidadeMedida, $Folder);
-
-            if ($res) {
-                echo $IdEtiqueta;
-            }
-
-            break;
-        }
-
-    case "gerar_pdf_etiqueta": {
-            $Folder = $_POST['folder'];
-            $nome = $Etiquetas->GerarPDFEtiquetas($Folder);
-
-            $_SESSION['imagens'] = NULL;
-            unset($_SESSION['imagens']);
-
-            rrmdir('Temp/' . $Folder);
-
-            echo $nome;
-
-            break;
-        }
-
-    case "deletar_pdf": {
-            $Arquivo = $_POST['arquivo'];
-
-            unlink($Arquivo);
         }
 
     case "salvar_leitura": {
@@ -101,14 +47,14 @@ switch ($acao) {
 
             $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $Identificacao, $Nova);
 
-            if ($res) {
+            if ($res === true) {
                 $_SESSION['Mensagem']['tipo'] = "sucesso";
                 $_SESSION['Mensagem']['texto'] = "Leitura salva com sucesso.";
 
                 header('Location: /modulos/etiquetas/');
             } else {
                 $_SESSION['Mensagem']['tipo'] = "erro";
-                $_SESSION['Mensagem']['texto'] = "Ocorreu algum erro, tente novamente.";
+                $_SESSION['Mensagem']['texto'] = $res;
             }
 
             break;

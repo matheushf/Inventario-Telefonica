@@ -1,38 +1,6 @@
 $(document).ready(function () {
     $("#gerar-qr").on("click", function () {
         $(this).after('<br><p id="loader"><i class="fa fa-refresh fa-spin"></i> Gerando PDF...</p>');
-//                    $.ajax({
-//                        type: 'POST',
-//                        url: 'acoes.php',
-//                        async: false,
-//                        data: {
-//                            acao: 'gerar_qr'
-//                        },
-//                        success: function (data) {
-//                            if (data == 'erro') {
-//                                alert("Ocorreu um erro, tente novamente.");
-//                            } else {
-//                                nome_pasta = data;
-//                            }
-//                        }
-//                    })
-
-
-//                    $.ajax({
-//                        type: 'POST',
-//                        url: 'acoes.php',
-//                        async: false,
-//                        data: {
-//                            acao: 'diretorio_image'
-//                        },
-//                        success: function (data) {
-//                            if (data == 'erro') {
-//                                alert("Ocorreu um erro, tente novamente.");
-//                            } else {
-//                                nome_pasta = data;
-//                            }
-//                        }
-//                    })
 
         var i = 0;
         ArrayCodMaterial = [];
@@ -64,7 +32,6 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: 'acoes.php',
-//                            async: false,
             data: {
                 acao: 'gerar_qr',
                 id: ArrayId,
@@ -73,7 +40,6 @@ $(document).ready(function () {
                 unidade_medida: ArrayUnidadeMedida,
                 centro: ArrayCentro,
                 qtde_etq: ArrayQtdEtiquetas,
-//                            folder: nome_pasta
             },
             success: function (data) {
                 nome_pdf = data;
@@ -84,44 +50,6 @@ $(document).ready(function () {
                 $("#loader").remove();
             }
         })
-
-
-
-
-        // Gerar PDF
-//                    $.ajax({
-//                        type: 'POST',
-//                        url: 'acoes.php',
-//                        async: false,
-//                        data: {
-//                            acao: 'gerar_pdf_etiqueta',
-//                            folder: nome_pasta
-//                        },
-//                        success: function (data) {
-//                            $("#download").attr("href", data);
-//                            $("#download span").trigger('click');
-//
-//                            nome_pdf = data;
-//                        }
-//                    })
-//                    
-
-//        $("#download span").on("click", function () {
-//
-//alert(nome_pdf);
-//            // Deletar PDF
-//            $.ajax({
-//                type: 'POST',
-//                url: 'acoes.php',
-//                async: false,
-//                data: {
-//                    acao: 'deletar_pdf',
-//                    arquivo: nome_pdf
-//                },
-//                success: function (data) {
-//                }
-//            })
-//        })
 
     })
 })

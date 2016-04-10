@@ -32,8 +32,9 @@ if ($_GET['id']) {
 
 
             <center style="margin-top: 50px">
-                <button class="btn btn-danger" id="cancelar"> Cancelar </button>
                 <button class="btn btn-primary" id="btn-salvar" type="submit"> Salvar </button> 
+                <a class="btn btn-danger" id="cancelar" href="index.php">Cancelar </a>
+                
             </center>
 
         </form>

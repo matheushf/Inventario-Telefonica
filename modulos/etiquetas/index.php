@@ -52,9 +52,6 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
                 </center>
                 </th>
                 <th>Cód Final Inventário</th>
-                <th>Cód Leitura 1       </th>
-                <th>Cód Leitura 2       </th>
-                <th>Cód Leitura 3       </th>
                 <th><a href="<?= GetQuery('?ordem='. $ordem . '&by=mate_codigo') ?>">Material </a></th>
                 <th >Texto Breve Material</th>
                 <th>Unidade de Medida   </th>
@@ -76,15 +73,6 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
                     </td>
                     <td>
                         <?php echo $etiquetas->etiq_cod_final ?>
-                    </td>
-                    <td>
-                        <?php echo $etiquetas->etiq_cod_leitura1 ?>
-                    </td>
-                    <td>
-                        <?php echo $etiquetas->etiq_cod_leitura2 ?>
-                    </td>
-                    <td>
-                        <?php echo $etiquetas->etiq_cod_leitura3 ?>
                     </td>
                     <td>
                         <?php echo $etiquetas->mate_codigo ?>

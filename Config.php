@@ -2,6 +2,8 @@
 session_start();
 
 ini_set('max_execution_time', 600);
+header('Content-Type: text/html; charset=utf-8');
+mb_internal_encoding("UTF-8");
 set_include_path($_SERVER['DOCUMENT_ROOT'] . 'lib/' . ':' .  $_SERVER['DOCUMENT_ROOT'] . 'lib/external/GeleiaFramework/');
 
 // Variaveis globais de sistema

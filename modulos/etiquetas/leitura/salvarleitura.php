@@ -8,9 +8,14 @@
 
 <br><br>
 <form action="acoes.php?acao=salvar_leitura" method="POST" role="form">
+    <div class="form-group"> 
+        <label for="cpf">CPF: </label>
+        <input type="text" class="form-control"  name="cpf" id="cpf" required="true" autofocus="true">
+    </div>
+
     <div class="form-group">
         <label for="quant_aferida">Quantidade Aferida: </label>
-        <input type="text" class="form-control"  name="quant_aferida" id="quant_aferida" required="true" autofocus="true">
+        <input type="text" class="form-control"  name="quant_aferida" id="quant_aferida" required="true">
     </div>
     <div class="form-group">
         <label for="conf_quant">Confirmar Quantidade: </label>
@@ -39,7 +44,7 @@
 
     <?php if ($_GET['nova']) { ?>
         <input type="hidden" name="nova" value="true">
-<?php } ?>
+    <?php } ?>
     <input type="hidden" name="identificacao" value="<?= $_GET['ident'] ?>">
     <input type="hidden" name="etiq_id" value="<?php echo ($id = $LeituraInfo->leit_etiq_id) ? $id : $_GET['id']; ?>" id="etiq_id">
     <input type="hidden" name="mate_id" value="<?= $EtiquetaInfo->mate_id ?>">

@@ -38,6 +38,7 @@ switch ($acao) {
             $MateId = $_POST['mate_id'];
             $Cod_leitura = $_POST['etiq_cod_final'];
             $Identificacao = $_POST['identificacao'];
+            $cpf = $_POST['cpf'];
 
             if (isset($_POST['nova'])) {
                 $Nova = true;
@@ -45,7 +46,7 @@ switch ($acao) {
                 $Nova = false;
             }
 
-            $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $Identificacao, $Nova);
+            $res = $Etiquetas->SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $Identificacao, $Nova, $cpf);
 
             if ($res === true) {
                 $_SESSION['Mensagem']['tipo'] = "sucesso";

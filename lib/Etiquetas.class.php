@@ -102,7 +102,7 @@ class PEtiquetas extends Geleia {
         }
     }
 
-    function SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $Identificacao, $Nova) {
+    function SalvarLeitura($QuantidadeAferida, $IdMaterial, $LocMaterial, $Livre1, $Livre2, $EtiquetaId, $MateId, $Cod_leitura, $Identificacao, $Nova, $cpf) {
         global $db;
 
         // Localizar em qual número de etiqueta está a leitura e montar a identificação/material
@@ -133,9 +133,9 @@ class PEtiquetas extends Geleia {
 
         // Inserir Leitura
         $sql = "INSERT INTO leitura "
-                . "(leit_quantidade_aferida, leit_identificacao_material, leit_num_etiq, leit_id_material, leit_loc_material, leit_etiq_id, leit_mate_id, leit_livre1, leit_livre2, leit_cod_leitura, leit_nu_leitura) "
+                . "(leit_quantidade_aferida, leit_identificacao_material, leit_num_etiq, leit_id_material, leit_loc_material, leit_etiq_id, leit_mate_id, leit_livre1, leit_livre2, leit_cod_leitura, leit_nu_leitura, leit_cpf) "
                 . "VALUES "
-                . "('$QuantidadeAferida', '$Leitura_ident_mate', '$NumEtiqueta', '$IdMaterial', '$LocMaterial', '$EtiquetaId', '$MateId', '$Livre1', '$Livre2', '$Cod_leitura', '$leitura')";
+                . "('$QuantidadeAferida', '$Leitura_ident_mate', '$NumEtiqueta', '$IdMaterial', '$LocMaterial', '$EtiquetaId', '$MateId', '$Livre1', '$Livre2', '$Cod_leitura', '$leitura', '$cpf')";
 
         if ($db->ExecSQL($sql)) {
             $sql = "UPDATE leitura SET leit_nu_leit_grupo = " . $leitura . " WHERE leit_identificacao_material = '" . $Leitura_ident_mate . "'";

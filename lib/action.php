@@ -41,8 +41,9 @@ switch ($acao) {
             $Id = $_POST['id'];
             $Modulo = $_POST['modulo'];
 
-            $res = $FuncoesPadroes->Delete($Id, $Modulo);
-//        var_dump($res);
+            foreach ($Id as $registros) {
+                $res = $FuncoesPadroes->Delete($registros, $Modulo);
+            }
 
             if ($res) {
                 echo "OK";

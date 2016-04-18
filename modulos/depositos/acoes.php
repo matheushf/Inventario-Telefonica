@@ -19,7 +19,7 @@ switch ($acao) {
             if ($Deposito->AlterarLeitura($DepoId, $Leitura)) {
                 echo 'OK';
             } else {
-                'erro';
+                echo 'erro';
             }
 
             break;

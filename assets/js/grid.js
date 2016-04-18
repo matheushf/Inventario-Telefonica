@@ -27,30 +27,34 @@ $(document).ready(function () {
             return;
         }
 
+        var ArrayId = [];
+        var i = 0;
         $("input:checked").not("#check_all").each(function () {
-            var id = $(this).val();
+            ArrayId[i] = $(this).val();
+            i = i + 1;
+        });
 
-            $.ajax({
-                type: 'POST',
-                url: '/lib/action.php',
-                data: {
-                    acao: 'excluir',
-                    id: id,
-                    modulo: modulo
-                },
-                success: function (data) {
+        $.ajax({
+            type: 'POST',
+            url: '/lib/action.php',
+            data: {
+                acao: 'excluir',
+                id: ArrayId,
+                modulo: modulo
+            },
+            success: function (data) {
 //                    alert(data);
-                    if (data == "OK") {
-                        $("input:checked").parents("tr").remove();
-                        var mensagem = '<div class="alert alert-success"> Registro excluído com sucesso. </div>';
-                        $("#mensagens").html(mensagem);
-                    } else if (data == "ERRO") {
-                        var mensagem = '<div class="alert alert-danger"> Ocorreu um erro ao excluir o registro. </div>';
-                        $("#mensagens").html(mensagem);
-                    }
+                if (data == "OK") {
+                    $("input:checked").parents("tr").remove();
+                    var mensagem = '<div class="alert alert-success"> Registro excluído com sucesso. </div>';
+                    $("#mensagens").html(mensagem);
+                } else if (data == "ERRO") {
+                    var mensagem = '<div class="alert alert-danger"> Ocorreu um erro ao excluir o registro. </div>';
+                    $("#mensagens").html(mensagem);
                 }
-            })
+            }
         })
+
     })
 
     // Buscador
@@ -60,10 +64,10 @@ $(document).ready(function () {
     })
 
     // Variáveis para funcionalidade de marcar linha clicada na grid
-    selecionado         = null;
-    todos_selecionados  = false;
-    tr_click            = false;
-    link                = false;
+    selecionado = null;
+    todos_selecionados = false;
+    tr_click = false;
+    link = false;
 
     // Selecionar todos checkbox
     $("#check_all").on("change", function () {
@@ -75,9 +79,9 @@ $(document).ready(function () {
     // Pequeno hack para tirar o bug ao selecionar todos
     $("input:checkbox").on("click", function () {
         selecionado = true;
-    })        
+    })
 
-    $("a").on("click", function() {
+    $("a").on("click", function () {
         link = true;
     });
 
@@ -87,7 +91,7 @@ $(document).ready(function () {
             link = false;
             return;
         }
-        
+
         var checkbox = $(this).find(':checkbox');
 
         if (checkbox.attr("id") == "check_all") {

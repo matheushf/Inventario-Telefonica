@@ -55,6 +55,21 @@ function EstaLogado() {
     }
 }
 
+/*
+ * Verificar se é alguma das páginas que são liberadas o acesso sem o login
+ */
+function PaginasLivres() {
+    $paginas = array("mleitura", "acoes", "listagem");
+    
+    foreach ($paginas as $files) {
+        if (preg_match('/' . $files . '/', $_SERVER['SCRIPT_FILENAME'])) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 function rrmdir($dir) {
     foreach (glob($dir . '/*') as $file) {
         if (is_dir($file))

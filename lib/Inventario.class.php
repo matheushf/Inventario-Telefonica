@@ -8,7 +8,7 @@
 class PInventario extends Geleia {
 
     // Implementar mais tarde, quando necessário
-    function ListarRelatorio($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50', $sql = null) {
+    function ListarRelatorio($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 0', $sql = null) {
         global $db;
 
         if ($OrderBy == null) {
@@ -46,7 +46,7 @@ class PInventario extends Geleia {
         return $inventario;
     }
 
-    function ListarInventario($OrderBy = null, $Search = null, $Paginacao = 'LIMIT 50', $sql = null) {
+    function ListarInventario($OrderBy = null, $Search = null, $Paginacao = '', $sql = null) {
         global $db;
 
         if ($OrderBy == null) {
@@ -70,7 +70,21 @@ class PInventario extends Geleia {
                 INNER JOIN materiais m ON m.mate_id = e.etiq_mate_material
                 LEFT OUTER JOIN leitura l ON leit_etiq_id = e.etiq_id 
                 ';
+            
+        } elseif ($sql == 'online') {
+            
+            $sql = 'SELECT 
+                    e.etiq_id,
+                    d.depo_centro,
+                    m.mate_codigo, m.mate_nome, m.mate_unidade_medida,
+                    l.leit_data, l.leit_identificacao_material, l.leit_loc_material, l.leit_id_material, l.leit_livre1, l.leit_livre2
+                    FROM etiquetas e
+                    INNER JOIN deposito d ON depo_id = e.etiq_depo_centro
+                    INNER JOIN materiais m ON m.mate_id = e.etiq_mate_material
+                    LEFT OUTER JOIN leitura l ON leit_etiq_id = e.etiq_id
+                    GROUP BY l.leit_identificacao_material';
         }
+        
         $sql .= $Search . $OrderBy . $Paginacao;
 
         $inventario = $db->GetObjectList($sql);

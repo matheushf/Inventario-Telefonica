@@ -17,9 +17,14 @@
 #RewriteCond %{REQUEST_FILENAME}.php -f
 #RewriteRule ^(.*?)/?$ $1.php [L]
   
+    RewriteCond %{REQUEST_URI} listagem$
+    RewriteRule listagem /modulos/inventario/listagem.php
+
    ErrorDocument 404 /lib/erros/404.php
    ErrorDocument 403 /lib/erros/403.php
    ErrorDocument 500 /lib/erros/500.php
+
+    AddCharset UTF-8 .html .php
 
 ## Forçar o uso de HTTPS   
 #RewriteCond %{HTTPS} off

@@ -213,11 +213,11 @@ class PEtiquetas extends Geleia {
         return $html;
     }
 
-    function ObterLeitura($EtiqId, $MateId, $Leitura) {
+    function ObterLeitura($leit_ident_mate, $Leitura) {
         global $db;
 
-        $sql = "SELECT leit_quantidade_aferida FROM leitura WHERE leit_etiq_id = " . $EtiqId . " AND leit_mate_id = " . $MateId . " AND leit_nu_leitura = " . $Leitura;
-
+        $sql = "SELECT leit_quantidade_aferida FROM leitura WHERE leit_identificacao_material = '" . $leit_ident_mate . "' AND leit_nu_leitura = " . $Leitura;
+        
         if ($leit = $db->GetObject($sql)) {
             return $leit->leit_quantidade_aferida;
         } else {

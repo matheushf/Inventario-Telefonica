@@ -61,6 +61,8 @@ class PInventario extends Geleia {
                     . " OR d.depo_empresa LIKE '%" . $Search . "%' "
                     . ") ";
         }
+        
+        $GroupBy = null;
 
         if ($sql == null) {
 
@@ -81,12 +83,14 @@ class PInventario extends Geleia {
                     FROM etiquetas e
                     INNER JOIN deposito d ON depo_id = e.etiq_depo_centro
                     INNER JOIN materiais m ON m.mate_id = e.etiq_mate_material
-                    LEFT OUTER JOIN leitura l ON leit_etiq_id = e.etiq_id
-                    GROUP BY l.leit_identificacao_material';
+                    LEFT OUTER JOIN leitura l ON leit_etiq_id = e.etiq_id';
+            
+            $GroupBy = ' GROUP BY l.leit_identificacao_material ';
+            
         }
         
-        $sql .= $Search . $OrderBy . $Paginacao;
-
+        $sql .= $Search . $GroupBy . $OrderBy . $Paginacao;
+        
         $inventario = $db->GetObjectList($sql);
 
         return $inventario;

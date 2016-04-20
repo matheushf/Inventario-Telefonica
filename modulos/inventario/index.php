@@ -45,6 +45,7 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '');
                         <th>
                             <a href="<?= GetQuery('?ordem='. $ordem . '&by=leit_data') ?>">Data</a>
                         </th>
+                        <th> CPF </th>
                         <th> N. Leitura </th>
                         <th>Cód Inventário</th>
                         <th>Cód Material</th>
@@ -79,6 +80,8 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '');
                             $Data = Useful::DateFormatDefault($Data[0]);
                             ?>
                             <td style="white-space: nowrap"> <?= $Data ?></td>
+                            
+                            <td> <?= $inve->leit_cpf ?> </td>
 
                             <td><?= $inve->leit_nu_leitura ?> </td>
 

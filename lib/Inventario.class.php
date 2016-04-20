@@ -34,7 +34,7 @@ class PInventario extends Geleia {
                 e.etiq_id, e.etiq_depo_centro, e.etiq_mate_material, e.etiq_quantidade, e.etiq_cod_final, e.etiq_cod_leitura1, e.etiq_cod_leitura2, e.etiq_cod_leitura3, e.etiq_leitura,
                 d.depo_id, d.depo_empresa, d.depo_centro, d.depo_cidade, d.depo_leitura,
                 m.mate_id, m.mate_codigo, m.mate_nome, m.mate_unidade_medida, m.mate_valor_unitario,
-                l.leit_livre1, l.leit_livre2, leit_cod_leitura, l.leit_nu_leitura, l.leit_id_material, l.leit_data 
+                l.leit_livre1, l.leit_livre2, leit_cod_leitura, l.leit_nu_leitura, l.leit_id_material, l.leit_data, l.leit_cpf 
                 FROM etiquetas e
                 INNER JOIN deposito d ON depo_id = e.etiq_depo_centro
                 INNER JOIN materiais m ON m.mate_id = e.etiq_mate_material
@@ -129,16 +129,17 @@ class Inventario extends PInventario {
                 unset($InventarioLista[$key]->etiq_cod_final);
             }
             
+            // Caso não seja listagem, será o inventário normal
         } else {
 
-            $sql = 'SELECT l.leit_data, l.leit_nu_leitura, l.leit_identificacao_material, m.mate_codigo, d.depo_centro, m.mate_nome, m.mate_unidade_medida, m.mate_valor_unitario, l.leit_quantidade_aferida, l.leit_loc_material, l.leit_id_material, l.leit_livre1, l.leit_livre2
+            $sql = 'SELECT l.leit_data, l.leit_cpf, l.leit_nu_leitura, l.leit_identificacao_material, m.mate_codigo, d.depo_centro, m.mate_nome, m.mate_unidade_medida, m.mate_valor_unitario, l.leit_quantidade_aferida, l.leit_loc_material, l.leit_id_material, l.leit_livre1, l.leit_livre2
                 FROM etiquetas e
                 INNER JOIN deposito d ON depo_id = e.etiq_depo_centro
                 INNER JOIN materiais m ON m.mate_id = e.etiq_mate_material
                 LEFT OUTER JOIN leitura l ON leit_etiq_id = e.etiq_id 
                 ';
 
-            $Cabecalho = ['Data', 'N. Leitura', 'Cód Inventário', 'Cód Material', 'Centro', 'Descrição Material', 'Unidade de Medida', 'R$ Unitário', 'Leitura', 'Localização Interna', 'Id Material', 'Livre 1', 'Livre 2'];
+            $Cabecalho = ['Data', 'CPF', 'N. Leitura', 'Cód Inventário', 'Cód Material', 'Centro', 'Descrição Material', 'Unidade de Medida', 'R$ Unitário', 'Leitura', 'Localização Interna', 'Id Material', 'Livre 1', 'Livre 2'];
         
             $InventarioLista = $this->ListarInventario($OrderBy, $Search, $Paginacao, $sql);
         }

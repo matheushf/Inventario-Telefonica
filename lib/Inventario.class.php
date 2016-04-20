@@ -104,11 +104,9 @@ class Inventario extends PInventario {
     function ExportarCsv($OrderBy, $Search, $Listagem) {
         global $Etiquetas;
         
-//        var_dump($Listagem);
-        
         // Caso esteja exportando pela página de listagem/compacta
         // O processo será diferente, juntamente com as variáveis em questão 
-        if ($Listagem === true) {
+        if ($Listagem === 'true') {
             $sql = 'SELECT 
                     e.etiq_cod_final, m.mate_codigo, d.depo_centro, m.mate_nome, m.mate_unidade_medida,
                     (null) as contagem1, (null) as contagem2, (null) as contagem3

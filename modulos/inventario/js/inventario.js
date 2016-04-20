@@ -4,11 +4,9 @@ $(document).ready(function () {
         var search   = $("#search").val();
         var listagem = false;
         
-        if ($("#listagem").length > 1) {
+        if ($("#listagem").length > 0) {
             listagem = true;
         }
-
-        console.log(order_by, search);
 
         $(this).after('<br><p id="loader"><i class="fa fa-refresh fa-spin"></i> Exportando CSV...</p>');
 

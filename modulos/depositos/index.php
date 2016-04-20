@@ -21,7 +21,7 @@ $DepositoLista = $Deposito->ListarDeposito($OrderBy, $Search, $Paginacao);
                     <div class="form-group">
                         <button class="btn btn-primary" id="btn-novo">Novo          </button>
                         <button class="btn btn-primary" id="btn-editar">Editar      </button>
-                        <button class="btn btn-primary" id="btn-excluir">Excluir    </button>
+                        <button class="btn btn-danger" id="btn-excluir">Excluir    </button>
 
                         <label for="leitura"> Liberar
                             <select name="leitura" id="leitura" class="form-control">

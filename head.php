@@ -51,62 +51,49 @@
 
     <body>
         <div id="wraper">
-            
-                <nav class="navbar-default navbar-static-side" role="navigation">
-                    <div class="sidebar-collapse">
-                        <ul class="nav metismenu" id="side-menu">
-                            <li class="nav-header">
-                                <div class="dropdown profile-element">
-                                    <p style="margin-top: 10px">
-                                        <span class="clear"> <span class="" style="color: white">
-                                                <img src="/assets/imagens/empz2.jpg" width="150" height="50">
+
+            <nav class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav metismenu" id="side-menu">
+                        <li class="nav-header">
+                            <div class="dropdown profile-element">
+                                <p style="margin-top: 10px">
+                                    <span class="clear"> <span class="" style="color: white">
+                                            <img src="/assets/imagens/empz2.jpg" width="150" height="50">
 
 
-                                            </span>
-                                    </p>
-                                </div>
-                                <div class="logo-element">VI</div>
-                            </li>
-                            <?php if ($FormGrid != 'none') { ?>
+                                        </span>
+                                </p>
+                            </div>
+                            <div class="logo-element">VI</div>
+                        </li>
+                        <li>
+                            <a href="/modulos/materiais"><i class="fa fa-bars"></i> <span class="nav-label">Materiais </span></a>
+                        </li>
+
+                        <li>
+                            <a href="/modulos/depositos"><i class="fa fa-archive"></i> <span class="nav-label">Depósitos </span></a>
+                        </li>
+
+                        <li>
+                            <a href="/modulos/etiquetas"><i class="fa fa-barcode"></i> <span class="nav-label">Etiquetas </span></a>
+                        </li>
+
+                        <li>
+                            <a href="/modulos/inventario"><i class="fa fa-book"></i> <span class="nav-label">Inventário </span></a>
+                        </li>
+
+                        <?php if ($_SESSION['usua_tipo'] == 'Admin') { ?>
                             <li>
-                                <a href="/modulos/materiais"><i class="fa fa-bars"></i> <span class="nav-label">Materiais </span></a>
+                                <a href="/modulos/usuarios"><i class="fa fa-user"></i> <span class="nav-label">Usuário </span></a>
                             </li>
+                        <?php } ?>
 
-                            <li>
-                                <a href="/modulos/depositos"><i class="fa fa-archive"></i> <span class="nav-label">Depósitos </span></a>
-                            </li>
 
-                            <li>
-                                <a href="/modulos/etiquetas"><i class="fa fa-barcode"></i> <span class="nav-label">Etiquetas </span></a>
-                            </li>
+                    </ul>
+                </div>
+            </nav>
 
-                            <li>
-                                <a href="/modulos/inventario"><i class="fa fa-book"></i> <span class="nav-label">Inventário </span></a>
-                            </li>
-
-                                <?php if ($_SESSION['usua_tipo'] == 'Admin') { ?>
-                                    <li>
-                                        <a href="/modulos/usuarios"><i class="fa fa-user"></i> <span class="nav-label">Usuário </span></a>
-                                    </li>
-                                <?php } ?>
-                                
-                            <?php } else { ?>
-                            <li>
-                                <a href="/modulos/inventario/listagem.php"><i class="fa fa-book"></i> <span class="nav-label">Inventário Online </span></a>
-                            </li>
-                            
-                            <script>
-                                $(document).ready(function () {
-                                    $(".navbar-minimalize").trigger('click');   
-                                })
-                            </script>
-                            
-                            <?php } ?>
-
-                        </ul>
-                    </div>
-                </nav>
-            
         </div>
         <div id="page-wrapper" class="gray-bg">
             <div class="row">
@@ -116,7 +103,6 @@
                            href="#"><i class="fa fa-bars"></i> </a>
                     </div>
 
-                    <?php if ($FormGrid != 'none') { ?>
                     <ul class="nav navbar-top-links navbar-right">
 
                         <li><span class="m-r-sm text-muted welcome-message">Bem Vindo, <?php echo $_SESSION['usua_nome']; ?></span>
@@ -125,8 +111,7 @@
                         <li><a href="/logout.php"> <i class="fa fa-sign-out"></i> Sair
                             </a></li>
                     </ul>
-                    <?php } ?>
-                    
+
                 </nav>
                 <center>
                     <h1>Vivo Inventário</h1>

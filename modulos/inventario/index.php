@@ -12,7 +12,8 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '');
 
         <div class="row">
             <div class="col-sm-6">
-                <button class="btn btn-primary" id="exportar-csv"> Exportar CSV    </button>
+                <a href="listagem.php" class="btn btn-primary"> Listagem </a>
+                <button class="btn btn-info" id="exportar-csv"> Exportar CSV    </button>
             </div>
             <div class="col-sm-6 ">
                 <div class="form-inline pull-right">
@@ -117,39 +118,12 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '');
             </table>
             <a href="" download id="download"><span style="display: none">download</span></a>
         </div>
+        
+            <input type="hidden" value="<?= $OrderBy ?>" id="order">
+            <input type="hidden" value="<?= $Search ?>" id="search">
 
-        <script>
-            $(document).ready(function () {
-                $("#exportar-csv").on("click", function () {
-                    $(this).after('<br><p id="loader"><i class="fa fa-refresh fa-spin"></i> Exportando CSV...</p>');
-                    
-                    $.ajax({
-                        type: 'POST',
-                        url: 'acoes.php',
-                        data: {
-                            acao: 'exportar_csv',
-                            order_by: '<?= $OrderBy ?>',
-                            search: '<?= $Search ?>',
-                        },
-                        success: function (data) {
-                            if (data != 'erro') {
-                                var mensagem = '<div class="alert alert-success"> Registros exportados com sucesso. </div>';
-                                $("#mensagens").html(mensagem);
-                                $("#download").attr("href", data);
-                                $("#download span").trigger('click');
-                                console.log(data);
-                                $("#loader").remove();
-                            } else {
-                                console.log(data);
-                                var mensagem = '<div class="alert alert-danger"> Ocorreu um erro ao exportar. </div>';
-                                $("#mensagens").html(mensagem);
-                            }
-                        }
-                    })
-                })
-            })
-        </script>
-
+        <script type="text/javascript" src="js/inventario.js"></script> 
+        
         <?php
         get_foot();
         

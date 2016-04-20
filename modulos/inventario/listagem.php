@@ -1,17 +1,21 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Config.php';
 
-get_head('Inventário Online', 'none');
-$InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '', $sql = 'online');
+get_head(' Listagem ');
+$InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '', $sql = 'listagem');
 ?>
 
 <body>
     <input type="hidden" id="modulo" name="modulo" value="inventario">
     <fieldset class="scheduler-border" style="margin-top: 20px">
-        <legend class=""> Inventário Online  </legend>
+        <legend class=""> Listagem  </legend>
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
+                <button class="btn btn-info" id="exportar-csv"> Exportar CSV    </button>
+            </div>
+
+            <div class="col-sm-6">
                 <div class="form-inline pull-right">
                     <form class="form-group">
                         <input type="text" size="20" class="form-control" id="busca" name="busca" value="<?= $_GET['busca'] ?>">
@@ -38,10 +42,6 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '', $sql = '
                     <input type="checkbox" id="check_all" value="">
                 </center>
                 </th>-->
-                        <th>
-                            <a href="<?= GetQuery('?ordem=' . $ordem . '&by=leit_data') ?>">Data</a>
-                        </th>
-                        <th>Cód Inventário</th>
                         <th>Cód Material</th>
                         <th>
                             <a href="<?= GetQuery('?ordem=' . $ordem . '&by=depo_centro') ?>">
@@ -55,10 +55,6 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '', $sql = '
                         <th> Contagem 1</th>
                         <th> Contagem 2 </th>
                         <th> Contagem 3 </th>
-                        <th>Localização Interna</th>
-                        <th>Id Material</th>
-                        <th>Livre 1</th>
-                        <th>Livre 2</th>
 
                     </tr>
                 </thead>
@@ -67,15 +63,6 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '', $sql = '
                     foreach ($InventarioLista as $inve) {
                         ?>
                         <tr>
-                            <?php
-                            $Data = $inve->leit_data;
-                            $Data = explode(' ', $Data);
-                            $Data = Useful::DateFormatDefault($Data[0]);
-                            ?>
-                            <td style="white-space: nowrap"> <?= $Data ?></td>
-
-                            <td><?= $inve->leit_identificacao_material ?></td>
-
                             <td><?= $inve->mate_codigo ?></td>
 
                             <td><?= $inve->depo_centro ?></td>
@@ -84,19 +71,11 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '', $sql = '
 
                             <td><?= $inve->mate_unidade_medida ?></td>
 
-                            <td><?= $Etiquetas->ObterLeitura($inve->leit_identificacao_material, 1); ?> </td>
+                            <td><?= $Etiquetas->ObterLeitura($inve->depo_centro, 1, $inve->etiq_cod_final); ?> </td>
 
-                            <td><?= $Etiquetas->ObterLeitura($inve->leit_identificacao_material, 2); ?> </td>
+                            <td><?= $Etiquetas->ObterLeitura($inve->depo_centro, 2, $inve->etiq_cod_final); ?> </td>
 
-                            <td><?= $Etiquetas->ObterLeitura($inve->leit_identificacao_material, 3); ?> </td>
-
-                            <td><?= $inve->leit_loc_material ?> </td>
-
-                            <td> <?= $inve->leit_id_material ?> </td>
-
-                            <td> <?= $inve->leit_livre1 ?></td>
-
-                            <td> <?= $inve->leit_livre2 ?></td>
+                            <td><?= $Etiquetas->ObterLeitura($inve->depo_centro, 3, $inve->etiq_cod_final); ?> </td>
 
                         </tr>
                         <?php
@@ -105,6 +84,14 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '', $sql = '
                 </tbody>
             </table>
         </div>
-        
+
+        <a href="" download id="download"><span style="display: none">download</span></a>
+        <input type="hidden" value="<?= $OrderBy ?>" id="order">
+        <input type="hidden" value="<?= $Search ?>" id="search">
+        <input type="hidden" value="true" id="listagem">
+
+        <script type="text/javascript" src="js/inventario.js"></script> 
+
         <?php
         get_foot();
+        

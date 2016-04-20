@@ -20,8 +20,8 @@ $EtiquetasLista = $Etiquetas->ListarEtiquetas($OrderBy, $Search, $Paginacao);
             <div class="col-sm-6">
                 <button class="btn btn-primary" id="btn-novo">Novo</button>
                 <button class="btn btn-primary" id="btn-editar">Editar</button>
-                <button class="btn btn-primary" id="btn-excluir">Excluir</button>
-                <button class="btn btn-primary" id="gerar-qr">Gerar Check-in 2D</button>
+                <button class="btn btn-danger" id="btn-excluir">Excluir</button>
+                <button class="btn btn-info" id="gerar-qr">Gerar Check-in 2D</button>
             </div>
             <div class="col-sm-6 ">
                 <div class="form-inline pull-right">

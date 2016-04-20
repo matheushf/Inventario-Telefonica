@@ -124,11 +124,11 @@ class PEtiquetas extends Geleia {
         } else {
             $leitura = $this->VerificarNumeroLeitura($Identificacao);
         }
-        
+
         if ($leitura > 3) {
             return 'A leitura atingiu seu limite.';
         }
-        
+
         $Cod_leitura = $leitura . '-' . $Cod_leitura;
 
         // Inserir Leitura
@@ -213,13 +213,20 @@ class PEtiquetas extends Geleia {
         return $html;
     }
 
-    function ObterLeitura($leit_ident_mate, $Leitura) {
+    function ObterLeitura($depo_id, $Leitura, $etiq_cod_final) {
         global $db;
 
-        $sql = "SELECT leit_quantidade_aferida FROM leitura WHERE leit_identificacao_material = '" . $leit_ident_mate . "' AND leit_nu_leitura = " . $Leitura;
+        $sql = "SELECT SUM(leit_quantidade_aferida) as contagem FROM leitura l
+                INNER JOIN etiquetas e ON l.leit_etiq_id = e.etiq_id
+                INNER JOIN deposito d ON d.depo_id = e.etiq_depo_centro
+                WHERE d.depo_centro = " . $depo_id .
+                " AND l.leit_nu_leitura = " . $Leitura .
+                " AND e.etiq_cod_final = '" . $etiq_cod_final . "'";
         
+//        echo $sql;
+
         if ($leit = $db->GetObject($sql)) {
-            return $leit->leit_quantidade_aferida;
+            return $leit->contagem;
         } else {
             return null;
         }

@@ -73,6 +73,18 @@ class PEtiquetas extends Geleia {
 
         return parent::GetById($IsArray);
     }
+    
+    function DeletarPorId($Id) {
+        global $db;
+        
+        $db->ExecSQL('DELETE FROM leitura WHERE leit_etiq_id = ' . $Id);
+        
+        if ($db->ExecSQL('DELETE FROM etiquetas WHERE etiq_id = ' . $Id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     function VerificarNumeroLeitura($Identificacao) {
         global $db;

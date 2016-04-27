@@ -75,18 +75,22 @@ class FuncoesPadroes extends Geleia {
                     global $Deposito;
 
                     return $Deposito->DeletarPorId($Id);
+                    
+                    break;
                 }
 
             case 'etiquetas': {
-                    $db->ExecSQL('DELETE FROM leitura WHERE leit_etiq_id = ' . $Id);
+                    global $Etiquetas;
+                    
+                    return $Etiquetas->DeletarPorId($Id);
 
                     break;
                 }
         }
 
-        $this->SQL_Delete = "DELETE FROM " . $Modulo . " WHERE " . substr($Modulo, 0, 4) . "_id = " . (int) $Id;
+//        $this->SQL_Delete = "DELETE FROM " . $Modulo . " WHERE " . substr($Modulo, 0, 4) . "_id = " . (int) $Id;
 
-        return parent::Delete();
+//        return parent::Delete();
     }
 
 }

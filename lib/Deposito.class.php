@@ -68,7 +68,7 @@ class PDeposito extends Geleia {
         $EtiquetaId = $db->GetObject('SELECT etiq_id FROM etiquetas WHERE etiq_depo_centro = ' . $Id);
         $EtiquetaId = $EtiquetaId->etiq_id;
         $db->ExecSQL('DELETE FROM leitura WHERE leit_etiq_id = ' . $EtiquetaId);
-        $db->ExecSQL('DELETE FROM etiquetas WHERE etiq_id = ' . $EtiquetaId);
+        $db->ExecSQL('DELETE FROM etiquetas WHERE etiq_depo_centro = ' . $Id);
         
         if ($db->ExecSQL('DELETE FROM deposito WHERE depo_id = ' . $Id)) {
             return true;

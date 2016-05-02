@@ -43,7 +43,6 @@ $(document).ready(function () {
                 modulo: modulo
             },
             success: function (data) {
-//                    alert(data);
                 if (data == "OK") {
                     $("input:checked").parents("tr").remove();
                     var mensagem = '<div class="alert alert-success"> Registro excluído com sucesso. </div>';
@@ -51,6 +50,8 @@ $(document).ready(function () {
                 } else if (data == "ERRO") {
                     var mensagem = '<div class="alert alert-danger"> Ocorreu um erro ao excluir o registro. </div>';
                     $("#mensagens").html(mensagem);
+                } else {
+                    console.log(data);
                 }
             }
         })

@@ -40,7 +40,7 @@ switch ($acao) {
     case 'excluir': {
             $Id = $_POST['id'];
             $Modulo = $_POST['modulo'];
-
+            
             foreach ($Id as $registros) {
                 $res = $FuncoesPadroes->Delete($registros, $Modulo);
             }

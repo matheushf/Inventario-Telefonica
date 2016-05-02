@@ -32,7 +32,7 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '');
         <br>
         <?= count($InventarioLista) . ' resultados encontrados.'; ?>
         <br> <br> <br>
-        
+
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered ">
                 <thead>
@@ -43,18 +43,19 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '');
                 </center>
                 </th>-->
                         <th>
-                            <a href="<?= GetQuery('?ordem='. $ordem . '&by=leit_data') ?>">Data</a>
+                            <a href="<?= GetQuery('?ordem=' . $ordem . '&by=leit_data') ?>">Data</a>
                         </th>
+                        <th> CPF </th>
                         <th> N. Leitura </th>
                         <th>Cód Inventário</th>
                         <th>Cód Material</th>
                         <th>
-                            <a href="<?= GetQuery('?ordem='. $ordem . '&by=depo_centro') ?>">
+                            <a href="<?= GetQuery('?ordem=' . $ordem . '&by=depo_centro') ?>">
                                 Centro
                             </a>
                         </th>
                         <th>
-                            <a href="<?= GetQuery('?ordem='. $ordem . '&by=mate_nome') ?>">Descrição Material</a>
+                            <a href="<?= GetQuery('?ordem=' . $ordem . '&by=mate_nome') ?>">Descrição Material</a>
                         </th>
                         <th>Unidade de Medida</th>
                         <th>R$ Unitário</th>
@@ -80,6 +81,8 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '');
                             ?>
                             <td style="white-space: nowrap"> <?= $Data ?></td>
 
+                            <td> <?= $inve->leit_cpf ?> </td>
+
                             <td><?= $inve->leit_nu_leitura ?> </td>
 
                             <td><?= $inve->leit_identificacao_material ?></td>
@@ -98,7 +101,7 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '');
 
                             <td><?= $inve->leit_quantidade_aferida ?> </td>
 
-                            <td><?php // qtd empz   ?> </td>
+                            <td><?php // qtd empz    ?> </td>
 
                             <td><?= $inve->leit_loc_material ?> </td>
 
@@ -118,12 +121,12 @@ $InventarioLista = $Inventario->ListarInventario($OrderBy, $Search, '');
             </table>
             <a href="" download id="download"><span style="display: none">download</span></a>
         </div>
-        
-            <input type="hidden" value="<?= $OrderBy ?>" id="order">
-            <input type="hidden" value="<?= $Search ?>" id="search">
+
+        <input type="hidden" value="<?= $OrderBy ?>" id="order">
+        <input type="hidden" value="<?= $Search ?>" id="search">
 
         <script type="text/javascript" src="js/inventario.js"></script> 
-        
+
         <?php
         get_foot();
         

@@ -1,0 +1,64 @@
+[Sat Jun 18 10:54:16.115216 2016] [ssl:warn] [pid 10667] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Jun 18 10:54:16.115238 2016] [ssl:warn] [pid 10667] AH01909: RSA certificate configured for vivoinventario.asix6.com:443 does NOT include an ID which matches the server name
+[Sat Jun 18 10:54:30.070537 2016] [ssl:warn] [pid 10667] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Jun 18 10:54:30.070550 2016] [ssl:warn] [pid 10667] AH01909: RSA certificate configured for vivoinventario.asix6.com:443 does NOT include an ID which matches the server name
+[Sat Jun 18 10:54:59.207059 2016] [:error] [pid 10777] [client 177.203.242.180:38782] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:54:59.207553 2016] [:error] [pid 10777] [client 177.203.242.180:38782] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:54:59.208559 2016] [:error] [pid 10777] [client 177.203.242.180:38782] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:54:59.218029 2016] [:error] [pid 10777] [client 177.203.242.180:38782] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:54:59.219148 2016] [:error] [pid 10777] [client 177.203.242.180:38782] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:56:35.523658 2016] [:error] [pid 10775] [client 177.112.156.254:44546] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:56:35.523869 2016] [:error] [pid 10775] [client 177.112.156.254:44546] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:56:35.524053 2016] [:error] [pid 10775] [client 177.112.156.254:44546] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:56:35.524483 2016] [:error] [pid 10775] [client 177.112.156.254:44546] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:56:35.524769 2016] [:error] [pid 10775] [client 177.112.156.254:44546] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:56:44.828651 2016] [:error] [pid 10774] [client 177.112.156.254:34406] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:56:44.828842 2016] [:error] [pid 10774] [client 177.112.156.254:34406] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:56:44.828983 2016] [:error] [pid 10774] [client 177.112.156.254:34406] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:56:44.829395 2016] [:error] [pid 10774] [client 177.112.156.254:34406] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:56:44.829640 2016] [:error] [pid 10774] [client 177.112.156.254:34406] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:56:59.052019 2016] [:error] [pid 10779] [client 179.132.12.217:47684] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:56:59.052186 2016] [:error] [pid 10779] [client 179.132.12.217:47684] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:56:59.052318 2016] [:error] [pid 10779] [client 179.132.12.217:47684] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:56:59.052706 2016] [:error] [pid 10779] [client 179.132.12.217:47684] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:56:59.052926 2016] [:error] [pid 10779] [client 179.132.12.217:47684] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:13.695005 2016] [:error] [pid 10778] [client 191.198.7.163:50744] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:57:13.695194 2016] [:error] [pid 10778] [client 191.198.7.163:50744] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:57:13.695352 2016] [:error] [pid 10778] [client 191.198.7.163:50744] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:57:13.695757 2016] [:error] [pid 10778] [client 191.198.7.163:50744] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:57:13.695990 2016] [:error] [pid 10778] [client 191.198.7.163:50744] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:57:15.873681 2016] [:error] [pid 10791] [client 177.79.45.134:48381] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:57:15.873910 2016] [:error] [pid 10791] [client 177.79.45.134:48381] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:57:15.874051 2016] [:error] [pid 10791] [client 177.79.45.134:48381] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:57:15.874456 2016] [:error] [pid 10791] [client 177.79.45.134:48381] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:57:15.874808 2016] [:error] [pid 10791] [client 177.79.45.134:48381] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111)
+[Sat Jun 18 10:57:27.659562 2016] [:error] [pid 10793] [client 179.132.12.217:43572] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:27.659765 2016] [:error] [pid 10793] [client 179.132.12.217:43572] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:27.660031 2016] [:error] [pid 10793] [client 179.132.12.217:43572] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:27.660450 2016] [:error] [pid 10793] [client 179.132.12.217:43572] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:27.660695 2016] [:error] [pid 10793] [client 179.132.12.217:43572] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:28.602145 2016] [:error] [pid 10794] [client 179.132.12.217:32774] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:28.602317 2016] [:error] [pid 10794] [client 179.132.12.217:32774] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:28.602446 2016] [:error] [pid 10794] [client 179.132.12.217:32774] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:28.602823 2016] [:error] [pid 10794] [client 179.132.12.217:32774] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:28.603027 2016] [:error] [pid 10794] [client 179.132.12.217:32774] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:29.590852 2016] [:error] [pid 10785] [client 179.132.12.217:38257] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:29.591026 2016] [:error] [pid 10785] [client 179.132.12.217:38257] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:29.591163 2016] [:error] [pid 10785] [client 179.132.12.217:38257] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:29.591612 2016] [:error] [pid 10785] [client 179.132.12.217:38257] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:29.591796 2016] [:error] [pid 10785] [client 179.132.12.217:38257] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:30.570075 2016] [:error] [pid 10789] [client 179.132.12.217:42358] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:30.570259 2016] [:error] [pid 10789] [client 179.132.12.217:42358] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:30.570394 2016] [:error] [pid 10789] [client 179.132.12.217:42358] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:30.570807 2016] [:error] [pid 10789] [client 179.132.12.217:42358] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:30.571054 2016] [:error] [pid 10789] [client 179.132.12.217:42358] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:31.518876 2016] [:error] [pid 10797] [client 179.132.12.217:46895] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:31.519046 2016] [:error] [pid 10797] [client 179.132.12.217:46895] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:31.519178 2016] [:error] [pid 10797] [client 179.132.12.217:46895] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:31.519530 2016] [:error] [pid 10797] [client 179.132.12.217:46895] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:31.519785 2016] [:error] [pid 10797] [client 179.132.12.217:46895] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:32.772163 2016] [:error] [pid 10799] [client 179.132.12.217:39983] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:32.774686 2016] [:error] [pid 10799] [client 179.132.12.217:39983] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:32.774853 2016] [:error] [pid 10799] [client 179.132.12.217:39983] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:32.775238 2016] [:error] [pid 10799] [client 179.132.12.217:39983] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
+[Sat Jun 18 10:57:32.775509 2016] [:error] [pid 10799] [client 179.132.12.217:39983] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (111), referer: http://vivoinventario.asix6.com/
